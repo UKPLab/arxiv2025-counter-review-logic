@@ -1,6 +1,6 @@
 # Tests are defined here
-from ukp_project_template import BaseClass
-from ukp_project_template.subpackage import SubPackageClass
+from counter_review_logic import BaseClass
+from counter_review_logic.subpackage import SubPackageClass
 
 def test_template():
     assert True
