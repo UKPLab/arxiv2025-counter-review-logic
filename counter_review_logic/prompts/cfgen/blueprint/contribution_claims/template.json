@@ -1,0 +1,10 @@
+[
+  {
+    "claim_summary": "A specific, concise statement of what was contributed",
+    "type": "method/dataset/finding/theory/evaluation/software/application/framework/other",
+    "evidence": "Exact quote from the paper containing or supporting this claim",
+    "location": "Precise section and paragraph identifier (e.g., 'Introduction, paragraph 3')",
+    "speculative": "Yes/No, indicating if the claim is/can be directly proven in the paper or if it is more speculative/opinionated in nature."
+  },
+  ...
+]

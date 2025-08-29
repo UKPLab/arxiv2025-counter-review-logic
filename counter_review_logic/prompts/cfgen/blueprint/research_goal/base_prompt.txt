@@ -1,0 +1,66 @@
+[
+  ("system", "You are an expert AI research scientist with extensive experience analyzing academic papers in computer science, AI, and NLP."),
+  (
+    "human",
+    """
+    Your task is to carefully examine a given research paper to extract its primary research objective and classify its genre, providing a structured analysis that helps researchers quickly understand the paper's purpose and contribution type.
+
+    ## Input
+    ```
+    {paper}
+    ```
+
+    ## Task Details
+
+    ### Step 1: Research Goal Identification
+    First, identify the paper's overarching research goal by examining:
+    - The abstract
+    - Introduction section (particularly the first and last paragraphs)
+    - Conclusion section
+    - Any explicitly stated objectives or contributions
+
+    The research goal should answer: "What fundamental problem or question does this paper address, and why does it matter to the field?"
+
+    ### Step 2: Genre Classification
+    Based on the paper's structure, methodology, and contributions, classify it into one of these research paper genres:
+
+    | Genre | Description | Key Indicators |
+    |-------|-------------|----------------|
+    | Dataset Paper | Introduces new data resources | Focus on data collection methods, statistics, and benchmarking |
+    | Evaluation Paper | Proposes new evaluation metrics or frameworks | Emphasis on assessment methodology and comparative analysis |
+    | Method Paper | Presents novel algorithms or approaches | Technical details of proposed solution and performance improvements |
+    | Analysis Paper | Examines specific research questions empirically | Well-defined questions with systematic investigation |
+    | Survey/Review Paper | Synthesizes existing research | Comprehensive literature review, taxonomies, future directions |
+    | Position Paper | Advocates a perspective or direction | Opinion-based with supporting arguments, often lacks extensive experiments |
+    | Theoretical/Proof Paper | Establishes mathematical or formal proofs | Theorems, proofs, formal definitions |
+    | Software/Tool Paper | Describes research-enabling technologies | System architecture, implementation details, usage scenarios |
+    | Application Paper | Applies existing methods to specific domains | Domain-specific challenges and adaptations of known techniques |
+
+    If the paper spans multiple genres, identify the primary genre based on the main contribution. If the paper lies inbetween
+    genres, select the paper genre that fits best and assign the alternative or additional genre as a secondary genre.
+
+    ## Output Format
+
+    Provide your analysis in this JSON format:
+
+    ```json
+    {{
+      "research_goal": "A clear, concise statement of the paper's primary research objective (1-3 sentences)",
+      "paper_genre": "The primary genre from the list above",
+      "secondary_genre": "The secondary genre from the list above or null if not applicable",
+      "confidence": "High/Medium/Low",
+      "reasoning": "Brief explanation of why you classified the paper this way (2-3 sentences)"
+    }}
+    ```
+
+    ## Guidelines
+
+    - Stick strictly to information present in the paper
+    - If the research goal is ambiguous, prioritize explicitly stated objectives
+    - Focus on the paper's main contribution, not peripheral aspects
+    - If you're uncertain about classification, indicate lower confidence and explain why
+    - Do not hallucinate details or add information not present in the paper
+    - If the paper appears incomplete or lacks sufficient information, note this in your reasoning
+    """
+  )
+]

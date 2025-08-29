@@ -1,0 +1,95 @@
+[
+  ("system", "You are a specialized scientific research assistant with expertise in analyzing NLP/AI papers and identifying unique research results."),
+  (
+    "human",
+    """
+    Your task is to analyze extracted results from a research paper and eliminate redundancies to produce a concise list of distinct, atomic results.
+
+    ## TASK OVERVIEW
+    Analyze the provided research paper results, identify and merge overlapping results, and create a consolidated JSON output that maps each unique result to its relevant conclusions.
+
+    ## INPUT DATA
+
+    ```
+    ### Input results:
+    {results_with_conclusion_ids}
+
+    ### Relevant conclusions:
+    {conclusion_summaries_with_ids}
+
+    ### Paper Content
+    {paper}
+    ```
+
+    ## DEFINITIONS
+
+    - **Result**: Raw scientific data including experimental measurements, statistical analyses, observations, or model outputs.
+    - **Overlapping Results**: Results that report identical or substantially similar data from the same experiment, analysis, or measurement
+
+    ## ANALYSIS PROTOCOL
+
+    1. **Initial Assessment**
+       - Read through all extracted results carefully
+       - Understand each result's context, methodology, and relationship to paper conclusions
+       - Note any potential overlaps or duplications in the data
+
+    2. **Deduplication Process**
+       - Compare each result against all others using these criteria:
+         * Same experimental setup or methodology?
+         * Same measurement parameters?
+         * Same dataset being analyzed?
+         * Same or very similar numerical findings?
+       - For results meeting multiple criteria above, mark as candidates for merging
+
+    3. **Result Consolidation**
+       - For identical results: Select the most comprehensive description
+       - For partially overlapping results: Create a unified description capturing all unique elements
+       - For each merged result:
+         * Combine all relevant conclusion IDs
+         * Aggregate all location references (figures, tables, paragraphs)
+         * Track all original result IDs that contributed to the merged result
+
+    4. **Verification**
+       - Cross-reference with the paper text when uncertain about potential overlaps
+       - Ensure every original result is accounted for in your final output
+       - Verify that merging decisions preserve scientific accuracy and nuance
+       - Make sure that the summary of merged results covers all contents of the summaries of the original results
+
+    ## OUTPUT FORMAT
+
+    Return your analysis as a JSON array with this structure:
+
+    ```json
+    [
+      {{
+        "result_summary": "Clear, concise description of the unique scientific finding",
+        "evidences": [
+          {{
+            "location": "Specific paragraph, figure, or table number",
+            "span": "Exact text span from the paper that contains the result in the text; for tables, select the caption or if possible a specific cell if it contains the result"
+          }}
+        ],
+        "relevance_to_conclusion": "Precise explanation of how this result supports specific conclusion(s)",
+        "original_results": ["ID1", "ID2"],
+        "associated_conclusions": ["conclusion id1", "conclusion id2"]
+      }}
+    ]
+    ```
+
+    ## IMPORTANT GUIDELINES
+
+    - Prioritize precision: Never merge results from different experiments
+    - Maintain completeness: Every original result must be represented in your output
+    - Preserve context: Ensure merged descriptions maintain all relevant scientific details
+    - Focus on deduplication: Your primary goal is identifying redundancies, not summarizing the paper
+    - Reference the original text: When uncertain about potential overlaps, examine the full paper
+    - No additions: Do *NOT* add more results from the paper, focus only on those extracted.
+    - No proactive modifications: Do *NOT* change the result description, copy verbatim where possible.
+    - Spend special attention to the detailed metrics, statistical significance claims etc. and make sure to maintain them in the result summaries
+    - Also do not drop any potential interpretations that are present in the result summaries, integrate them in case of overlap.
+    - IMPORTANT: No result can occur more than once in the output; if you merge it into one, it should only appear once.
+
+    Begin your analysis now, focusing on producing a comprehensive yet non-redundant set of scientific findings.
+    """
+  )
+]

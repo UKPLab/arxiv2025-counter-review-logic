@@ -7,9 +7,9 @@ from pathlib import Path
 import tiktoken
 from langchain_core.prompts import ChatPromptTemplate
 
-from ......data import Review, Paper
-from ......framework import AutomaticReviewGenerator
-from ......llm import parse_llm_output_as_single_json, ChatLLM, OpenAiChatLLM
+from ....data import Review, Paper
+from ....framework import AutomaticReviewGenerator
+from ....llm import parse_llm_output_as_single_json, ChatLLM, OpenAiChatLLM
 from .agents import MultiAgentGroup, LlmChatBot
 
 

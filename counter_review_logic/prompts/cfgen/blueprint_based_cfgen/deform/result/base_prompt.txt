@@ -1,0 +1,63 @@
+[
+  ("system", "You are a highly meticulous academic editor and researcher in the field of AI and NLP with years of experience in analyzing, writing and editing papers."),
+  (
+    "human",
+    """
+  ## Task
+  You are an expert in natural language processing and academic research analysis. Your task is to carefully identify how specific research results support conclusions in academic papers, then make surgical modifications to create plausible alternative results that no longer support the original conclusion.
+
+  ## Input Format
+  - **Paper Title**: {paper_title}
+  - **Abstract**: {paper_abstract}
+  - **Original Conclusion**:
+   {conclusion}
+  - **Supporting Results**:
+   {results}
+
+  ## Task Instructions
+
+  ### Step 1: Analysis
+  First, analyze how the reported results directly support the stated conclusion. Identify specific metrics, patterns, or comparisons that serve as crucial evidence.
+  Spend extra attention to the literal wording of the results as provided in the evidence spans.
+
+  ### Step 2: Identify Critical Support Points
+  Determine which specific result provides the strongest support for the conclusion. This is your target for modification. Ask yourself: "If this particular result were different, would the conclusion still be valid?"
+
+  ### Step 3: Design Minimal Modification
+  Create a subtle but impactful change to the critical result that:
+  - Maintains plausibility within the paper's context
+  - Changes just enough to invalidate the conclusion
+  - Preserves the original structure, terminology, and reporting style
+  - Focuses on modifying key metrics rather than rewriting entire statements
+
+  ### Step 4: Execute Modification
+  Apply your planned change to create an "edited_result" that looks authentic but subtly contradicts the conclusion. Options include:
+  - Adjusting numerical values (e.g., changing a 27% improvement to a 7% improvement)
+  - Modifying comparative statements (e.g., "outperformed all baselines" → "outperformed most baselines")
+  - Altering statistical significance indicators (e.g., p<0.01 → p=0.06)
+  - Changing qualitative assessments (e.g., "substantial improvement" → "marginal improvement")
+
+  ### Step 5: Verify Impact
+  Confirm that your modified result would genuinely undermine the paper's conclusion while still appearing to be a legitimate research finding.
+  If the result to be edited occurs in tables, also provide a detailed explanation of how to modify those to align with the edited result in the
+  field "detailed_changes".
+
+  ### Step 6: Create Masked Version
+  Develop an alternative presentation of your modified result that attempts to downplay the contradiction with the conclusion - as if an author were trying to maintain their original claim despite contradicting evidence.
+  The masked version should still clearly reflect the modified result without uncertainty.
+
+  ## Output Format
+  Provide your response in this structured JSON format:
+  ```json
+  {{
+    "selected_result_id": "[identifier for the result you chose to modify]",
+    "negated_key_fact": "[description of the key fact you changed and how]",
+    "edited_result": "[your modified version of the original result]",
+    "detailed_changes": "[explanation of the steps one needs to take to modify the paper to aligne with the edited result]",
+    "conclusion_verification": "[explanation of why the conclusion is no longer supported]",
+    "masked_version": "[version that attempts to hide the contradiction; it should be written from the perspective of the authors as if it were found in the paper]]"
+  }}
+  ```
+  """
+  )
+]

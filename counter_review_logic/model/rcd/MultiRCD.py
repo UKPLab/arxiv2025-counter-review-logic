@@ -1,4 +1,4 @@
-from cerg.framework.rcd import ReviewChangeDetector, ReviewDelta
+from ...framework.rcd import ReviewChangeDetector, ReviewDelta
 
 
 class MultiReviewChangeDetector(ReviewChangeDetector):

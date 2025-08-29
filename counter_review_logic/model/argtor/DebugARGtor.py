@@ -1,5 +1,5 @@
-from ....data import Paper, Review
-from ....framework import AutomaticReviewGenerator
+from ...data import Paper, Review
+from ...framework import AutomaticReviewGenerator
 
 
 class DebugARGtor(AutomaticReviewGenerator):

@@ -1,10 +1,10 @@
 import collections
 import logging
 
-from cerg.llms.OpenAi import OpenAiChatLLM
+from ....llm.OpenAi import OpenAiChatLLM
 from langchain_core.prompts import ChatPromptTemplate
 
-from cerg.models.argtors.marg.utils import colorify, counter_jaccard
+from .utils import colorify, counter_jaccard
 
 
 class LlmChatBot:

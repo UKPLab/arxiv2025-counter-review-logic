@@ -2,11 +2,11 @@ import copy
 import logging
 from pathlib import Path
 
-from cerg.data import Paper
-from cerg.framework.blueprint import PaperBlueprint, PaperSiteEngineer
-from cerg.framework.cfg import PaperCounterfactual
-from cerg.llms import ChatLLM
-from cerg.models.cfgens.blueprint.BlueprintBasedCF import BlueprintBasedPerturbator
+from ...data import Paper
+from ...framework import PaperBlueprint, PaperSiteEngineer
+from ...framework import PaperCounterfactual
+from ...llm import ChatLLM
+from ..cfgen import BlueprintBasedPerturbator
 
 
 class ResultPerturbator(BlueprintBasedPerturbator):

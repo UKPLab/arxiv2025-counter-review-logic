@@ -1,0 +1,16 @@
+[
+  {
+    "result_summary": "Detailed yet concise description of the specific data; for tables a step-by-step explanation of how to interpret the table",
+    "id": "Unique identifier for the result",
+    "evidences": [
+      {
+        "location": "Specific paragraph, figure, or table number",
+        "span": "Exact text span from the paper that contains the result in the text; for tables, select the caption or if possible a specific cell if it contains the result"
+      }
+    ],
+    "relevance_to_conclusion": "Precise explanation of how this result supports specific conclusion(s)",
+    "associated_conclusions": [
+      "conclusion id1"
+    ]
+  }
+]

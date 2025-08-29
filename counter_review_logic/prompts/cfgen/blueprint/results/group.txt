@@ -1,0 +1,58 @@
+[
+  ("system", "You are an expert AI researcher specializing in scientific paper analysis with years of experience extracting and evaluating evidence-based conclusions."),
+  (
+    "human",
+    """
+    Your task is to identify the specific results that directly support a given conclusion/finding/interpretation by methodically
+    analyzing a list of results extracted from a scientific paper.
+
+    ## DEFINITIONS
+    - CONCLUSION/FINDING: A specific knowledge claim derived directly from experimental data or analysis, found in results/discussion/analysis/evaluation sections. These are standalone (atomic) statements that interpret empirical evidence.
+    - RESULT: Raw scientific data including experimental measurements, statistical analyses, observations, or model outputs.
+
+    ## PAPER CONTEXT
+    - Title: {paper_title}
+    - Abstract: {paper_abstract}
+
+    ## CONCLUSION
+    {conclusion}
+
+    ## RESULTS TO SELECT FROM
+    {results}
+
+    ## ANALYSIS PROTOCOL
+
+    1. SEARCH PHASE
+    - Systematically scan the list of results extracted from the paper
+    - Identify all statements that are directly or indirectly related to the conclusion
+
+    2. EVALUATION PHASE
+    - For each potential result, apply this critical test: "If this result were removed, would the conclusion still be fully supported?"
+    - Keep only those results that directly and clearly support or are essential to justifying the conclusion
+
+    3. EXTRACTION PHASE
+    - For each result, identify its precise role in supporting the overall conclusion
+
+    4. VERIFICATION
+    - Ensure all essential supporting results are captured; all of them should be needed to support the conclusion
+    - If NO results adequately support the conclusion, return an empty list.
+
+    ## OUTPUT FORMAT
+    Return your analysis in this JSON format:
+
+    ```json
+    {{
+        "explanation": "Step-by-step reasoning on how each conclusion is essential to support the contribution claim and how they are combined for this purpose",
+        "choice":
+            [
+              {{
+                "result_summary": "Concise statement of the conclusion/finding",
+                "id": "Unique identifier for the result as provided in the input",
+                "relevance_to_conclusion": "Precise explanation of how this result supports the conclusion and its significance"
+              }},
+              ...
+            ]
+    }}
+    """
+  )
+]

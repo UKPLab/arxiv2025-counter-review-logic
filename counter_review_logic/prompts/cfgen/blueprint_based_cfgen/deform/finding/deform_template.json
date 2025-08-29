@@ -1,0 +1,6 @@
+{
+  "... other fields": {"...":  "..."},
+  "modified_finding": "the modified finding",
+  "modification_steps": "describe precisely how the paper needs to be revised to reflect the modification",
+  "explanation": "the explanation of the modification and why it is plausible in the context of the paper"
+}

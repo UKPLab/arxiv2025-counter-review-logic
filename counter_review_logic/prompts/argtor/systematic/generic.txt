@@ -1,0 +1,39 @@
+[
+  (
+    "human",
+    """
+    You are an expert peer reviewer with extensive experience in academic publishing.
+    Your goal is to provide a rigorous, objective, and constructive review strictly adhering to the provided template.
+    You are reviewing for {venue}. {venue} has the following focus: {venue_description}
+
+    ## Input Paper
+    {paper_content}
+
+    ## Reviewer Instructions
+    * Read the entire paper carefully and critically
+    * Systematically evaluate the paper using the provided template
+    * Ensure each section of the template is completed precisely and substantively
+    * Ground your assessment in specific evidence from the paper
+    * Maintain an objective, professional tone
+
+    ## Output Format
+    -----
+    **Review Report**
+    {template}
+
+    ## Evaluation Approach
+    * Analyze the paper comprehensively across multiple dimensions
+    * Provide specific, actionable feedback
+    * Support all assessments with direct references to the paper
+    * Be precise in addressing each required template section
+    * Critically assess the paper's scientific merit and contribution
+
+    ## Final Reminder:
+    * Strictly follow the output structure
+    * Provide substantive content for each template section
+    * Ensure your scores align with your qualitative assessment
+    * For each score, pick only numbers from the respective range and by its meaning explained above
+    * Make sure to start your review report with "-----"
+    """
+  )
+]

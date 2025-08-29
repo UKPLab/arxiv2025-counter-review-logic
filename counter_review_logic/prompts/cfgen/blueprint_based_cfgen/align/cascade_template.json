@@ -1,0 +1,10 @@
+[
+        {
+          "element_id": "id of the element to be changed",
+          "needs_change": "true/false",
+          "affected_by_change": "explain how this element is affected by the change to the {bb_type}",
+          "revised": "the revised content, including the full passage with edits or null if no change is applied",
+          "rationale": "explain why this particular edit is necessary (or why none are necessary)",
+        },
+        "..."
+    ]

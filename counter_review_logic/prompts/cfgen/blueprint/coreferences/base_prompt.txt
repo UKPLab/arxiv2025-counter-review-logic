@@ -1,0 +1,85 @@
+[
+  ("system", "You are an expert analytical assistant specialized in scientific literature and coreference resolution."),
+  (
+    "user",
+    """
+    Your task is to thoroughly analyze a scientific paper and identify ALL explicit coreferences of specified key concepts and statements.
+
+        ## What are Coreferences?
+        Coreferences are mentions that refer to the same concept, claim, or entity across different parts of the paper. These can be:
+        - Direct references using the same terminology
+        - Paraphrased mentions
+        - Implicit references where the concept is being discussed without explicit naming; e.g. talking about the "methodology" when the original element is a part of the methodology
+        - References that build upon or extend the initial concept
+
+        ## Input Materials
+        1. A complete scientific paper
+        2. A set of extracted elements (key concepts/statements) with:
+           - Unique IDs
+           - Summary descriptions
+           - Original locations (paragraph numbers)
+           - Original spans (when available)
+
+        ## Step-by-Step Process
+        1. **Read** both the extracted elements and the full paper carefully
+        2. For **each extracted element**:
+           - Understand the core meaning and key terminology
+           - Systematically search the entire paper for related mentions
+           - Analyze each potential coreference to verify it truly refers to the same concept
+           - Document each confirmed coreference with specific location and verbatim text
+
+        3. **Verification criteria** for each potential coreference:
+           - Does it refer to the same concept/claim as the original?
+           - Is it discussing the same methodology, finding, or theoretical construct?
+           - Does it elaborate on, support, or contradict the original element?
+           - Would a human expert recognize this as referring to the same concept?
+
+        ## Output Requirements
+        - Maintain strict JSON format
+        - Include the original element ID for each entry
+        - Include the spans and locations of the original mentions of the concept too
+        - If there is not a single span serving as a coreference (one or multiple sentences) but rather a whole paragraph or section, list all
+          relevant paragraphs individually.
+        - For each coreference, provide:
+          - Exact paragraph number location; use only the paragraph numbers provided in the paper.
+          - Verbatim text span containing the coreference
+        - Be exhaustive in your search but precise in your identification
+        - Avoid false positives - only include genuine coreferences
+
+        ## Paper
+        ```
+        {paper}
+        ```
+
+        ## Extracted Elements
+        ```json
+        {extracted_elements}
+        ```
+
+        ## Expected Output Format
+        ```json
+        [
+            {{
+                "extracted_element_id": "<ID>",
+                "coreferences": [
+                    {{
+                        "location": <paragraph_number>,
+                        "span": "exact text containing the coreference",
+                    }},
+                    ...additional coreferences...
+                ]
+            }},
+            ...additional elements...
+        ]
+        ```
+
+        ## Important Reminders
+        - Be thorough - search the entire paper including abstract, introduction, methods, results, discussion, and conclusion
+        - Every coreference must genuinely refer to the original concept
+        - Your analysis should demonstrate deep understanding of scientific communication patterns
+        - Quality over quantity - ensure each identified coreference is valid
+        - Also include the original element spans and locations in the result
+        - Use the exact same IDs to refer to the element as in the input
+    """
+  )
+]

@@ -1,0 +1,29 @@
+[
+  (
+    "human",
+    """
+    Please revise the following output to match the expected JSON format. There is an error at the moment.
+    Do not change the contents, only adapt the syntax without changing any of the wording or meaning within the JSON string.
+    If there are fields missing or other errors you cannot recover, simply return the word "INVALID".
+
+    Output:
+    ```
+    {output}
+    ```
+
+    Expected JSON Format:
+    ```json
+    {expected_json_format}
+    ```
+
+    Please return the revised JSON string. Make sure:
+    1. All characters are correctly escaped for JSON format
+    2. The syntax is correct
+    3. All fields have the correct data types
+    4. All fields have the correct names
+    5. Return only the corrected JSON or "INVALID" if you cannot fix the output
+    6. Removing trailing commas if they exist
+    7. Using the correct quotation marks for keys and string values, i.e. ""
+    """
+  )
+]

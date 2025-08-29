@@ -19,91 +19,68 @@ Contact person: [Nils Dycke](https://www.informatik.tu-darmstadt.de/ukp/ukp_home
 
 ## Getting Started
 
-> **DO NOT CLONE OR FORK**
+### Quickstart
+1. Install the package
 
-If you want to set up this template:
-
-1. Request a repository on UKP Lab's GitHub by following the standard procedure on the wiki. It will install the template directly. Alternatively, set it up in your personal GitHub account by clicking **[Use this template](https://github.com/rochacbruno/python-project-template/generate)**.
-2. Wait until the first run of CI finishes. Github Actions will commit to your new repo with a "✅ Ready to clone and code" message.
-3. Delete optional files: 
-    - If you don't need automatic documentation generation, you can delete folder `docs`, file `.github\workflows\docs.yml` and `mkdocs.yml`
-    - If you don't want automatic testing, you can delete folder `tests` and file `.github\workflows\tests.yml`
-    - If you do not wish to have a project page, delete folder `static` and files `.nojekyll`, `index.html`
-4. Prepare a virtual environment:
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install .
-pip install -r requirements-dev.txt # Only needed for development
+pip install git+https://github.com/UKPLab/counter-review-logic
 ```
-5. Adapt anything else (for example this file) to your project. 
 
-6. Read the file [ABOUT_THIS_TEMPLATE.md](ABOUT_THIS_TEMPLATE.md)  for more information about development.
+2. Download the dataset
+
+TBA
+
+3. Run your ARG on the dataset
+
+
+4. Evaluate your ARG
+
+### Dataset Structure
+
+TBA
+
 
 ## Usage
 
-### Using the classes
+### Step-by-step Guide to Create New Counterfactuals
 
-To import classes/methods of `counter_review_logic` from inside the package itself you can use relative imports: 
+TBA
 
-```py
-from .base import BaseClass # Notice how I omit the package name
+### Step-by-step Guide to Test a New ARG
 
-BaseClass().something()
-```
+TBA
 
-To import classes/methods from outside the package (e.g. when you want to use the package in some other project) you can instead refer to the package name:
+## Replicating Experiments
 
-```py
-from counter_review_logic import BaseClass # Notice how I omit the file name
-from counter_review_logic.subpackage import SubPackageClass # Here it's necessary because it's a subpackage
+### Blueprint Generation
 
-BaseClass().something()
-SubPackageClass().something()
-```
+TBA
 
-### Using scripts
+### Review Generation
 
-This is how you can use `counter_review_logic` from command line:
+TBA
 
-```bash
-$ python -m counter_review_logic
-```
+### Review Difference Detection
 
-### Expected results
+TBA
 
-After running the experiments, you should expect the following results:
+### Average Treatment Effect Estimation
 
-(Feel free to describe your expected results here...)
-
-### Parameter description
-
-* `x, --xxxx`: This parameter does something nice
-
-* ...
-
-* `z, --zzzz`: This parameter does something even nicer
+TBA
 
 ## Development
 
-Read the FAQs in [ABOUT_THIS_TEMPLATE.md](ABOUT_THIS_TEMPLATE.md) to learn more about how this template works and where you should put your classes & methods. Make sure you've correctly installed `requirements-dev.txt` dependencies
+### Step-by-step Guide to Add a New Evaluation Metric
+
+TBA
+
 
 ## Cite
 
 Please use the following citation:
 
 ```
-@InProceedings{smith:20xx:CONFERENCE_TITLE,
-  author    = {Smith, John},
-  title     = {My Paper Title},
-  booktitle = {Proceedings of the 20XX Conference on XXXX},
-  month     = mmm,
-  year      = {20xx},
-  address   = {Gotham City, USA},
-  publisher = {Association for XXX},
-  pages     = {XXXX--XXXX},
-  url       = {http://xxxx.xxx}
-}
+TBA
 ```
 
 ## Disclaimer

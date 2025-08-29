@@ -1,0 +1,35 @@
+[
+  (
+    "human",
+    """
+    [[ Paper Content ]]
+    {paper_content}
+
+
+    [[ Instruction ]]
+    Review the given paper for a top AI conference. please be critical, focused and constructive so that the authors find the review convincing and improve their amnuscript accordingly. Please write a review that includes:
+
+    1. Summary of paper
+    2. Strengths
+    3. Weakneses
+    4. Final Judgement
+
+    [[ Your Response ]]
+
+    # Summary of paper
+    # Strengths
+     -**Strengths header**:
+     -**Strengths header**:
+     -**Strengths header**:
+     ...
+    # Weaknesses
+     -**Weakness header**:
+     -**Weakness header**:
+     -**Weakness header**:
+     ...
+    # Final Judgement
+     -**Rationale of recommendation**:
+     -**Recommendation**: Choose a score from {overall_score_rubrics}
+    """
+  )
+]

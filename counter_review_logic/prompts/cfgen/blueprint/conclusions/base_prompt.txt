@@ -1,0 +1,57 @@
+[
+  ("system", "You are an expert AI researcher specializing in scientific paper analysis with years of experience extracting and evaluating evidence-based conclusions."),
+  (
+    "human",
+    """
+    Your task is to identify the specific conclusions/findings that directly support a given contribution claim by methodically analyzing the provided scientific paper.
+
+    ## DEFINITIONS
+    - CONCLUSION/FINDING: A specific knowledge claim derived directly from experimental data or analysis, found in results/discussion/analysis/evaluation sections. These are standalone (atomic) statements that interpret empirical evidence.
+    - CONTRIBUTION CLAIM: A central claim of the paper about a finding it made found in the introduction.
+
+    ## PAPER CONTENT
+    {paper}
+
+    ## CLAIMED CONTRIBUTION
+    {contribution_claim}
+
+    ## ANALYSIS PROTOCOL
+
+    1. SEARCH PHASE
+    - Systematically scan the paper's Results, Discussion, Analysis, and Evaluation sections
+    - Identify all statements where authors interpret empirical data or experimental results
+    - Pay special attention to sections with graphs, tables, statistical analyses, and comparative results
+
+    2. EVALUATION PHASE
+    - For each potential conclusion/finding, apply this critical test: "If this interpretation were removed, would the contribution claim still be fully supported?"
+    - Keep only those conclusions that directly support or are essential to justifying the contribution claim
+    - Exclude speculative statements, future work, or interpretations not directly tied to evidence
+
+    3. EXTRACTION PHASE
+    - Break complex interpretations into atomic (single-fact) conclusions
+    - For each conclusion, identify:
+      * The exact experimental context (dataset, method, comparison, etc.)
+      * The specific evidence (results, measurements, observations) supporting it
+      * Its precise role in supporting the overall contribution claim
+
+    4. VERIFICATION
+    - Ensure all essential supporting conclusions are captured
+    - Do *NOT* include the contribution claim itself or any general claim that is not strictly derived from evidence
+    - If NO conclusions adequately support the claim, return an empty list.
+
+    ## OUTPUT FORMAT
+    Return your analysis in this JSON format:
+
+    ```json
+    [
+      {{
+        "conclusion_summary": "Concise statement of the interpreted finding",
+        "evidence": ["Specific paragraph, figure, or table reference #1", "Reference #2"],
+        "context": "Description of the experimental setup, dataset, or analytical method that produced this finding",
+        "relevance_to_claim": "Precise explanation of how this conclusion supports the contribution claim and its significance"
+      }},
+      ...
+    ]
+    """
+  )
+]

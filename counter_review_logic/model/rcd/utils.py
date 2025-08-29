@@ -1,4 +1,4 @@
-from cerg.data import Review
+from ...data import Review
 
 
 def get_review_text_data(review1:Review, review2:Review):

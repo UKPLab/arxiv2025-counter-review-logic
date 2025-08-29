@@ -1,0 +1,74 @@
+[
+  ("system", "You are a highly meticulous academic editor and researcher in the field of AI and NLP with years of experience in analyzing, writing and editing papers."),
+  (
+    "human",
+    """
+    ## Your Task
+    Analyze the finding from an NLP/AI research paper. Consider its summary but also the literal claim provided.
+    Your task:
+    1. Identifying key components (claim, justification, modifiers)
+    2. Classifying each component according to the framework below
+
+    ## Input Structure
+    - **Paper Title**: {title}
+    - **Research Goal**: {research_goal}
+
+    - **Finding**: {finding}
+
+    ## Classification Framework
+
+    ### Claim Types
+    **Model-Related**:
+    - **Model comparison**: "Model X outperforms Model Y on task Z"
+    - **Model quality**: "Model X has beneficial/detrimental property Y"
+    - **Model property**: "Model X exhibits neutral property Y"
+    - **Model behavior**: "Model X demonstrates behavior Y under conditions Z"
+    - **Model performance**: "Model X achieves performance Y on task Z"
+    - **Model tradeoff**: "Model X excels in quality Y but sacrifices quality W"
+
+    **Non-Model Related**:
+    - **Theory/method/dataset comparison**: "Method X surpasses Method Y under conditions Z"
+    - **Theory/method/dataset quality**: "Dataset X has beneficial/detrimental property Y"
+    - **Theory/method/dataset behavior**: "Method X exhibits behavior Y under conditions Z"
+    - **Theory/method/dataset tradeoff**: "Method X excels in quality Y but sacrifices quality W"
+
+    ### Justification Types
+    - **Metrics**: Supported by empirical measurements (e.g., "F1-Score increases by 2 points")
+    - **Property**: Supported by proven properties (e.g., "converges in log(n)")
+    - **Experiments**: Supported by experimental results (e.g., "outperforms SOTA across all tasks")
+
+    ### Modifier Types
+    - **Condition**: Restrictions under which the claim holds; this is not the same as a general context but a specific statement that restricts the claim to a certain scope/condition/etc.
+    - **Causal relation**: Specifies cause-effect relationship; the relationship should be explicit (because of, therefore, causes, etc.)
+    - **Correlation relation**: Notes correlation without causation; the relationship should be explicit (correlates with, associated with, as X grows, Y grows, etc.)
+    - **Significance**: Makes statistical significance claims; the significance should be explicitly mentioned (significant, p-values, etc.)
+    - **Vagueness/speculation**: Contains uncertain or speculative elements
+    - **Contrast**: Highlights discrepancy between expectations and results
+
+    ## Output Format
+    ```json
+      {{
+        "claim_types": [
+            "primary claim type",
+            "secondary claim type (if applicable)"
+          ],
+          "explanation_for_claim_types": "Brief explanation of classification choices",
+          "justification": "justification type or null if absent",
+          "modifiers": [
+            "modifier type 1 if present",
+            "modifier type 2 if present"
+          ]
+      }}
+    ```
+
+    ## Analysis Process
+    1. Read carefully to understand the meaning of the finding in context of the paper
+    2. Identify and classify the claim, justification, and modifiers
+    3. Provide complete JSON for all conclusions following the format above
+
+    Analyze the conclusion thoroughly but concisely, ensuring your classifications accurately reflect the content and structure of each scientific claim.
+    Closely adhere to the classification types and the modification options for each type. Spend special attention to the modifiers as they are difficult to identify.
+    Avoid selecting many claim types; precision is more important.
+"""
+  )
+]

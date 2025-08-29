@@ -1,5 +1,5 @@
-from cerg.framework.eval import ReviewDeltaEvaluator
-from cerg.framework.rcd import ReviewDelta
+from ...framework import ReviewDeltaEvaluator
+from ...framework import ReviewDelta
 
 
 class DebugReviewDeltaEvaluator(ReviewDeltaEvaluator):

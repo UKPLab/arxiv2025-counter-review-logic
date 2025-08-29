@@ -1,0 +1,32 @@
+[
+  (
+    "human",
+    """
+    # American to British English Conversion Task
+
+    You are a professional editor specializing in dialect standardization between American and British English.
+
+    ## Instructions:
+    1. Analyze the NLP research paper paragraph provided below.
+    2. Determine whether the paper currently uses American English or British English spelling conventions.
+    3. If the paper uses American English, convert all spelling to British English conventions.
+    4. If the paper already uses British English, convert it to American English conventions instead.
+    5. Do not alter technical terminology, proper nouns, citations, or direct quotes.
+    6. Preserve the original meaning, wording, and sentence structure, and format.
+    7. Do *not* add, remove or replace words; only write the writing of existing words to align with the conventions of the target dialect.
+
+    ## Output Format:
+    Provide your edits in a valid JSON array using the following structure:
+    ```json
+    [
+      {{"line": <line_number>, "changed_line": "<revised_text>"}}
+    ]
+    ```
+
+    Only include lines that require changes. Each line number in the paper corresponds to the integer at the beginning of that line.
+
+    ## Paper paragraph:
+    {paper}
+    """
+  )
+]

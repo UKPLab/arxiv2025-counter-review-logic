@@ -1,10 +1,6 @@
-import spacy
-
-from cerg.data import Review
-from cerg.framework.rcd import ReviewChangeDetector, ReviewDelta
-from cerg.models.rcds.utils import get_review_text_data, get_review_score_data
-
-import Levenshtein
+from ...data import Review
+from ...framework.rcd import ReviewChangeDetector, ReviewDelta
+from .utils import get_review_score_data
 
 
 class ScoreRCD(ReviewChangeDetector):

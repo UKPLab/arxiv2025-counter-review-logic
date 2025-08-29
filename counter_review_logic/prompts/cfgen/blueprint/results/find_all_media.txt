@@ -1,0 +1,55 @@
+[
+  ("system", "You are an expert AI researcher specializing in scientific paper analysis with years of experience extracting and evaluating evidence-based conclusions."),
+  (
+    "human",
+    """
+    Your task is to identify all results (i.e. empirical evidence) in the figures and tables of an academic paper.
+    Your analytical skills and reading experience will help extract precise results.
+
+    ## Task Definition
+    Identify and extract all figures and tables that present specific research results (empirical evidence, measurements, data points, statistics).
+    Carefully examine the captions of figures and tables, the context they are referenced in the text, and for tables also
+    the contents and structure of the table.
+
+    ## Key Definitions
+    - **Conclusion**: A general knowledge claim derived from evidence that extends beyond the specific study
+    - **Result**: Raw scientific data including experimental measurements, statistical analyses, observations, or model outputs.
+
+    Unlike a conclusion, a result is a specific obervation within the context of the specific study/experiment. It is
+    specific and detailed. Not all figures are result figures, some might only illustrate methods or provide background information.
+    Likewise, not all tables are result tables summarizing contents or background information. It is key to identify the figures
+    and tables that are actually relevant to the experiments and results presented in the paper.
+
+    ## PAPER CONTENT
+    {paper}
+
+      ## Step-by-Step Process
+    1. Carefully read the entire paper, paying special attention to the methods, results, and discussion sections
+    2. Identify all potential results reported in figures and tables. Watch out for references to the figures and tables
+       in the text, especially in the results and discussion sections.
+    3. For each potential result in a  *FIGURE/TABLE*:
+       - Identify the specific data points or observations presented. For figures focus on the caption. For figures also consider the table contents.
+       - Summarize the presented data concisely, ensuring it is specific and precise and correctly represents the contents.
+       - For tables, describe the structure of the table and provide a step-by-step explanation of how to interpret the table.
+    4. Do NOT include results from the text; the output list should only contain results with evidences in figures and tables.
+
+    ## Response Format
+    Provide your analysis as a structured JSON array with the following format covering each result:
+
+    ```json
+    [
+      {{
+        "result_summary": "Detailed yet concise description of the specific results presented; for tables a step-by-step explanation of how to interpret the table",
+        "evidences": [
+            {{
+            "location": "Specific figure, or table number",
+            "span": "Exact text span from the paper that presents the result; select the caption or if possible a specific cell if it contains the result"
+            }},
+            ...
+        ],
+      }}
+    ]
+    ```
+    """
+  )
+]

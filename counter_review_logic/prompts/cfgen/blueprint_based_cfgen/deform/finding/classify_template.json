@@ -1,0 +1,12 @@
+{
+  "claim_types": [
+    "primary claim type",
+    "secondary claim type (if applicable)"
+  ],
+  "explanation_for_claim_types": "Brief explanation of classification choices",
+  "justification": "justification type or null if absent",
+  "modifiers": [
+    "modifier type 1 if present",
+    "modifier type 2 if present"
+  ]
+}

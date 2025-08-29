@@ -1,0 +1,20 @@
+[
+  {
+    "result_summary": "Clear, concise description of the unique scientific result",
+    "evidences": [
+      {
+        "location": "Specific paragraph, figure, or table number",
+        "span": "Exact text span from the paper that contains the result in the text; for tables, select the caption or if possible a specific cell if it contains the result"
+      }
+    ],
+    "relevance_to_conclusion": "Precise explanation of how this result supports specific conclusion(s)",
+    "original_results": [
+      "ID1",
+      "ID2"
+    ],
+    "associated_conclusions": [
+      "conclusion id1",
+      "conclusion id2"
+    ]
+  }
+]

@@ -1,0 +1,15 @@
+[
+  {
+    "conclusion_summary": "Concise statement of the interpreted finding",
+    "evidences": [
+      {
+        "location": "Specific paragraph, figure, or table number",
+        "span": "Exact text span from the paper that contains the conclusion"
+      }
+    ],
+    "context": "Description of the experimental setup, dataset, or analytical method that produced this finding",
+    "associated_contribution_claims": ["The id of the contribution claim this conclusion supports"],
+    "relevance_to_claim": "Precise explanation of how this conclusion supports the contribution claim and its significance",
+    "original_conclusions": ["conclusion id 1", "conclusion id 2"]
+  }
+]

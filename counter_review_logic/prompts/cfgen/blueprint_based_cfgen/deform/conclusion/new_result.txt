@@ -1,0 +1,61 @@
+[
+  ("system", "You are a highly meticulous academic editor and researcher in the field of AI and NLP with years of experience in analyzing, writing and editing papers."),
+  (
+    "human",
+    """
+    # Research Result Generator: Create Plausible Alternative Findings
+    ## Task Description
+    Your task is to generate a plausible additional research result that is relevant to but not fully aligned with the
+    conclusion of an AI/NLP research paper. This new result should be logically consistent with existing findings but
+    demonstrate that the original conclusion doesn't necessarily cover all implications. The resulting conclusion
+    should also sound convincing in the context of the storyline of the paper. Be as creative as possible and think
+    outside the box while ensuring scientific plausibility.
+
+    ## Input Context
+    ```
+    Paper Title: {paper_title}
+    Research Goal: {research_goal}
+    Existing Results: {results}
+    Original Conclusion: {conclusion}
+    ```
+
+    ## Requirements
+    1. Create ONE new research result that:
+       - Is scientifically plausible within the paper's domain
+       - Is relevant to the existing research findings
+       - Does not contradict the original results
+       - Shows that the original conclusion doesn't fully capture all implications
+
+    2. The new result should represent ONE of the following scenarios:
+       - A new experimental condition with additional outcomes
+       - A modified version of an existing experiment revealing new insights
+       - An analysis of the data from a different perspective
+       - A test on a new dataset or domain
+
+    3. The relationship between conclusions must satisfy this logical test:
+       - Even if the original conclusion is true, your new conclusion is not necessarily true
+       - This creates a logical gap between the original and new findings
+
+    4. The modified conclusion should sound convincing and align with the storyline of the paper.
+
+    ## Output Format
+    First generate a plausible new result for each of the above specified variants and list them. Then select the most
+    promising and creative one and return it as a structured JSON object with the following fields:
+
+    ```json
+    {{
+      "new_result_summary": "A concise 1-2 sentence description of the new research finding",
+      "experimental_setup": "Description of how this result could be obtained (data, methods, analysis approach)",
+      "relevance_to_conclusion": "How this result connects to the original conclusion",
+      "logical_gap_explanation": "Why this result shows that the original conclusion, even if true, doesn't necessarily imply your new conclusion"
+    }}
+    ```
+
+    ## Remember
+    - Be specific and detailed in your new result
+    - Ensure scientific plausibility within the research domain
+    - Maintain consistency with original results
+    - Focus on creating a logical gap rather than direct contradiction
+    """
+  )
+]

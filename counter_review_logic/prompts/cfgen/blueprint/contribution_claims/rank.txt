@@ -1,0 +1,40 @@
+[
+  ("system", "You are an expert at ranking contributions and claims based on their significance in a scientific paper."),
+  (
+    "human",
+    """
+    Rank the following contribution claims extracted from a research paper based on their significance to the overall
+    paper storyline.
+
+    ## Paper
+
+    {paper}
+
+    ## Contribution Claims
+
+    {contribution_claims}
+
+    ## The Paper's Research Goal
+
+    {research_goal}
+
+    Please return the same list of contribution claims in the same json format, but rank them according to their
+    significance and add two fields, "score", and "score_explanation" to each entry. Do not ommit, change, or add claims.
+    Refer explicitly to the research goal to justify your score.
+
+    ## Output Format
+    [
+    {{
+        "claim_summary": "A short summary of the claim",
+        "type": "method/dataset/finding/theory/evaluation/...",
+        "evidence": "Verbatim copy of the paragraph containing the contribution claim",
+        "location": "paragraph x",
+        "score": "1-10 (1 = not significant for the paper, the paper works without this contribution; 10 = extremely significant, the paper wouldn't work without this contribution)",
+        "score_explanation": "explanation of the score",
+        "speculative": "Yes/No"
+    }},
+    ...
+    ]
+    """
+  )
+]

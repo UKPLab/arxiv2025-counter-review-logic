@@ -1,0 +1,91 @@
+[
+  ("system", "You are a specialized scientific research assistant with expertise in analyzing NLP/AI papers and identifying unique research findings."),
+  (
+    "human",
+    """
+    Your task is to analyze extracted conclusions/findings from a research paper and eliminate redundancies to produce a concise list of distinct, atomic conclusions.
+
+    ## TASK OVERVIEW
+    Analyze the provided research paper conclusions, identify and merge overlapping conclusions, and create a consolidated JSON output.
+
+    ## INPUT DATA
+
+    ```
+    ### Input conclusions:
+    {conclusions_with_ids}
+
+    ### Full paper text:
+    {paper}
+    ```
+
+    ## DEFINITIONS
+
+    - **Conclusion/Finding**: A specific knowledge claim derived directly from experimental data or analysis, found in results/discussion/analysis/evaluation sections. These are standalone (atomic) statements that interpret empirical evidence.
+    - **Overlapping Conclusions**: Findings that provide identical or substantially similar insights based on the same experiment, analysis, or measurement
+
+    ## ANALYSIS PROTOCOL
+
+    1. **Initial Assessment**
+       - Read through all extracted conclusions carefully
+       - Understand each conclusion's context, claim and relationship to the overall paper
+       - Note any potential overlaps or duplications in the data
+
+    2. **Deduplication Process**
+       - Compare each conclusion against all others using these criteria:
+         * Based on the same experimental setup or methodology?
+         * Same or very similar claim or observation?
+         * Based on the same dataset being analyzed?
+         * Based on the same or very similar research results?
+       - For conclusions meeting multiple criteria above, mark as candidates for merging
+
+    3. **Conclusion Consolidation**
+       - For identical conclusion: Select the most comprehensive description
+       - For partially overlapping conclusions: Create a unified description capturing all unique elements
+       - For each merged conclusion:
+         * Aggregate all location references (figures, tables, paragraphs)
+         * Track all original conclusion IDs that contributed to the merged conclusion
+
+    4. **Verification**
+       - Cross-reference with the paper text when uncertain about potential overlaps
+       - Ensure every original conclusion is accounted for in your final output
+       - Verify that merging decisions preserve scientific accuracy and nuance
+
+    ## OUTPUT FORMAT
+
+    Return your analysis as a JSON array with this structure:
+
+    ```json
+    [
+      {{
+        "conclusion_summary": "Concise statement of the interpreted finding",
+        "evidences": [
+          {{
+            "location": "Specific paragraph, figure, or table number",
+            "span": "Exact text span from the paper that contains the conclusion"
+          }}
+        ],
+        "context": "Description of the experimental setup, dataset, or analytical method that produced this finding",
+        "associated_contribution_claims": ["The id of the contribution claim this conclusion supports"],
+        "relevance_to_claim": "Precise explanation of how this conclusion supports the contribution claim and its significance",
+        "original_conclusions": ["conclusion id 1", "conclusion id 2", ...]
+      }}
+    ]
+    ```
+
+    ## IMPORTANT GUIDELINES
+
+    - Prioritize precision: Never merge conclusions based on different results
+    - Maintain completeness: Every original conclusion must be represented in your output
+    - Preserve context: Ensure merged descriptions maintain all relevant scientific details
+    - Preserve evidence: Keep all evidence locations and spans intact when merging multiple conclusions
+    - Focus on deduplication: Your primary goal is identifying redundancies, not summarizing the paper
+    - Reference the original text: When uncertain about potential overlaps, examine the full paper
+    - No additions: Do *NOT* add more conclusions from the paper, focus only on those extracted.
+    - No proactive modifications: Do *NOT* change the conclusion description, copy verbatim where possible.
+    - It is perfectly acceptable that the input conclusions are already distinct and do not require merging resulting in a one-to-one mapping.
+    - IMPORTANT: No conclusion can occur more than once in the output; if you merge it into one, it should only appear once.
+
+    Begin your analysis now, focusing on producing a comprehensive yet non-redundant set of scientific conclusions.
+    """
+  )
+]

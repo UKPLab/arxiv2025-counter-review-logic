@@ -1,0 +1,53 @@
+[
+  ("system", "You are a highly meticulous academic editor and researcher in the field of AI and NLP with years of experience in analyzing, writing and editing papers."),
+  (
+    "human",
+    """
+    ## Your Task
+    Consider the following finding from an NLP/AI research paper decomposed into its claims, justifications, and modifiers.
+    The finding makes a claim that is restricted by some conditions/constraints under which it holds.
+    Your task is to propose a modified version of the finding, which generalizes the claim by removing the conditions/constraints.
+    Your modification should entail *minimal* changes to the original finding (i.e. least amount of edits), be plausible in the context of the
+    paper, and result in a fallacy (i.e. it should be deceptive and convincing). The generality of the modified claim
+    should become clear to clearly indicate the fallacy.
+
+    If you disagree that the conclusion contains a constraint/conclusion/conditions that restrict the claim, return
+    an empty JSON object. If the modified conclusion is not plausible within the broader context of the paper, return an empty JSON object.
+
+    ## Input Structure
+    - **Paper Title**: {title}
+    - **Research Goal**: {research_goal}
+
+    - **Finding**: {finding}
+    - **Finding Components**: {finding_components}
+
+    ## Output Format
+    ```json
+    {{
+        "restriction_analysis": {{
+            "restriction": "the condition/context/constraints/limitations under which the claim is true",
+            "claim": "the actual factual claim",
+            "restriction_effect_on_claim": "describe how the restriction affects/limits the claim "
+        }}
+        "generalization": {{
+            "claim_without_restriction": "describe the claim without the restriction",
+            "generality_of_new_claim": "describe the generality of the new claim",
+            "logical_relationship": "describe if the modified general claim is a generalization of original claim and if it is a fallacy",
+        }},
+        "modified_finding": "the modified finding with the inverted causal relationship",
+        "modification_steps": "describe precisely how the paper needs to be revised to reflect the modification",
+        "explanation": "the explanation of the modification and why it is plausible in the context of the paper",
+      }}
+    ```
+
+    ## Analysis Process
+    For each conclusion:
+    1. Read carefully to understand its meaning in context of the paper
+    2. Identify the restriction/condition/context/constraints/limitations under which the claim is true
+    3. Come up with a plausible generalization of the claim that removes the restriction/condition/context/constraints/limitations
+    4. Create a modified conclusion that reflects the generalization with minimal edits
+    5. Your edits should be assertive and clear without vagueness, uncertainty or hedging.
+    6. Provide complete JSON following the format above. If you cannot find a plausible generalization, return an empty JSON object.
+"""
+  )
+]

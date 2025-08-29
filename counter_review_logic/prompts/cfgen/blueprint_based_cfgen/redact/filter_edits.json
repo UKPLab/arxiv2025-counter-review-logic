@@ -1,0 +1,5 @@
+{
+  "is_appropriate": true,
+  "matching_heuristic": "heuristic number that matches the edit best (multiple could be true, choose the dominant one that fuels your decision)",
+  "reasoning": "Your reasoning why the change is appropriate or not."
+}

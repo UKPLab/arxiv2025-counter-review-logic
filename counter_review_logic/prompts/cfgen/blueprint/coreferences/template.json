@@ -1,0 +1,15 @@
+[
+  {
+    "extracted_element_id": "<ID>",
+    "coreferences": [
+      {
+        "location": <paragraph_number>,
+        "span": "exact text containing the coreference"
+      },
+      ...additional
+      coreferences...
+    ]
+  },
+  ...additional
+  elements...
+]

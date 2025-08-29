@@ -1,0 +1,56 @@
+[
+  (
+    "human",
+    """
+Please parse the provided review report below without changing any of its content to adhere to the following json format.
+Choose the most appropriate section for the text. Consider the headings inside the report. If you cannot find
+any suitable text, leave the field empty. In the end all text should be put into some section. The relevant review
+starts after the \\boxed_review{{ flag.
+
+## Review Report
+{faulty_review_report}
+
+## Format
+```json
+{{
+  "summary": "Content that summarizes the paper",
+  "strengths": "Content that lists the strengths of the paper",
+  "weaknesses": "Content that lists the weaknesses of the paper",
+  "suggestions": "Content that lists the suggestions for the paper",
+  "rating": <the overall score assigned to the paper. provide a single integer or float number.>,
+  "presentation": <the presentation score assigned to the paper. provide a single integer or float number.>,
+  "contribution": <the contribution score assigned to the paper. provide a single integer or float number.>,
+  "soundness": <the soundness score assigned to the paper. provide a single integer or float number.>,
+
+  "additioanl_section1": "add more sections if needed (optional!)",
+  "additional_section2": "add more sections if needed (optional!)",
+  ...
+}}
+```
+
+## Example
+```json
+{{
+  "summary": "The paper introduces a new approach to length scale estimation. The authors propose a new modeling strategy that yields a more accurate estimation of the length scale.",
+  "strengths": "* Overall, the paper is well written\n* The authors provide a clear motivation for their work\n* The proposed method is well explained",
+  "weaknesses": "* I see substantial need for revision in the tables.\n* Other than that the paper is well-researched and leaves open no questions.",
+  "suggestions": "* Can you elaborate on the number of samples used?\n* Please provide more details on the dataset.",
+  "rating": 3,
+  "presentation": 4,
+  "contribution": 4.5,
+  "soundness": 3.5,
+
+  "questions": "* What is the motivation behind the proposed method?\n* How does the proposed method compare to existing methods?"
+}}
+```
+
+## Constraints
+* Do *not* change the content of the review, just reformat it
+* Make sure to adhere to the exact format provided above
+* All mentioned sections need to be present int the output, even if they are empty.
+* Output only the review report in this precise format and nothing else
+* Make sure that the scores are single numbers (no text afterwards or before)
+* The additional sections are optional and should only be added if there are sections in the review that fit no other. Use the title of that section as the name of the field in the json.
+    """
+  )
+]

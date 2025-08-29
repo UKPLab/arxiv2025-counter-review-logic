@@ -1,0 +1,116 @@
+[
+  ("system", "You are a scientific methodology expert focused on AI and NLP research papers."),
+  (
+    "user",
+    """
+    Your task is to extract the precise methodological pipeline that generates a set of specific results in a scientific paper.
+
+    ## Input
+    ### Paper
+    `
+    {paper}
+    `
+
+    ### List of Target Results From the Paper
+    {results}
+
+    ## Core Task
+    Identify and structure the exact methodological pipeline that leads to the specified results. Focus only on steps directly contributing to these results.
+
+    ## Methodology Guidelines
+
+    ### Definition of Terms
+    - **Result**: A specific scientific output (data point, measurement, observation, statistical analysis, model output)
+    - **Method Pipeline**: The complete sequence of actions, procedures, and decisions that produce the result starting at input artifacts and assumptions.
+    - **Step**: A discrete component in the methodology pipeline that directly contributes towards achieving the result
+
+    ### Analysis Process
+    1. **Initial Paper Review**
+       - Read the paper thoroughly, with special focus on methods, results, and discussion sections
+       - Focus on the location of the target results in the paper
+
+    2. **Pipeline Identification**
+       - Apply the critical test to each potential methodological step: "If this step was removed, would the target results still be obtainable?"
+       - Only include steps that pass this relevance test
+       - Maintain the chronological order of steps as performed in the research
+
+    3. **Step Classification**
+       - Include experimental actions (data collection, processing, analysis)
+       - Include design decisions and parameter selections
+       - Include theoretical or argumentative reasoning steps when they directly influence the result
+
+    ## Expected Output Structure
+
+    Provide your analysis as a single JSON object with the following structure:
+
+    ```json
+    {{
+       "pipeline_summary": "2-3 sentence overview of the complete methodological pipeline",
+       "relevance": "explain briefly how the pipeline is relevant to generate the results",
+       "input_artifacts": "The raw inputs, assumptions, or starting points of the pipeline",
+       "steps": [
+          {{
+             "step_number": 1,
+             "description": "Clear, concise description of what happens in this step",
+             "evidences": [
+                {{
+                  "location": "Specific paragraph number 1",
+                  "span": "Exact text span from the paper that contains the result in the text"
+                }},
+                {{
+                  "location": "Specific paragraph number 2",
+                  "span": "Exact text span from the paper that contains the result in the text"
+                }}
+              ],
+             "output": "What this step produces that feeds into the next step",
+             "criticality": "Why this step is necessary - what would fail without it",
+             "type": "experiment/data processing/argumentation/...",
+             "results": ["associated result id that is the outcome of this step. leave empty if none of the results are the direct output of this step", ...]
+          }},
+          {{
+             "step_number": 2,
+             "description": "Clear, concise description of what happens in this step",
+             "evidences": [
+                {{
+                  "location": "Specific paragraph number 1",
+                  "span": "Exact text span from the paper that contains the result in the text"
+                }},
+                {{
+                  "location": "Specific paragraph number 2",
+                  "span": "Exact text span from the paper that contains the result in the text"
+                }}
+              ],
+             "output": "What this step produces that feeds into the next step",
+             "criticality": "Why this step is necessary - what would fail without it",
+             "type": "experiment/data processing/argumentation/...",
+             "results": ["associated result id that is the outcome of this step. leave empty if none of the results are the direct output of this step", ...]
+          }}
+          // Additional steps as needed
+       ]
+    }}
+    ```
+
+    ## Response Quality Criteria
+    - Each step must be directly traceable to specific content in the paper
+    - Steps must form a logical sequence without gaps (as given by the paper)
+    - Focus on methodological facts stated in the paper
+    - Steps should be atomic but meaningful (neither too granular nor too broad)
+    - The entire pipeline must fully explain how the target results were produced
+
+    Before submitting your final response, verify:
+    1. Does each step have clear evidence in the paper?
+    2. Is the step sequence complete from input to results?
+    3. Have you eliminated steps unrelated to the target results?
+    4. Does your analysis trace a clear path from initial inputs to the final results?
+
+    """
+  ),
+  ("ai", "{output}"),
+  ("human", """
+  Thanks for your answer. Please consider my feedback below and revise your initial answer.
+
+  {feedback}
+
+  NOTE: Remember to provide the revised answer in the exact same json format as the initial answer.
+  """)
+]

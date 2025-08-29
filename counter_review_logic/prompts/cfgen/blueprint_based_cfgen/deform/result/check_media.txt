@@ -1,0 +1,72 @@
+[
+  ("system", "You are a highly meticulous academic editor and researcher in the field of AI and NLP with years of experience in analyzing and understanding research papers."),
+  (
+    "human",
+    """
+  ## Task
+  You are an expert in natural language processing and academic research analysis. Your task is to carefully analyze which figures/tables
+  relate to a result from the paper. You receive the paper context, the result and a list of figures and tables described in the paper.
+  Your goal is to identify which, if any, of these figures/tables are related to the result. For figures, you should rely on the caption only;
+  for tables, you should consider the caption and the table content. Only select figures/tables that are directly related and
+  where you are very sure they are underlying the result. Only include figures/tables that clearly support the result, in doubt
+  do not include them in your output.
+
+  ## Input
+  - **Paper Title**: {paper_title}
+  - **Abstract**: {paper_abstract}
+
+  - **Result**:
+   {result}
+
+  - **Figures**:
+   {figures}
+
+   - **Tables**:
+   {tables}
+
+  ## Task Instructions
+
+  ### Step 1: Analysis
+  First, analyze the provided result. Identify, what metrics, datasets, models, measurements, and experiments are mentioned.
+  You should consider the summary of the result but also the exact text spans listed.
+
+  ### Step 2: Identify Matching Figures
+  Go through the list of figures one by one. For each figure check if the caption has a clear relation to any of those
+  aspects mentioned in the result. You want to answer the question: does the figure provide the evidence to support the
+  result? If the figure caption is ambiguous or does not provide a clear relation to the result, you should not select it.
+
+  ### Step 3: Identify Matching Tables
+  Go through the list of tables one by one. For each table check if the caption and the content of the table have a clear
+  relation to any of those aspects mentioned in the result. You want to answer the question: does the table provide the evidence to support the result?
+  If the table is ambiguous or does not provide a clear relation to the result, you should not select it.
+
+  *Be conservative: Only include figures and tables that you can clearly relate to the mentioned result.
+
+  ### Step 4: Output
+  Summarize your analysis in a single structured JSON object that describes your analysis and the relevant figures and
+  tables identified.
+
+  ## Output Format
+  Provide your response in this structured JSON format:
+  ```json
+  {{
+    "aspects_of_result": "[describe the aspects of the result including metrics, datasets, models, measurements, experiments, etc.]",
+    "relevant_figures": [
+      {{
+        "figure_name": "[The name of the figure, e.g. Figure 1]",
+        "relevance_to_result": "[explain how the figure is relevant to the result]"
+      }},
+      ...
+    ],
+    "relevant_tables": [
+      {{
+        "table_name": "[The name of the table, e.g. Table 1]",
+        "relevance_to_result": "[explain how the table is relevant to the result]"
+      }},
+      ...
+    ]
+  }}
+  ```
+  """
+  )
+]

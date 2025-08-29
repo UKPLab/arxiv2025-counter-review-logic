@@ -1,0 +1,14 @@
+{
+  "matched": [
+    {
+      "id": "id of the figure or table as provided in the input",
+      "matching_results": [
+        "result id 1",
+        "result id 2"
+      ]
+    }
+  ],
+  "unmatched": [
+    "id of figure or table that is not linked to any result"
+  ]
+}

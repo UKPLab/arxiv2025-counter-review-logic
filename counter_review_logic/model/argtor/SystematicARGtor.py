@@ -2,9 +2,9 @@ import os
 import re
 from pathlib import Path
 
-from ....data import Paper, Review
-from ....framework.argtor import AutomaticReviewGenerator
-from ....llms import ChatLLM, approximately_truncate
+from ...data import Paper, Review
+from ...framework.argtor import AutomaticReviewGenerator
+from ...llm import ChatLLM, approximately_truncate
 
 
 class SystematicARGtor(AutomaticReviewGenerator):

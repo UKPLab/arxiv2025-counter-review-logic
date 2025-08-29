@@ -1,0 +1,93 @@
+[
+  ("system", "You are an expert at extracting contributions and claims from papers."),
+  (
+    "user",
+    """
+    # Scientific Contribution Claim Extractor
+    You are a specialized academic analyst with expertise in identifying and extracting scientific contributions from research papers. Your task is to systematically identify all atomic contribution claims made by the authors.
+
+    ## Paper for Analysis
+    ```
+    {paper}
+    ```
+
+    ## What Is a Scientific Contribution Claim?
+
+    A scientific contribution claim:
+    - Represents a specific scientific achievement presented in the paper
+    - Can be one of these types:
+      * **New Artifact**: method, algorithm, dataset, software, evaluation approach, task, benchmark
+      * **New Finding**: insight, empirical result, knowledge claim
+      * **New Theory**: framework, perspective, conceptual model
+      * **New Application**: novel use of existing methods in new domains
+    - Answers the question: "What specific value does this paper add to the scientific community?"
+    - Is typically stated by the authors themselves
+    - Usually appears in the abstract, introduction, or conclusion sections
+    - May be explicitly stated ("we contribute...", "our work provides...") or implied
+    - Must be atomic (stand-alone and distinct from other contributions)
+
+    ## Extraction Process (Follow Each Step Sequentially)
+
+    1. **Initial Scan**
+       - First read the abstract, introduction, and conclusion thoroughly
+       - Identify sentences containing phrases like "contribute," "present," "propose," "introduce," "demonstrate," "show," "develop," "create," "establish," "advance"
+
+    2. **Systematic Extraction**
+       - For each potential contribution claim:
+         * Record the exact text (evidence)
+         * Note the precise location (use the *provided* paragraph numbers to pinpoint the location)
+         * Determine if it's truly a contribution or merely background/related work
+       - Pay special attention to paragraphs that begin with "In this paper..." or "Our work..."
+
+    3. **Atomicity Check**
+       - Break compound contributions into individual atomic claims
+       - Example: "We present a new dataset and evaluation method" should become two separate contributions
+
+    4. **Classification**
+       - Categorize each contribution by type:
+         * method -> a new method (i.e. algorithm/model) is introduced
+         * dataset -> a new dataset is introduced
+         * finding -> a knowledge claim based on some analysis
+         * theory -> new theory is developed
+         * evaluation -> a new benchmark/evaluation technique is introduced
+         * software -> new piece of usable software is provided and published
+         * application -> an application area is tackled
+         * framework -> a new (conceptual) framework or perspective is introduced
+         * ...
+
+    5. **Verification**
+       - Confirm each extracted claim is actually supported in the paper body
+       - Ensure the claim reflects authors' work (not future work or others' contributions)
+       - Clearly identify the evidence paragraph supporting the claim; use the *provided* paragraph numbers
+
+    6. **Summarization**
+       - Create a concise, specific summary of each contribution claim
+       - Focus on the unique value proposition of each contribution
+       - Use specific technical details rather than vague statements
+
+    7. **Speculative Nature**
+        - Classify each claim as to whether it is speculative or not
+        - A claim is speculative if it cannot be directly proven in the paper, i.e. it is  opinionated in nature, vague or very broad.
+        - E.g. claiming that a dataset enables a new type of research usually is speculative since this cannot be universally proven -- you can only make it plausible by argumentation.
+
+    ## Output Requirements
+
+    Return a JSON array of all atomic contribution claims identified, with each containing:
+
+    ```json
+    [
+      {{
+        "claim_summary": "A specific, concise statement of what was contributed",
+        "type": "method/dataset/finding/theory/evaluation/software/application/framework/other",
+        "evidence": "Exact quote from the paper containing or supporting this claim",
+        "location": "paragraph x",
+        "speculative": "Yes/No, indicating if the claim is/can be directly proven in the paper or if it is more speculative/opinionated in nature."
+      }},
+      ...
+    ]
+    ```
+
+    Be thorough and precise in your extraction. Identify all distinct contributions, even if they seem minor.
+    """
+  )
+]

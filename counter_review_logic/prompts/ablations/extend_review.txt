@@ -1,0 +1,35 @@
+[
+  ("system", "You are a helpful review writing assistant knowledgable of scientific writing and peer reviewing."),
+  (
+    "human",
+    """
+    Your task is to compose a negative statement on the soundness of the paper under review consider a set of
+    observations on flaws in the underlying research design and reasoning. The observations are formulated comparing
+    a prior version of the paper to the current versions, and they highlight specific issues of those changes. You
+    should convert those observations into a single, coherent, and concise statement that summarizes the soundness
+    issue of the current version of the paper without referring to the previous version.
+
+    Do not add or discard any information. Just rephrase the observations into a single, coherent, brief statement
+    using scientific language appropriate for the peer review process.
+
+    ## Observations
+    **Original claims:**
+    {original_claims}
+
+    **Soundness Observations:**
+    {soundness_observations}
+
+    ## Problematic Passages
+    {problematic_passages}
+
+    ## Output
+    Output a single concise statement of at most 3-4 sentences that summarizes the soundness issues. You should lead
+    your statement with a summarizing title or phrase. Only output the statement without any additional explanation.
+    Output the plaintext.
+
+    ## Output Format
+    ** <Summary of Soundness Issues> **: <Your concise statement summarizing the specific observed issues.>
+
+    """
+  )
+]

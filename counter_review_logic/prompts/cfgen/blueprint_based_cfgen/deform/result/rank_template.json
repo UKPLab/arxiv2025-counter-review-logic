@@ -1,0 +1,10 @@
+[
+  {
+    "modification_id": "id of the modification as specified above",
+    "score": "score from 1 to 10",
+    "plausibility_explanation": "explanation of the plausibility of the conclusion",
+    "logical_entailment_explanation": "explanation of the logical relation to the original conclusion",
+    "convincing_explanation": "explanation of the fallacious/deceptive/convincing nature of the conclusion"
+  },
+  "..."
+]

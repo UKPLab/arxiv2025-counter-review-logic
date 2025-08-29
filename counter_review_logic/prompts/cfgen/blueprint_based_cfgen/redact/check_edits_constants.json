@@ -1,0 +1,12 @@
+[
+  {
+    "modification_id": "id of the modification",
+    "violation": false,
+    "feedback": {
+      "affected_constant_element": "constant element id that is affected",
+      "explanation": "explanation how the change could be adapted to not affect the constant element but still realize the intended modifications",
+      "suggested_change": "suggested change to the modification that would not affect the constant element"
+    }
+  },
+  "..."
+]

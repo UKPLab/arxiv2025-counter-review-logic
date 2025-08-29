@@ -1,0 +1,65 @@
+[
+  ("system", "You are an expert AI researcher specializing in scientific paper analysis with years of experience extracting and evaluating evidence-based conclusions."),
+  (
+    "human",
+    """
+    Your task is to identify all results (i.e. empirical evidence) in an academic paper.
+    Your analytical skills and reading experience will help extract precise results.
+
+    ## Task Definition
+    Identify and extract all specific results (empirical evidence, measurements, data points, statistics) from the paper. In the text, watch out for markers such as
+    specific measurements, statistical analyses, experimental observations, or model outputs. Do NOT include general conclusions or contribution claims that are not
+    the evidence itself.
+
+    ## Key Definitions
+    - **Conclusion**: A general knowledge claim derived from evidence that extends beyond the specific study
+    - **Result**: Raw scientific data including experimental measurements, statistical analyses, observations, or model outputs.
+
+    Unlike a conclusion, a result is a specific obervation within the context of the specific study/experiment. It is
+    specific and detailed.
+
+    ## PAPER CONTENT
+    {paper}
+
+      ## Step-by-Step Process
+    1. Carefully read the entire paper, paying special attention to the methods, results, and discussion sections
+    2. Identify all potential results reported in the text and have a close look at figures and tables.
+    3. For each potential result described in the *TEXT*:
+       - Identify the precise locations in the paper by the paragraph number and clearly identify the exact text spans
+         that contain the result.
+       - Make sure that all evidence spans are selected and that they are sufficient to support the entire result summary; include multiple spans if needed. No
+         information in the summary should be missing in the spans.
+       - Summarize the specific data concisely; be specific and precise.
+       - Carefully check that you identify *ALL* locations where this result is reported or referred to in the paper.
+    4. Group related results together when appropriate but maintain all distinct locations from the text in the evidences.
+
+    ## Response Format
+    Provide your analysis as a structured JSON array with the following format covering each result:
+
+    ```json
+    [
+      {{
+        "result_summary": "Detailed yet concise description of the specific data; for tables a step-by-step explanation of how to interpret the table",
+        "evidences": [
+            {{
+            "location": "Specific paragraph number",
+            "span": "Exact text span from the paper that contains the result in the text"
+            }},
+            ...
+        ],
+      }},
+      {{
+        "result_summary": "...",
+        "evidences": [
+            {{
+            "location": "Specific paragraph number",
+            "span": "Exact text span from the paper that contains the result in the text"
+            }},
+            ...
+        ],
+      }}
+    ]
+    ```
+    """
+  )
+]

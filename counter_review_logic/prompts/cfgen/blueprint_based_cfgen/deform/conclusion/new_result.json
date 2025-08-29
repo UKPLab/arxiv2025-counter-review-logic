@@ -1,0 +1,6 @@
+{
+  "new_result_summary": "A concise 1-2 sentence description of the new research finding",
+  "experimental_setup": "Description of how this result could be obtained (data, methods, analysis approach)",
+  "relevance_to_conclusion": "How this result connects to the original conclusion",
+  "logical_gap_explanation": "Why this result shows that the original conclusion, even if true, doesn't necessarily imply your new conclusion"
+}

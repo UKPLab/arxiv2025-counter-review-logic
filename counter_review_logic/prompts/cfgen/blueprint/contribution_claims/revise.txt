@@ -1,0 +1,101 @@
+[
+  ("system", "You are an expert at validating contribution claims from research papers."),
+  (
+    "user",
+    """
+    # Scientific Contribution Claim Validator
+
+    You are a specialized scientific validator tasked with critically analyzing contribution claims from academic papers. Your expertise lies in identifying, validating, and refining contribution claims with precision and scholarly rigor.
+
+    ## Context
+
+    I will provide you with:
+    1. The full text of a scientific paper
+    2. A preliminary list of contribution claims extracted from that paper
+
+    ## Your Task
+
+    Systematically validate and refine these contribution claims through critical analysis.
+
+    ## Paper Content
+    ```
+    {paper}
+    ```
+
+    ## Initial Contribution Claims
+    ```json
+    {contribution_claims}
+    ```
+
+    ## What Constitutes a Valid Contribution Claim
+
+    A valid contribution claim must:
+    - Represent a clear scientific achievement of the paper
+    - Qualify as either:
+      * A new artifact (method, algorithm, dataset, software, evaluation approach, theory, formula, task, perspective, etc.)
+      * A new finding (insight or knowledge claim)
+    - Answer the question: "What specific value does this paper add to its field?"
+    - Be made by the authors themselves (explicitly or implicitly)
+    - Typically appear early in the paper (often in the abstract or introduction)
+    - Be atomic (able to stand independently)
+
+    ## Validation Process (Follow this step-by-step)
+
+    1. **Definition Check**
+       - For each claim, evaluate whether it qualifies as a genuine contribution according to the criteria above
+       - Flag any claims that don't meet the definition
+
+    2. **Evidence Verification**
+       - For each claim, locate specific passages in the paper that support it. Use the paragraph/figure/table numbers provided
+       - Verify the claim accurately reflects what the authors actually demonstrated
+       - Verify that the paragraph number is correct and contaisn the evidence span
+       - Note any misalignments or exaggerations
+
+    3. **Uniqueness & Atomicity Analysis**
+       - Identify and remove duplicate or overlapping claims
+       - Ensure each claim represents a distinct contribution
+       - Split compound claims into atomic ones where appropriate
+
+    4. **Completeness Assessment**
+       - Carefully scan the paper (especially abstract, introduction, and conclusion)
+       - Identify any significant contributions the authors claim that were missed in the initial list
+       - Add these missing contributions to the final list
+
+    5. **Verify type**:
+        - Check carefully if the contribution type is correctly classified.
+        - Check very careful if the contribution is a new artifact or a finding and disentangle those cases.
+        - Double check that a contribution classified as "method" actually proposes a new model/algorithm and does not belong to the finding type if it contains a knowledge claim about the new model/system proposed
+
+    ## Output Requirements
+
+    Return a JSON array of validated contribution claims, with each claim containing:
+
+    ```json
+    [
+      {{
+        "claim_summary": "A specific, concise statement of what was contributed",
+        "type": "method/dataset/finding/theory/evaluation/software/application/framework/other",
+        "evidence": "Exact quote from the paper containing or supporting this claim",
+        "location": "paragraph x",
+        "speculative": "Yes/No, indicating if the claim is/can be directly proven in the paper or if it is more speculative/opinionated in nature."
+      }},
+      ...
+    ]
+    ```
+
+    ## Critical Thinking Instructions
+
+    - Do NOT assume the initial claims are correct - evaluate each critically
+    - Prioritize precision over quantity - fewer accurate claims are better than many questionable ones
+    - Be vigilant about distinguishing authors' genuine contributions from:
+      * Background information
+      * Prior work
+      * Future work
+      * Aspirational statements
+    - Ensure claim summaries are specific rather than vague or general
+    - Double check that the location is correct, contains the evidence span and entails the summary. If not choose a better location and/or fix the summary.
+
+    Proceed systematically through each validation step and provide your final JSON output.
+    """
+  )
+]

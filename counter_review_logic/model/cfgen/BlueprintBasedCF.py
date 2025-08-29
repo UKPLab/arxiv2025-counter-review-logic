@@ -4,12 +4,9 @@ import re
 from pathlib import Path
 from typing import Callable
 
-from cerg.data import Paper
-from cerg.framework.blueprint import PaperBlueprint, PaperSiteEngineer
-from cerg.framework.cfg import PaperCounterfactual
-from cerg.framework.picfg import PerturbatorInspectorCF, Perturbator
-from cerg.llms import ChatLLM, parse_llm_output_as_single_json
-from cerg.llms.utils import approximately_truncate
+from ...data import Paper
+from ...framework import PaperBlueprint, PaperCounterfactual, PerturbatorInspectorCF, Perturbator
+from ...llm import ChatLLM, parse_llm_output_as_single_json, approximately_truncate
 
 
 class BlueprintBasedPerturbator(Perturbator):

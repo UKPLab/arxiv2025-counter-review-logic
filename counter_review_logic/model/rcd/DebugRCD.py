@@ -1,4 +1,4 @@
-from cerg.framework.rcd import ReviewChangeDetector, ReviewDelta
+from ...framework import ReviewChangeDetector, ReviewDelta
 
 
 class DebugReviewChangeDetector(ReviewChangeDetector):

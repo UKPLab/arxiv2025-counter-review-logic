@@ -1,0 +1,10 @@
+{
+  "explanation": "Concise explanation why precisely these conclusions are all necessary to support the contribution claim",
+  "choice": [
+    {
+      "conclusion_summary": "Concise statement of the interpreted finding",
+      "conclusion_id": "Unique identifier for the conclusion/finding",
+      "relevance_to_claim": "Precise explanation of how this conclusion supports the contribution claim and its significance"
+    }
+  ]
+}

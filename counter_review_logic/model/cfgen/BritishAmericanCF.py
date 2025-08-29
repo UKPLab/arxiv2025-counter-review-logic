@@ -4,9 +4,9 @@ import random
 import re
 from pathlib import Path
 
-from cerg.data import Paper
-from cerg.framework.cfg import PaperCounterfactualGenerator, PaperCounterfactual
-from cerg.llms import ChatLLM, parse_llm_output_as_single_json
+from ...data import Paper
+from ...framework import PaperCounterfactualGenerator, PaperCounterfactual
+from ...llm import ChatLLM, parse_llm_output_as_single_json
 
 
 class BritishAmericanCF(PaperCounterfactualGenerator):

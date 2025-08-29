@@ -1,0 +1,42 @@
+{
+  "pipeline_summary": "2-3 sentence overview of the complete methodological pipeline",
+  "relevance_to_result": "Direct explanation of how this pipeline generates the target results",
+  "input_artifacts": "The raw inputs, assumptions, or starting points of the pipeline",
+  "relevance": "explain briefly how the pipeline is relevant to generate the results",
+  "steps": [
+    {
+      "step_number": 1,
+      "description": "Clear, concise description of what happens in this step",
+      "evidences": [
+        {
+          "location": "Specific paragraph number",
+          "span": "Exact text span from the paper that contains the result in the text"
+        }
+      ],
+      "output": "What this step produces that feeds into the next step",
+      "criticality": "Why this step is necessary - what would fail without it",
+      "type": "experiment/data processing/argumentation/...",
+      "results": [
+        "associated result id that is the outcome of this step. leave empty if none of the results are the direct output of this step",
+        "..."
+      ]
+    },
+    {
+      "step_number": 2,
+      "description": "Clear, concise description of what happens in this step",
+      "evidences": [
+        {
+          "location": "Specific paragraph number",
+          "span": "Exact text span from the paper that contains the result in the text"
+        }
+      ],
+      "output": "What this step produces that feeds into the next step",
+      "criticality": "Why this step is necessary - what would fail without it",
+      "type": "experiment/data processing/argumentation/...",
+      "results": [
+        "associated result id that is the outcome of this step. leave empty if none of the results are the direct output of this step",
+        "..."
+      ]
+    }
+  ]
+}

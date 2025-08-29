@@ -1,0 +1,41 @@
+[
+  (
+    "human",
+    """
+As an esteemed reviewer with expertise in the field of the conference {venue}, you are asked to write a review for a scientific paper submitted for publication.
+Please follow the reviewer guidelines provided below to ensure a comprehensive and fair assessment:
+
+## Reviewer Guidelines:
+{review_guidelines}
+
+In your review, you must cover the following aspects, adhering to the outlined guidelines:
+* {summary_field}: [Provide a concise summary of the paper, highlighting its main objectives, methodology, results, and conclusions.]
+
+* {strengths_field}: [Critically analyze the strengths of the paper. Consider the significance of the research question, the robustness of the methodology, and the relevance of the findings.]
+
+* {weaknesses_field}: [Critically analyze the weaknesses of the paper. Consider the significance of the research question, the robustness of the methodology, and the relevance of the findings.]
+
+* Clarity, Quality, Novelty, and Reproducibility: [Evaluate the paper on its clarity of expression, overall quality of research, novelty of the contributions, and the potential for reproducibility by other researchers.]
+
+* Summary of the Review: [Offer a brief summary of your evaluation, encapsulating your overall impression of the paper.]
+
+* Correctness: [Assess the correctness of the paper’s claims, you are only allowed to choose from the following options:
+    {correctness_rubrics}]
+
+* Technical Novelty and Significance: [Rate the technical novelty and significance of the paper’s contributions, you are only allowed to choose from the following options:
+    {technical_novelty_rubrics}]
+
+* Empirical Novelty and Significance: [Evaluate the empirical contributions, you are only allowed to choose from the following options:
+    {empirical_novelty_rubrics}]
+
+* Recommendation: [Provide your recommendation for the paper, you are only allowed to choose from the following options:
+    {overall_rating_rubrics}]
+
+* Confidence: [Rate your confidence level in your assessment, you are only allowed to choose from the following options:
+    {confidence_score_rubrics}]
+
+Follow the instruction above, write a review for the paper below:
+{paper_content}
+    """
+  )
+]

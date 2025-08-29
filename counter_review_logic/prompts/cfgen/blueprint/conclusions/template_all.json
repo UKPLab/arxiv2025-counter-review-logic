@@ -1,0 +1,12 @@
+[
+      {
+        "conclusion_summary": "Concise statement of the interpreted finding",
+        "evidences": [
+            {
+            "location": "Specific paragraph, figure, or table number",
+            "span": "Exact text span from the paper that contains the conclusion"
+            }
+        ],
+        "context": "Description of the experimental setup, dataset, or analytical method that produced this finding"
+      }
+    ]

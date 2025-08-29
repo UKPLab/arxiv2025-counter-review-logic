@@ -1,14 +1,12 @@
 import logging
 import os
-from collections import defaultdict
 from pathlib import Path
 
-import spacy
 
-from cerg.data import Review
-from cerg.framework.rcd import ReviewChangeDetector, ReviewDelta
-from cerg.llms import ChatLLM, parse_llm_output_as_single_json
-from cerg.models.rcds.utils import get_review_text_data
+from ...data import Review
+from ...framework import ReviewChangeDetector, ReviewDelta
+from ...llm import ChatLLM, parse_llm_output_as_single_json
+from .utils import get_review_text_data
 
 
 class PointOverlapRCD(ReviewChangeDetector):

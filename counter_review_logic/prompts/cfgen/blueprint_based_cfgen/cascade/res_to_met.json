@@ -1,0 +1,9 @@
+[
+      {
+        "method_step_number": "id of the method step",
+        "effect_of_new_result_on_step": "Describe how the revised result impacts this method",
+        "revised_step": "The complete revised methodological step",
+        "modification_steps": "Step-by-step explanation of your editing process or null if no changes",
+        "explanation": "Justification for how your changes align with the revised result or null if no changes"
+      }
+]

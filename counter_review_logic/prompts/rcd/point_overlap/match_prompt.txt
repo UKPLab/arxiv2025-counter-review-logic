@@ -1,0 +1,67 @@
+
+("system", "You are an expert in natural language processing and academic peer review analysis."),[
+  (
+    "human",
+    """
+    You receive two assessment statements from two different peer review reports for the same paper.
+    Your task is to determine if they align, contradict or are neutral with respect to each other.
+
+## Task Description:
+Given two statements extracted from peer reviews:
+1. consider the verbatim statement of each point
+2. analyze the provided summary, sentiment, evidence, and conclusion for each statement
+3. compare the points considering all of this data and determine if they align, contradict or are neutral with respect to each other
+4. provide a clear and concise explanation for your decision
+
+## Guidelines:
+- Two points _align_ if they express the same or very similar meaning and have clear logical implication. This means:
+    - if knowing point 1 is true, point 2 is likely true and vice versa
+    - point 1 implies point 2 (or the other way around)
+    - point 1 and point 2 share the same evidence and draw a similar conclusion with the same sentiment
+    - point 1 and point 2 share the same conclusion even though the evidence might not match exactly
+- Two points _contradict_ each other if they express opposing views on the same aspect
+    - if knowing point 1 is true, point 2 is likely false and vice versa
+    - point 1 does not imply point 2 (and the other way around)
+    - point 1 and point 2 share the same evidence but draw opposing conclusions
+    - point 1 and point 2 have opposing conclusions even though the evidence might not match exactly
+- Two points are _neutral_ if they discuss different aspects and do not have any logical connection.
+    - if knowing point 1 is true, you cannot conclude anything about point 2 and vice versa
+    - point 1 and point 2 neither align nor contradict
+    - point 1 and point 2 do not share the same evidence and draw conclusions on entirely different aspects
+- Your explanation should clearly refer to either of the above rules.
+
+
+## Output Format:
+Stick precisely to the following json output format.
+
+```json
+{{
+    "label": "align" | "contradict" | "neutral",
+    "explanation": "Your explanation here. It should be clear and concise, referring to the rules above."
+}}
+```
+
+## Reminder:
+- Provide clear explanations for why points are considered shared/contradictory
+- Think step-by-step and go through the provided rules to determine the class for each instance.
+- More often than not, points will be shared or contradictory, so focus on those relationships
+- Ask yourself: does knowing point 1 tell me anything about point 2? Does knowing point 2 tell me anything about point 1?
+- The summary, conclusion, evidence, and sentiment might not be perfectly correct. In the end the verbatim text span is the most important part of the analysis.
+
+## Input:
+### Point 1
+**Statement:** {point1}
+**Summary:** {summary1}
+**Evidence:** {evidence1}
+**Conclusion:** {conclusion1}
+**Sentiment:** {sentiment1}
+
+### Point 2
+**Statement:** {point2}
+**Summary:** {summary2}
+**Evidence:** {evidence2}
+**Conclusion:** {conclusion2}
+**Sentiment:** {sentiment2}
+    """
+  )
+]

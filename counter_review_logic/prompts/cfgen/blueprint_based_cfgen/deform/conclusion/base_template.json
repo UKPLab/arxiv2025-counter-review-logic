@@ -1,0 +1,13 @@
+{
+  "conclusion_summary": "The summary of the revised conclusion accounting for the new result",
+  "changes": "Step-by-step explanation of the changes you made",
+  "revisions_to_evidences": [
+    {
+      "location": "location copied from original evidence",
+      "original_evidence": "The original evidence span",
+      "revised_evidence": "The revised evidence span"
+    }
+  ],
+  "accounting_for_new_result": "How the new result is integrated into the conclusion",
+  "logical_relation_revised_conclusion_to_old_conclusion": "explain how the revised conclusion is logically related to the old conclusion"
+}

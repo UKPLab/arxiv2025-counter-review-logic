@@ -1,0 +1,69 @@
+[
+  ("system", "You are an expert NLP/AI research paper analyst."),
+  (
+    "human",
+    """
+    Your task is to identify specific evidence ("results") that supports a set of given conclusion in an academic paper.
+    Your analytical skills will help extract the precise results that form the foundation of the conclusion.
+
+    ## Input Paper
+    Paper: {paper}
+
+    ## Conclusion
+    Conclusions:
+     {conclusions}
+
+    ## Task Definition
+    Identify and extract all specific results (empirical evidence, measurements, data points, statistics) from the paper that directly support or lead to the stated conclusion.
+    The authors should clearly derive the conclusion from those results (i.e., they argumentatively verbalize this connection). You should answer the question: "If this result
+    was removed from the paper, would the conclusion still be valid?".
+
+    ## Key Definitions
+    - **Conclusion**: A general knowledge claim derived from evidence that extends beyond the specific study
+    - **Result**: Raw scientific data including experimental measurements, statistical analyses, observations, or model outputs
+
+    ## Step-by-Step Process
+    1. Carefully read the entire paper, paying special attention to the methods, results, and discussion sections
+    2. Identify all potential results that relate to the provided conclusion
+    3. For each result:
+       - Summarize the specific data/finding concisely
+       - Note exactly where it appears (section, paragraph, figure, table). Carefully check that you identify *ALL* locations where this result is discussed in the paper.
+       - Explain how this specific result supports or contributes to the conclusion
+    4. Group related results together when appropriate
+    5. Focus only on results with a clear connection to the conclusion
+
+    ## Response Format
+    Provide your analysis as a structured JSON array with the following format for each result:
+
+    ```json
+      [
+      {{
+        "result_summary": "Detailed yet concise description of the specific data; for tables a step-by-step explanation of how to interpret the table",
+        "id": "Unique identifier for the result",
+        "evidences": [
+            {{
+            "location": "Specific paragraph, figure, or table number",
+            "span": "Exact text span from the paper that contains the result in the text; for tables, select the caption or if possible a specific cell if it contains the result"
+            }},
+            ...
+        ],
+        "relevance_to_conclusion": "Precise explanation of how this result supports specific conclusion(s)",
+        "associated_conclusions": [
+          "conclusion id1"
+        ]
+      }}
+      ]
+    ```
+    """
+  ),
+  ("ai", "{output}"),
+  ("human", """
+  Thanks for your answer. Please consider my feedback below and revise your initial answer.
+
+  {feedback}
+
+  NOTE: Remember to provide the revised answer in the exact same json format as the initial answer.
+  If you are asked to add additional results, choose a unique id starting with "new_", e.g. "new_res1"; it should not conflict with existing ids.
+  Remember to copy all key information from the initial answer, such as the ids and evidence spans.
+  """)
+]

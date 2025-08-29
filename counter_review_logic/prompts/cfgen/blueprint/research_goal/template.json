@@ -1,0 +1,7 @@
+{
+  "research_goal": "A clear, concise statement of the paper's primary research objective (1-3 sentences)",
+  "paper_genre": "The primary genre from the list above",
+  "secondary_genre": "The secondary genre from the list above or null if not applicable",
+  "confidence": "High/Medium/Low",
+  "reasoning": "Brief explanation of why you classified the paper this way (2-3 sentences)"
+}

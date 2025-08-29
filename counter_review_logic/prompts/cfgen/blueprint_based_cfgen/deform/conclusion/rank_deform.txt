@@ -1,0 +1,40 @@
+[
+  ("system", "You are a highly meticulous researcher in the field of AI and NLP with years of experience in analyzing, writing and editing papers."),
+  (
+    "human",
+    """
+    Given the following results and a list of conclusions derived from the results of an NLP/AI research paper plus
+    possible modifications to the conclusions to account for additional results. Carefully check the proposed revisions
+    to the conclusions; are they plausible in the context of the paper? Do they significantly change the meaning of its associated
+    conclusion such that the modified version is *not* logically entailed? Does the modified conclusion sound convincing
+    without undermining the overall goal of the paper? Based on your observations assign the modifications scores from 1 to 10,
+    where 1 means the modification is of low quality (not plausible and/or logically entailed) and 10 means the modification
+    is of high quality (plausible and not logically entailed).
+
+    ## Conclusions with Modifications
+    {conclusions_with_modifications}
+
+    ## Underlying Results
+    {results}
+
+    ## Paper Context
+    Title: {paper_title}
+    Research Goal: {research_goal}
+
+    ## Output Format
+    As an output provide a structured JSON object copying the
+    ```json
+    [
+        {{
+          "conclusion_id": "id of the conclusion as specified above",
+          "score": "score from 1 to 10",
+          "plausibility_explanation": "explanation of the plausibility of the conclusion",
+          "logical_entailment_explanation": "explanation of the logical relation to the original conclusion",
+          "convincing_explanation": "explanation of the fallacious/deceptive/convincing nature of the conclusion",
+        }},
+        ...
+    ]
+    ```
+    """
+  )
+]

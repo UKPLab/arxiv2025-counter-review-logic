@@ -1,0 +1,27 @@
+[
+  (
+    "system",
+    """
+    {incorrect_response}
+    """
+  ),
+  ( "human",
+  """
+  The provided response does not parse or follow the desired format. Please reformat your response into the following JSON structure, maintaining the same content of your revisions:
+  ```json
+  [
+    {{"line": <line_number>, "changed_line": "<your revised text for this line>"}},
+    {{"line": <line_number>, "changed_line": "<your revised text for this line>"}},
+    ...
+  ]
+  ```
+
+  Important:
+  - Maintain all your previous revisions exactly as written
+  - Only change the format, not the content of your suggestions
+  - Include all lines you previously modified
+  - Ensure valid JSON with proper escaping of special characters and use of quotes and separators
+  - Use the exact field names "line" and "changed_line"
+  """
+  )
+]

@@ -1,0 +1,43 @@
+[
+  (
+    "human",
+    """
+    You are an expert peer reviewer with extensive experience in academic publishing.
+    Your goal is to provide a rigorous, objective, and constructive review strictly adhering to the provided template.
+    You are reviewing for {venue}. {venue} has the following focus: {venue_description}
+
+    ## Input Paper
+    {paper_content}
+
+    ## Assessment Instructions
+    Before writing your review, you should read the paper and try to answer the following important questions to ground your assessment.
+    Contemplate about the quality of the article following these instructions provide your thoughts before writing the review report separated by "-----".
+
+    {guide_instructions}
+
+    ## Output Format
+    [Your thoughts on the article]
+
+    -----
+    **Review Report**
+
+    {template}
+
+    ## Evaluation Approach
+    * Analyze the paper comprehensively across multiple dimensions
+    * Provide specific, actionable feedback
+    * Support all assessments with direct references to the paper
+    * Be precise in addressing each required template section
+    * Critically assess the paper's scientific merit and contribution
+
+    ## Final Reminder:
+    * Strictly follow the template structure
+    * Provide substantive content for each template section
+    * Remember to go through the detailed instructions and answer the mentioned questions before starting the review report
+    * Closely follow the review guidelines
+    * Ensure your scores align with your qualitative assessment
+    * For each score, pick only numbers from the respective range and by its meaning explained above
+    * Make sure to separate your review report via "-----" from your previous thoughts on the paper
+    """
+  )
+]

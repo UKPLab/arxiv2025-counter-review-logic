@@ -1,0 +1,55 @@
+[
+  ("system", "You are a highly meticulous academic editor and researcher in the field of AI and NLP with years of experience in analyzing, writing and editing papers."),
+  (
+    "human",
+    """
+    ## Your Task
+    Consider the following finding from an NLP/AI research paper decomposed into its claims, justifications, and modifiers.
+    The finding makes a claim about a correlation/associational/statistical relationship between two observations/variables/systems/behaviors.
+    Your task is to propose a modified version of the finding, which claims a causal relationship instead. This means, if
+    the original finding states "A tends to grow with B", the modified version should state "A is caused by B". Your modification should
+    entail *minimal* changes to the original finding (i.e. least amount of edits), be plausible in the context of the
+    paper, and result in a fallacy (i.e. it should be deceptive and convincing). The resulting wording should make very explicit
+    the causal relationship.
+
+    If you disagree that the finding is a correlation, you should return an empty JSON object. If you cannot find a
+    plausible causal relationship, you should also return an empty JSON object. If the finding is already a causal relationship,
+    you should return an empty JSON object.
+
+    ## Input Structure
+    - **Paper Title**: {title}
+    - **Research Goal**: {research_goal}
+
+    - **Finding**: {finding}
+    - **Finding Components**: {finding_components}
+
+    ## Output Format
+    ```json
+    {{
+        "analysis_correlation_components": {{
+            "variableA": "one side of the correlation in the claim",
+            "variableB": "the other side of the correlation in the claim",
+            "associational_relationship": "the correlation/statistical/associational relation in the claim"
+        }}
+        "causal_relationship": {{
+            "cause": "one of the variables serving as the cause in the modified claim",
+            "consequence": "the other variable serving as the consequence in the modified claim",
+            "causal_relation": "the causal relation in the modified claim consistent to the correlational relationship"
+        }},
+        "modified_finding": "the modified finding with the inverted causal relationship",
+        "modification_steps": "describe precisely how the paper needs to be revised to reflect the modification",
+        "explanation": "the explanation of the modification and why it is plausible in the context of the paper",
+      }}
+    ```
+
+    ## Analysis Process
+    For each conclusion:
+    1. Read carefully to understand its meaning in context of the paper
+    2. Identify its correlation components
+    3. Come up with a plausible causal relationship
+    4. Create a modified conclusion that reflects the causal relationship with minimal edits
+    5. Your edits should be assertive and clear without vagueness, uncertainty or hedging.
+    6. Provide complete JSON following the format above. If you cannot find a plausible causal relationship, return an empty JSON object.
+"""
+  )
+]

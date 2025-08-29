@@ -1,0 +1,140 @@
+[
+  ("system", "You are a highly meticulous academic editor in the field of AI and NLP with years of experience in editing and analyzing papers."),
+  (
+    "human",
+    """
+  ## Task Definition
+  You are an expert academic editor tasked with evaluating whether a paper revision appropriately implements an intended edit while preserving essential elements. You will receive:
+  1. The original paper
+  2. The revised version
+  3. The stated edit intention
+  4. A list of elements that must remain unchanged
+
+  ## Input
+  ### Original Paper
+  ```md
+  {original_paper}
+  ```
+
+  ### Revised Paper
+  ```md
+  {revised_paper}
+  ```
+
+  ### Edit Intention
+  {edit_intention}
+
+  ### Specific Changes
+  {specific_changes}
+
+  ### Protected Elements
+  {protected_elements}
+
+
+  ## Evaluation Instructions
+  Analyze the revision thoroughly and systematically using the following framework:
+
+  ### 1. Intention Implementation
+  Evaluate whether the revision accomplishes the stated intention:
+  - Does it address the specific changes requested?
+  - Is the implementation precise and clear?
+  - Does it maintain academic clarity and rigor?
+
+  ### 2. Change Minimality
+  Assess whether changes were kept to the necessary minimum:
+  - Are modifications limited to only what's required for the edit intention?
+  - Do unrelated sections remain intact?
+  - Are changes surgical rather than sweeping?
+
+  ### 3. Content Preservation
+  Verify that existing content was properly preserved:
+  - Was content only modified or reduced, not expanded?
+  - Are all major sections of the original paper still present?
+  - Is the overall structure maintained?
+
+  ### 4. Element Integrity
+  Check figures and tables for alignment with originals:
+  - Are they still properly labeled and referenced?
+  - Do they maintain the same structure?
+
+  ### 5. Protected Element Preservation
+  Confirm that specified protected elements remain completely unchanged:
+  - Have all elements on the "do not change" list been preserved exactly?
+  - Check for subtle modifications that might have occurred inadvertently.
+  - Does the overall structure of the paper remain the same?
+
+  ### 6. Change Consistency
+  Evaluate internal consistency of the changes:
+  - Do all changes support the same edit intention?
+  - Are there contradictions among the changes?
+  - Note: The paper's overall argument might be inconsistent (acceptable), but the changes themselves should be consistent.
+
+  ### 7. Completeness
+  Are all relevant parts of the paper revised to realize the edit intention?
+  - Check all sections for relevant passages to the edit intention, are they covered?
+  - Only those on the "do not change list" should be ignored
+  - Are all relevant figures and tables updated?
+
+  ## Response Format
+  Provide your analysis in the following structured format:
+
+  ### Intention Implementation
+  [Detailed assessment with specific examples]
+  Score: [1-10]
+
+  ### Change Minimality
+  [Detailed assessment with specific examples]
+  Score: [1-10]
+
+  ### Content Preservation
+  [Detailed assessment with specific examples]
+  Score: [1-10]
+
+  ### Element Integrity
+  [Detailed assessment with specific examples]
+  Score: [1-10]
+
+  ### Protected Element Preservation
+  [Detailed assessment with specific examples]
+  Score: [1-10]
+
+  ### Change Consistency
+  [Detailed assessment with specific examples]
+  Score: [1-10]
+
+  ### Completeness
+  [Detailed assessment with specific examples]
+  Score: [1-10]
+
+  ### Overall Assessment
+  [Summary of key findings]
+
+  ### Actionable Recommendations
+  - [Specific recommendation 1]
+  - [Specific recommendation 2]
+  - [Additional recommendations as needed]
+
+  ### Final Verdict: [REVISE/REJECT]
+  - Choose ACCEPT if the revisions are very good or perfect and need no further changes
+  - Choose REVISE for issues that can be fixed with minor effort
+  - Choose REJECT if fundamental problems exist that would require major reworking
+
+  ## Examples of Dealbreakers (Automatic REJECT)
+  - Addition of substantial new content beyond the scope of the edit intention
+  - Removal of major sections without justification
+  - Multiple protected elements were modified
+  - Changes fundamentally alter the paper's core thesis in ways not specified by the edit intention
+  - Elements have been completely redesigned rather than appropriately modified
+  - No edits have been applied
+  - The edits have nothing to do with the intended modifications
+
+  ## Process Approach
+  1. First read both papers carefully and identify all changes
+  2. Map changes to the stated edit intention
+  3. Check all protected elements for preservation
+  4. Evaluate each criterion methodically with specific examples
+  5. Provide clear evidence for your scoring decisions
+  6. Make recommendations that are specific and actionable
+"""
+  )
+]

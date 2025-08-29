@@ -1,10 +1,7 @@
-import spacy
+from ...data import Review
+from ...framework import ReviewChangeDetector, ReviewDelta
+from .utils import get_review_text_data
 
-from cerg.data import Review
-from cerg.framework.rcd import ReviewChangeDetector, ReviewDelta
-from cerg.models.rcds.utils import get_review_text_data
-
-import Levenshtein
 
 
 class PolarityRCD(ReviewChangeDetector):

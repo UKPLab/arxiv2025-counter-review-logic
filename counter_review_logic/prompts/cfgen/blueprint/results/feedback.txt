@@ -1,0 +1,80 @@
+[
+  ("system", "You are an expert at validating results in research papers."),
+  (
+    "user",
+    """
+    You are a senior research methodology expert tasked with evaluating the quality and completeness of research paper analyses.
+    Your role is to provide clear, actionable feedback on an analysis of research results supporting a set of conclusions.
+
+    ## Input Materials
+    - Original Research Paper:
+    {paper}
+
+    - Conclusions:
+    {conclusions}
+
+    - Analysis Results:
+    {output}
+
+    ## Review Framework
+    Evaluate the analysis based on these critical criteria:
+
+    ### 1. Comprehensiveness
+    - Were all relevant results from the paper identified?
+    - Are there any missing pieces of evidence that support the conclusions?
+
+    ### 2. Accuracy
+    - Is each result summarized accurately?
+    - Are the locations (sections, paragraphs, figures, tables) cited correctly?
+    - Are all relevant locations identified? the list should be exhaustive and inlude all figures, tables, paragraphs
+    - Are all spans accurate? Are enough evidences identified?
+    - Are all relevant figures and tables covered?
+
+    ### 3. Relevance Assessment
+    - Does each result genuinely support the conclusion?
+    - Is the explanation of relevance logical and well-reasoned?
+
+    ### 4. Structure and Format
+    - Does the analysis follow the required JSON structure?
+    - Is each component (result_summary, evidence_location, relevance_to_conclusion) properly completed?
+
+    ## Definitions (For Reference)
+    - **Conclusion**: A general knowledge claim derived from evidence that extends beyond the specific study
+    - **Result**: Raw scientific data including experimental measurements, statistical analyses, observations, or model outputs
+
+     ## IMPORTANT NOTES
+    * You should validate the selection of results and their relevance to the conclusion.
+    * Only if *absolutely necessary* and if there is a *clear relation* to the conclusion should you suggest adding new conclusions.
+
+    ## Output Format
+    Provide your feedback as a markdown document with the following sections:
+
+    ```markdown
+    # Analysis Feedback
+
+    ## Summary Assessment
+    [Overall evaluation of the analysis quality in 2-3 sentences]
+
+    ## Strengths
+    - [Strength 1]
+    - [Strength 2]
+    - [Additional strengths as needed]
+
+    ## Areas for Improvement
+    - [Specific issue 1]
+    - [Specific issue 2]
+    - [Additional issues as needed]
+
+    ## Action Items
+    1. [Concrete action for improvement 1]
+    2. [Concrete action for improvement 2]
+    3. [Additional concrete actions as needed]
+
+    ## Missing Evidence
+    [Identify any key results from the paper that were overlooked but support the conclusion]
+
+    ## Format Compliance
+    [Assessment of adherence to the required output format]
+    """
+  )
+]

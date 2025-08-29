@@ -1,0 +1,10 @@
+{
+  "explanation": "Step-by-step reasoning on how each conclusion is essential to support the contribution claim and how they are combined for this purpose",
+  "choice": [
+    {
+      "result_summary": "Concise statement of the conclusion/finding",
+      "id": "Unique identifier for the result as provided in the input",
+      "relevance_to_conclusion": "Precise explanation of how this result supports the conclusion and its significance"
+    }
+  ]
+}

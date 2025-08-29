@@ -1,0 +1,23 @@
+[
+  ("system", "You are a helpful review writing assistant knowledgable of scientific writing and peer reviewing."),
+  (
+    "human",
+    """
+    Your task is to paraphrase the following review report without changing its meaning in any way. Do not add, alter
+    or discard information. All original points must be preserved. The paraphrased review should be clear, use
+    scientific language, and be suitable for a peer review context. Maintain the exact same json structure as the
+    input review report. All revised points should clearly have the same meaning, sentiment, argumentation, and intent
+    as the original points; only revise the wording and phrasing to improve readability.
+
+    ## Review Report
+    ```json
+    {review_report}
+    ```
+
+    ## Important Remarks
+    * Output only the single json with the revise review report.
+    * Include all original fields of the template and their points
+    * Make sure that you output valid json
+    """
+  )
+]

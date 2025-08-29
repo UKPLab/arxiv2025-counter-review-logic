@@ -1,15 +1,13 @@
-import logging
 import os
-from collections import Counter, defaultdict
 from pathlib import Path
 
 import spacy
 import torch
 from transformers import AutoTokenizer
 
-from cerg.data import Review
-from cerg.framework.rcd import ReviewChangeDetector, ReviewDelta
-from cerg.models.rcds.utils import get_review_text_data
+from ...data import Review
+from ...framework import ReviewChangeDetector, ReviewDelta
+from .utils import get_review_text_data
 
 ASPECT_CATEGORIES = ['-', 'AI', 'Ablation', 'Accuracy', 'Adaptation', 'Adversarial', 'Agent', 'Algorithm', 'Analysis',
                      'Annotation', 'Application', 'Approach', 'Architecture', 'Assumption', 'Attention', 'Baseline',

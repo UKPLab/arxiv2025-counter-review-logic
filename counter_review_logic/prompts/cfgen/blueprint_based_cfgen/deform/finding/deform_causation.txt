@@ -1,0 +1,54 @@
+[
+  ("system", "You are a highly meticulous academic editor and researcher in the field of AI and NLP with years of experience in analyzing, writing and editing papers."),
+  (
+    "human",
+    """
+    ## Your Task
+    Consider the following finding from an NLP/AI research paper decomposed into its claims, justifications, and modifiers.
+    The finding makes a claim about a causal relationship between two observations/variables/systems/behaviors. Your task is
+    to propose a modified version of the finding, which inverts the order of the causal relationship. This means, if
+    the original finding states "A causes B", the modified version should state "B causes A". Your modification should
+    entail *minimal* changes to the original finding (i.e. least amount of edits), be plausible in the context of the
+    paper, and result in a fallacy (i.e. it should be deceptive and convincing). It might be necessary to modify the
+    precise causal relationship in the inverted version to make it plausible.
+
+    If you disagree that this statement is a causal relationship, please return an empty JSON object. If you cannot
+    find a plausible inverted causal relationship, please return an empty JSON object.
+
+    ## Input Structure
+    - **Paper Title**: {title}
+    - **Research Goal**: {research_goal}
+
+    - **Finding**: {finding}
+    - **Finding Components**: {finding_components}
+
+    ## Output Format
+    ```json
+    {{
+        "analysis_causal_components": {{
+            "cause": "the cause in the claim",
+            "consequence": "the consequence in the claim",
+            "causal_relation": "the causal relation in the claim"
+        }}
+        "inverted_causal_components": {{
+            "cause": "the cause in the modified claim which is the consequence in the original claim",
+            "consequence": "the consequence in the modified claim which is the cause in the original claim",
+            "causal_relation": "the causal relation in the modified claim which might be different from the original claim"
+        }},
+        "modified_finding": "the modified finding with the inverted causal relationship",
+        "modification_steps": "describe precisely how the paper needs to be revised to reflect the modification",
+        "explanation": "the explanation of the modification and why it is plausible in the context of the paper",
+      }}
+    ```
+
+    ## Analysis Process
+    For each conclusion:
+    1. Read carefully to understand its meaning in context of the paper
+    2. Identify its causal components
+    3. Come up with a plausible inverted causal relationship
+    4. Create a modified conclusion that reflects the inverted causal relationship with minimal edits
+    5. Your edits should be assertive and clear without vagueness, uncertainty or hedging.
+    6. Provide complete JSON following the format above. If you cannot find a plausible inverted causal relationship, return an empty JSON object.
+"""
+  )
+]

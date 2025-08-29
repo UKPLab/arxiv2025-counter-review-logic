@@ -1,0 +1,61 @@
+[
+  ("system", "You are an expert in natural language processing and academic peer review analysis."),
+  (
+    "human",
+    """
+    Your task is to analyze two peer review reports for a scientific paper in NLP and identify shared and contradictory viewpoints with high precision.
+
+## Task Description:
+Given two peer review reports, you will:
+1. Extract distinct argumentative points from each review
+2. Match points that are either shared or contradictory between reviews
+3. Output the analysis in a structured JSON format
+
+## Guidelines:
+- A "point" is a specific evaluative assertion about the paper
+- Ignore general descriptive or summary statements
+- Points can span multiple sentences or be contained within a sentence
+- Shared points express the same meaning or have clear logical implication
+- Contradictory points express opposing views on the same aspect
+- Use exact quotes for spans to maintain traceability
+- Provide concise summaries that capture the core argument
+- Each point must be a concrete criticism or praise, not neutral observation
+
+## For matching:
+- Shared points:
+    1. Must have substantively similar meaning or
+    2. Must have a clear logical relationship (if point 1 is true, then point 2 is likely true and vice versa)
+    3. If one point implies another, they are considered shared.
+- Contradictory points:
+    1. Must directly oppose each other on the same aspect
+    2. Must have a clear negative logical relationship (if point 1 is true, then point 2 is likely false and vice versa)
+    3. If two points overlap but contradict only partially, they are still considered contradictory.
+- Provide clear explanations for why points are considered shared/contradictory
+- Think step-by-step and consider each pair of points individually and determine their relationship
+- More often than not, points will be shared or contradictory, so focus on those relationships
+
+## Output Format:
+{{
+    "points_review1": [
+        {{"id": int, "span": "exact quote", "summary": "concise point"}}
+    ],
+    "points_review2": [
+        {{"id": int, "span": "exact quote", "summary": "concise point"}}
+    ],
+    "shared_points": [
+        {{"id1": int, "id2": int, "explanation": "reasoning for match"}}
+    ],
+    "contradictory_points": [
+        {{"id1": int, "id2": int, "explanation": "reasoning for contradiction"}}
+    ]
+}}
+
+## Input:
+### Review Report 1:
+{report1}
+
+### Review Report 2:
+{report2}
+    """
+  )
+]

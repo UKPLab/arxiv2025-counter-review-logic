@@ -5,9 +5,9 @@ import random
 from collections.abc import Callable
 from pathlib import Path
 
-from ....data import Paper, Review
-from ....framework import AutomaticReviewGenerator, AutomaticReviewDataset, PaperCounterfactualDataset
-from ....llm import ChatLLM, parse_llm_output_as_single_json
+from ...data import Paper, Review
+from ...framework import AutomaticReviewGenerator, AutomaticReviewDataset, PaperCounterfactualDataset
+from ...llm import ChatLLM, parse_llm_output_as_single_json
 
 
 class AblationARGtor(AutomaticReviewGenerator):

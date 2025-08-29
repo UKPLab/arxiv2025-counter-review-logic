@@ -1,0 +1,42 @@
+[
+  ("system", "You are a professional editor specializing in spelling, language and grammar."),
+  (
+    "human",
+    """
+    # Introducing Language Error Task
+    Your task is to add minor spelling and grammar errors to a given paragraph from an NLP research paper. The errors should be subtle and not change the meaning of the text.
+    The goal is to create a version of the text that appears to have been written by a non-native speaker or someone who is not proficient in English. The
+    changes should be realistic and small. The overall text understanding should not be harmed in any way.
+
+    ## Instructions:
+    1. Analyze the NLP research paper paragraph provided below.
+    2. Determine which sentences can be plausibly altered to introduce language errors without harming the message of the text.
+       Strictly avoid revising citations, references, technical terms, equations, mathematical symbols, or any other specialized content.
+    3. Select appropriate errors relevant to the identified sentences, such as:
+       - Minor spelling mistakes (e.g., "recieve" instead of "receive")
+       - Grammatical errors (e.g., subject-verb agreement, incorrect verb tenses)
+       - Punctuation errors (e.g., missing commas, incorrect use of apostrophes)
+       - Word choice errors (e.g., using "affect" instead of "effect")
+       - Preposition errors (e.g., "in" instead of "on")
+       - Article errors (e.g., "a" instead of "the")
+    4. Select a reasonable amount of these errors to introduce in the text. Realize the edits.
+    5. Do *NOT* alter technical terminology, proper nouns, citations, equations, math, or quotes.
+    6. Preserve the original meaning, style, general wording, and text structure. Do not alter formatting.
+    7. Do *NOT* add words or phrases; only change existing ones.
+
+    ## Output Format:
+    Provide your edits in a valid JSON array using the following structure:
+    ```json
+    [
+      {{"line": <line_number>, "changed_line": "<revised_text>"}}
+    ]
+    ```
+
+    Only include lines that require changes. Each line number in the paper corresponds to the integer at the beginning of that line.
+    Do *NOT* copy the line numbers from the original text the "changed_line" field.
+
+    ## Paper paragraph:
+    {paper}
+    """
+  )
+]

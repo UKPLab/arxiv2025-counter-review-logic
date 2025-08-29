@@ -1,0 +1,71 @@
+[
+  ("system", "You are an expert AI researcher specializing in scientific paper analysis with years of experience extracting and evaluating evidence-based conclusions."),
+  (
+    "human",
+    """
+    Your task is to identify all specific conclusions/findings/interpretations the provided a research paper by methodically analyzing it.
+
+    ## DEFINITIONS
+    - CONCLUSION/FINDING/INTERPRETATION: A specific knowledge claim derived directly from experimental data or analysis, found in results/discussion/analysis/evaluation sections. These are standalone (atomic) statements that interpret empirical evidence.
+    - CONTRIBUTION CLAIM: A central claim of the paper about a finding it made found in the introduction.
+    - RESULTS: Raw scientific data including experimental measurements, statistical analyses, observations, or model outputs without much contextualization or interpretation.
+
+    We only care about the CONCLUSIONs/FINDINGs/INTERPRETATIONs
+
+    ## PAPER CONTENT
+    {paper}
+
+
+    ## ANALYSIS PROTOCOL
+
+    1. SEARCH PHASE
+    - Systematically scan the paper's Results, Discussion, Analysis, and Evaluation sections
+    - Identify all statements where authors interpret empirical data or experimental results
+    - Pay special attention to sections with graphs, tables, statistical analyses, and comparative results
+    - Look out for phrases like "we conclude that", "this suggests", "our findings indicate", "the results show", etc.
+    - Exclude results and contribution claims by the above definition.
+
+    2. EVALUATION PHASE
+    - For each potential conclusion/finding, assess:
+      * Is it a specific, evidence-based interpretation of results?
+      * Does it stand alone as a knowledge claim derived from empirical data?
+    - Exclude speculative statements, future work, or interpretations that are not directly tied to evidence
+
+    3. EXTRACTION PHASE
+    - Break complex interpretations into atomic (single-fact) conclusions
+    - For each conclusion, identify:
+      * The exact experimental context (dataset, method, comparison, etc.)
+      * The specific evidence (results, measurements, observations) supporting it
+      * Its precise textual span in the paper
+      * Its precise location in the paper by paper paragraph/table/figure number
+    - Avoid overlapping conclusions; each should be distinct and self-contained
+    - Group multiple mentions of the same conclusion together and provide *ALL* evidence spans and locations in one object
+
+    4. VERIFICATION
+    - Ensure all essential conclusions are captured
+    - Verify that each conclusion is strictly derived from evidence in the paper and that they are provided with a location and evidence span
+    - Make sure that all evidence spans are selected and that they are sufficient to support the entire conclusion summary; include multiple spans if needed
+    - Do *NOT* include the contribution claim itself or any general claim that is not strictly derived from evidence
+    - If you do not find any conclusions, return an empty list
+
+    ## OUTPUT FORMAT
+    Return your analysis in this JSON format:
+
+    ```json
+    [
+      {{
+        "conclusion_summary": "Concise statement of the interpreted finding",
+        "evidences": [
+            {{
+            "location": "Specific paragraph, figure, or table number",
+            "span": "Exact text span from the paper that contains the conclusion"
+            }},
+            ...
+        ],
+        "context": "Description of the experimental setup, dataset, or analytical method that produced this finding"
+      }},
+      ...
+    ]
+    """
+  )
+]

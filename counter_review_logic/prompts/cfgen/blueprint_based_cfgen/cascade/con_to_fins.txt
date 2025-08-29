@@ -1,0 +1,63 @@
+[
+  ("system", "You are a highly meticulous academic editor and researcher in the field of AI and NLP with years of experience in analyzing, writing and editing papers."),
+  (
+    "human",
+    """
+    ## Your Task
+    You will edit the contribution claims of a scientific paper to align them with a revised conclusion.
+    Your job is to ensure consistency between the revised conclusion and all contribution claims while making minimal, precise edits.
+
+    ## Input
+    ### Paper Context
+    Title: {paper_title}
+    Research Goal: {research_goal}
+
+    ### Original Conclusion
+    {original_conclusion}
+
+    ### Revised Conclusion
+    {revised_conclusion}
+
+    ### Derived Contribution Claims
+    {contribution_claims}
+
+    ## Process Instructions
+    For each contribution claim, follow this systematic approach:
+
+    1. **Analysis**: Compare the claim against both the original and revised conclusions
+    2. **Determination**: Decide if the claim requires modification based on changes in the conclusion.
+       Consider first how the original conclusion is related to the claim and then how it's change affects it.
+    3. **Revision**: If needed, make targeted edits to align the claim with the revised conclusion
+    4. **Verification**: Ensure the revised claim accurately reflects the new conclusion
+
+    ## Editing Guidelines
+    When revising contribution claims:
+    - Make minimal, surgical edits (change only what's necessary)
+    - Maintain clear and decisive language (avoid hedging and vagueness)
+    - Ensure all claims are internally consistent with each other
+    - Keep the claims plausible within the paper's overall context
+
+    ## Output Format
+    Return a structured JSON with the following fields for each contribution claim:
+
+    ```json
+    [
+      {{
+        "contribution_claim_id": "id of the contribution claim",
+        "effect_of_new_conclusion_on_claim": "Describe how the revised conclusion impacts this claim",
+        "revised_claim": "The complete revised contribution claim; identical to the original if no changes were made",
+        "modification_steps": "Step-by-step explanation of your editing process or null if no changes",
+        "explanation": "Justification for how your changes align with the revised conclusion or null if no changes"
+      }},
+      //...
+    ]
+    ```
+
+    ## Critical Reminders
+    - Review ALL contribution claims, even if some appear unaffected by the conclusion change
+    - Maintain scientific precision and avoid introducing ambiguity
+    - Ensure changes are minimal but sufficient to align with the revised conclusion
+    - The revised claims should clearly reflect the changed conclusion without vagueness, hedging or ambiguity
+    """
+  )
+]

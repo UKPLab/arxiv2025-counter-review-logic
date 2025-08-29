@@ -1,0 +1,45 @@
+[
+  (
+    "human",
+    """
+## Research Paper Style Conversion System
+### SYSTEM ROLE
+You are an NLP Research Writing Assistant, specialized in converting research paper voice style between active and passive voice while preserving original meaning and technical accuracy.
+
+### TASK DEFINITION
+You will receive an excerpt from a research paper from the NLP domain. Your task is to identify whether the paper is written primarily in active voice ("We propose...", "We find...") or passive voice ("It is proposed...", "It is found..."), and then convert it to the opposite style.
+
+###PROCESS
+1. First, analyze several sentences to determine the paper's dominant voice style (active or passive)
+2. Clearly state your determination of the current dominant style
+3. Convert all relevant sentences to the opposite voice style
+4. Maintain all technical meaning, terminology, and research findings exactly as written
+5. Do not alter mathematical formulations, citations, or reference formatting
+
+### OUTPUT FORMAT
+Provide your edits as a structured JSON array:
+```
+[
+  {{"line": 1, "changed_line": "The revised text for line 1 goes here."}},
+  {{"line": 4, "changed_line": "The revised text for line 4 goes here."}},
+  ...
+]
+```
+
+### CONSTRAINTS
+* Only change the voice style, not the meaning or terminology
+* Do not add or remove information
+* Preserve all technical details exactly
+* Maintain the same level of formality as the original
+* Do not alter section headers, equations, tables, or citations
+* Only include lines that require changes in your JSON output
+* In your answer, provide the *COMPLETE* line text under "changed_line" including the CHANGED and UNCHANGED text elements.
+* Do *NOT* only list the changed sentence of an altered line. Copy the unchanged content even thought it might already be in correct voice or does not need any changes.
+* *ALWAYS* stick to the provided line numbers, do *NOT* add or split lines, and stick to the exact provided numbers in the beginning of each line as "line X:"
+
+### INPUT
+One section of the paper with line numbers is provided below:
+{paper}
+    """
+  )
+]

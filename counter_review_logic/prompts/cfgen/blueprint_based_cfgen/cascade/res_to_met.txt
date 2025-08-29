@@ -1,0 +1,82 @@
+[
+  ("system", "You are a highly meticulous academic editor and researcher in the field of AI and NLP with years of experience in analyzing, writing and editing papers."),
+  (
+    "human",
+    """
+    ## Your Task
+    You will review and edit the methodological claims of a scientific paper to align them with a revised resuslt.
+    Your job is to ensure consistency between the revised result and all methodological steps while making minimal, precise edits.
+    A change to the underlying methodology is only necessary if the revised result points a new experiments, metrics, models,
+    or other methodological aspects that were not previously mentioned. Any changes should be minimal and avoid affecting
+    any of the other results.
+
+    ## Input
+    ### Paper Context
+    Title: {paper_title}
+    Research Goal: {research_goal}
+
+    ### Original Result
+    {original_result}
+
+    ### Revised Result
+    {revised_result}
+
+    ### Underlying Methodological Steps
+    {methodological_steps}
+
+    ### Other Results That Need to Remain Consistent to the Methodology
+    {constant_results}
+
+    ## Process Instructions
+    For each methodological step, follow this systematic approach:
+
+    1. **Analysis**: Check if the linked methodology is actually used to generate the original result.
+       If yes, analyze how the revised result might imply a different or extended experimental setup.
+       - Check if the methodological step needs to be extended, e.g. adding ablations, new metrics, datasets, or models.
+       - Check if the methodological step needs to be removed, e.g. if the revised result explicitly discards an experiment.
+       - Check if the methodological step needs to be modified, e.g. if the revised result suggests a different but related approach
+    2. **Determination**: Based on your analysis, determine the appropriate change to selected methodological steps if any.
+       You should limit the changes to as few steps as possible.
+    3. **Revision**: If needed, make the targeted methodological steps align with the revised result. Your edits should
+      be minimal, surgical, and precise. The revised step should clearly support the revised result with concrete empirical
+      steps. The changes should be clear, decisive, and unambiguous.
+    4. **Verification**: Ensure the revised method accurately reflects the revised result while staying consistent with the
+      overall paper context. The other results should remain correct and consistent with the changed methodology. If you
+      find that there is no feasible edit that both aligns with the revised result and maintains the integrity of the
+        other results, you should clearly mark this in the output.
+
+    ## Editing Guidelines
+    When revising contribution claims:
+    - Make minimal, surgical edits (change only what's necessary)
+    - Maintain clear and decisive language (avoid hedging and vagueness)
+    - Ensure all methodological steps are internally consistent with each other
+    - Keep the methodology plausible within the paper's overall context
+
+    ## Output Format
+    Return a structured JSON with the following fields for each methodological step that needs change. If there is no sensible edit to be made,
+    either because none is needed or because there is no edit that fullfills all criteria, return a single null value.
+    Otherwise follow the structured JSON format below.
+
+    ```json
+    [
+      {{
+        "method_step_number": "id of the method step",
+        "effect_of_new_result_on_step": "Describe how the revised result impacts this method",
+        "revised_step": "The complete revised methodological step",
+        "modification_steps": "Step-by-step explanation of your editing process or null if no changes",
+        "explanation": "Justification for how your changes align with the revised result or null if no changes"
+      }},
+      //...
+    ]
+    ```
+
+    ## Critical Reminders
+    - Review ALL methodoloical steps, even if some appear unaffected by the conclusion change
+    - Maintain scientific precision and avoid introducing ambiguity
+    - Ensure changes are minimal but sufficient to align with the revised result
+    - The revised method should clearly reflect the changed result without vagueness, hedging or ambiguity
+    - Return null if no changes are nedded or it is not feasible to make changes
+    - Be conservative with the number of steps that need to be changed
+    """
+  )
+]

@@ -10,8 +10,8 @@ import torch
 import yaml
 
 from ..data import load_paper_datasets
-from ..llms import get_num_ctx_of_llm
-from ..models.cfgens.blueprint.BlueprintBasedCF import BlueprintBasedCF
+from ..llm import get_num_ctx_of_llm
+from ..model.cfgen import BlueprintBasedCF
 
 
 def get_data_by_share(dataset_dir: str | Path, share: str, merge: bool):
@@ -54,16 +54,16 @@ def load_cfgen(cfgen_type, config):
     assert "llm" in config, "LLM is required for CFGen"
 
     if cfgen_type == "active2passive":
-        from cerg.models.cfgens.ActivePassiveCF import ActivePassiveCF
+        from ..model.cfgen.ActivePassiveCF import ActivePassiveCF
         return ActivePassiveCF(**config)
     elif cfgen_type == "british2american":
-        from cerg.models.cfgens.BritishAmericanCF import BritishAmericanCF
+        from ..model.cfgen.BritishAmericanCF import BritishAmericanCF
         return BritishAmericanCF(**config)
     elif cfgen_type == "language_error":
-        from cerg.models.cfgens.LanguageErrorCF import LanguageErrorCF
+        from ..model.cfgen.LanguageErrorCF import LanguageErrorCF
         return LanguageErrorCF(**config)
     elif cfgen_type == "layout":
-        from cerg.models.cfgens.PaperLayoutCF import PaperLayoutCF
+        from ..model.cfgen.PaperLayoutCF import PaperLayoutCF
         if "llm" in config:
             del config["llm"]
 
@@ -73,13 +73,13 @@ def load_cfgen(cfgen_type, config):
 
         p = None
         if "result" in cfgen_type:
-            from cerg.models.cfgens.blueprint.ResultPerturbator import ResultPerturbator
+            from ..model.blueprint.ResultPerturbator import ResultPerturbator
             p = ResultPerturbator(**config)
         elif "conclusion" in cfgen_type:
-            from cerg.models.cfgens.blueprint.ConclusionPerturbator import ConclusionPerturbator
+            from ..model.blueprint.ConclusionPerturbator import ConclusionPerturbator
             p = ConclusionPerturbator(**config)
         elif "finding" in cfgen_type:
-            from cerg.models.cfgens.blueprint.FindingPerturbator import FindingPerturbator
+            from ..model.blueprint.FindingPerturbator import FindingPerturbator
             p = FindingPerturbator(**config)
 
         cfgen = BlueprintBasedCF(name=cfgen_type)
@@ -104,29 +104,29 @@ def load_argtor(name, argtor_type, config=None):
     print("LOADING ARGTOR", argtor_type, type(argtor_type), config)
 
     if argtor_type == "liangetal2024":
-        from cerg.models.argtors.Liangetal2024ARGtor import Liangetal2024ARGtor
+        from ..model.argtor import Liangetal2024ARGtor
         return Liangetal2024ARGtor(name=name, **config)
     elif argtor_type == "marg":
-        from cerg.models.argtors.marg.MARG import MARG
+        from ..model.argtor import MARG
         return MARG(name=name, **config)
     elif argtor_type == "review_critique":
-        from cerg.models.argtors.ReviewCritiqueARGtor import ReviewCritiqueARGtor
+        from ..model.argtor import ReviewCritiqueARGtor
         return ReviewCritiqueARGtor(name=name, **config)
     elif argtor_type == "shinetal2025":
-        from cerg.models.argtors.Shinetal2025ARGtor import Shinetal2025ARGtor
+        from ..model.argtor import Shinetal2025ARGtor
         return Shinetal2025ARGtor(name=name, **config)
     elif argtor_type == "deepreviewer":
-        from cerg.models.argtors.DeepReviewerARGtor import DeepReviewerARGtor
+        from ..model.argtor import DeepReviewerARGtor
         return DeepReviewerARGtor(name=name, **config)
     elif argtor_type == "reviewer2":
-        from cerg.models.argtors.Reviewer2ARGtor import Reviewer2ARGtor
+        from ..model.argtor import Reviewer2ARGtor
         return Reviewer2ARGtor(name=name, **config)
     elif argtor_type == "treereviewer":
-        from cerg.models.argtors.TreeReviewARGtor import TreeReviewARGtor
+        from ..model.argtor import TreeReviewARGtor
         return TreeReviewARGtor(name=name, **config)
     elif "systematic" in argtor_type:
         sub_type = argtor_type.split("_")[-1]
-        from cerg.models.argtors.SystematicARGtor import SystematicARGtor
+        from ..model.argtor import SystematicARGtor
         return SystematicARGtor(name=name, prompt_type=sub_type, **config)
     else:
         raise ValueError(f"Unknown ARGtor type: {argtor_type}")
@@ -144,16 +144,16 @@ def load_rcd(rcd_type, config=None):
         config = {}
 
     if rcd_type == "point":
-        from cerg.models.rcds.PointOverlapRCD import PointOverlapRCD
+        from ..model.rcd.PointOverlapRCD import PointOverlapRCD
         return PointOverlapRCD(**config)
     elif rcd_type == "score":
-        from cerg.models.rcds.ScoreRCD import ScoreRCD
+        from ..model.rcd.ScoreRCD import ScoreRCD
         return ScoreRCD()
     elif rcd_type == "surface":
-        from cerg.models.rcds.SurfaceRCD import SurfaceRCD
+        from ..model.rcd.SurfaceRCD import SurfaceRCD
         return SurfaceRCD()
     elif rcd_type == "aspect":
-        from cerg.models.rcds.AspectRCD import AspectRCD
+        from ..model.rcd.AspectRCD import AspectRCD
         return AspectRCD()
     else:
         raise ValueError(f"Unknown ARGtor type: {rcd_type}")
@@ -171,19 +171,19 @@ def load_rde(rde_type, config=None):
         config = {}
 
     if rde_type == "score":
-        from cerg.models.rdes.ScoreRDE import ScoreRDE
+        from ..model.rde.ScoreRDE import ScoreRDE
         return ScoreRDE()
     elif rde_type == "surface":
-        from cerg.models.rdes.SurfaceRDE import SurfaceRDE
+        from ..model.rde.SurfaceRDE import SurfaceRDE
         return SurfaceRDE()
     elif rde_type == "aspect":
-        from cerg.models.rdes.AspectRDE import AspectRDE
+        from ..model.rde.AspectRDE import AspectRDE
         return AspectRDE()
     elif rde_type == "point":
-        from cerg.models.rdes.PointRDE import PointRDE
+        from ..model.rde.PointRDE import PointRDE
         return PointRDE()
     elif rde_type == "soundness":
-        from cerg.models.rdes.SoundnessRDE import SoundnessRDE
+        from ..model.rde.SoundnessRDE import SoundnessRDE
         return SoundnessRDE()
     else:
         raise ValueError(f"Unknown ARGtor type: {rde_type}")
@@ -201,13 +201,13 @@ def load_llm(name, llm_type, cost_path=None, config=None):
     def_path = Path("/storage/ukp/shared/shared_model_weights/")
 
     if llm_type.startswith("gpt"):  # openai
-        from cerg.llms.OpenAi import OpenAiChatLLM
+        from ..llm.OpenAi import OpenAiChatLLM
         return OpenAiChatLLM(name=f"{name}_{llm_type}",
                              model=llm_type,
                              cost_cache_dir=cost_path,
                              config=config)
     elif llm_type == "deepseekv3":
-        from cerg.llms.DeepSeek import DeepSeekChatLLM
+        from ..llm.DeepSeek import DeepSeekChatLLM
         return DeepSeekChatLLM(name=f"{name}_{llm_type}",
                                model=llm_type,
                                cost_cache_dir=cost_path,
@@ -215,7 +215,7 @@ def load_llm(name, llm_type, cost_path=None, config=None):
     elif llm_type.lower().startswith("ollama_"):
         llm_type = llm_type[len("ollama_"):]
 
-        from cerg.llms.OllamaChatLLM import OllamaChatLLM
+        from ..llm.OllamaChatLLM import OllamaChatLLM
 
         if config is None:
             config = {}
@@ -225,25 +225,6 @@ def load_llm(name, llm_type, cost_path=None, config=None):
         return OllamaChatLLM(name=f"{name.replace('/', '.')}_{llm_type}",
                              config=config,
                              model=llm_type)
-
-    elif "llama" in llm_type.lower():
-        assert (def_path / llm_type).exists(), f"Model {llm_type} not found at {def_path / llm_type}"
-
-        from cerg.llms.Llama import LlamaLLM
-
-        return LlamaLLM(name=f"{name.replace('/', '.')}_{llm_type}",
-                        model=llm_type,
-                        model_path=def_path,
-                        config=config)
-    elif "qwen" in llm_type.lower():
-        assert (def_path / llm_type).exists(), f"Model {llm_type} not found at {def_path / llm_type}"
-
-        from cerg.llms.Qwen import QwenLLM
-
-        return QwenLLM(name=f"{name.replace('/', '.')}_{llm_type}",
-                       model=llm_type,
-                       config=config,
-                       model_path=def_path)
     elif "mixtral" in llm_type.lower():
         raise NotImplementedError("mixtral models cannot be loaded yet")
     else:

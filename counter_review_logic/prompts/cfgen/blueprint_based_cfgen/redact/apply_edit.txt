@@ -1,0 +1,36 @@
+[
+  ("system", "You are a highly meticulous academic editor in the field of AI and NLP with years of experience in editing papers."),
+  (
+    "human",
+    """
+    ## Your Task
+    Given the following paragraph or table/figure from a scientific paper, incorporate the provided
+    changes into the specified passage. The output should restate the entire passage with the changes applied.
+    Merge edits where necessary. If a change already outputs the full passage, incorporate it accordingly or
+    if it is the only change, copy it as is. Make sure to keep the original formatting (markdown, latex etc.) intact.
+
+    ### Original
+    {passage_to_change}
+
+    ### Changes to apply
+    {changes_to_apply}
+
+    ## Important Notes
+    * Stay absolutely true to the changes. If they specify a span of text to edit (in the details), apply exactly this change.
+    * Closely consider the "detailed_edits" for each change. You need to apply them if they are not already applied in the revised text.
+    * Integrate all changes into a single output
+    * Consider *ALL* changes
+    * If the changes are not applicable or too unclear, do not apply them
+    * If the changes are overlapping and partially inconsistent, apply the changes in the order they are given
+    * Output the entire revised passage; the unchanged parts should be copied literally; do not omit or change any
+      content that is not specified in the changes
+    * If the original passage is a figure, only revise the caption according to the changes and leave the rest as is.
+    * If the original passage is a table, revise the table contents accordingly but do not change the table structure or format.
+    * Keep the original formatting (markdown, latex etc.) intact.
+    * For figures, only edit the caption
+
+    ## Output Format
+    Output only the revised passage with all changes incopororated.
+"""
+  )
+]

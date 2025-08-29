@@ -1,0 +1,15 @@
+{
+  "aspects_of_result": "[describe the aspects of the result including metrics, datasets, models, measurements, experiments, etc.]",
+  "relevant_figures": [
+    {
+      "figure_name": "[The name of the figure, e.g. Figure 1]",
+      "relevance_to_result": "[explain how the figure is relevant to the result]"
+    }
+  ],
+  "relevant_tables": [
+    {
+      "table_name": "[The name of the table, e.g. Table 1]",
+      "relevance_to_result": "[explain how the table is relevant to the result]"
+    }
+  ]
+}

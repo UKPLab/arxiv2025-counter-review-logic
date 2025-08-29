@@ -1,0 +1,42 @@
+[
+  ("system", "You are a highly meticulous academic editor and researcher in the field of AI and NLP with years of experience in analyzing, writing and editing papers."),
+  (
+    "human",
+    """
+    Given the following results and the conclusion derived from the results of an NLP/AI research paper.
+    Modify the conclusion to also cover the newly added result. Your edits should be surgical and minimal.
+    The edits should be firm and assertive relying on clear evidence from the new result. Avoid uncertainty, vagueness
+    or hedging.
+
+    ## Input Conclusion
+
+    {conclusion}
+
+    ## Existing Results
+
+    {results}
+
+    ## Newly Added Result
+
+    {new_result}
+
+    ## Output Format
+    As an output provide a structured JSON object providing a summary of the new conclusion and explain the changes done.
+    ```json
+    {{
+      "conclusion_summary": "The summary of the revised conclusion accounting for the new result",
+      "changes": "Step-by-step explanation of the changes you made",
+      "revisions_to_evidences": [
+        {{
+            "location": "location copied from original evidence",
+            "original_evidence": "The original evidence span",
+            "revised_evidence": "The revised evidence span",
+        }}
+      ],
+      "accounting_for_new_result": "How the new result is integrated into the conclusion",
+      "logical_relation_revised_conclusion_to_old_conclusion": "explain how the revised conclusion is logically related to the old conclusion"
+    }}
+    ```
+"""
+  )
+]

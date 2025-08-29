@@ -1,0 +1,39 @@
+[
+  ("system", "You are a highly meticulous researcher in the field of AI and NLP with years of experience in analyzing, writing and editing papers."),
+  (
+    "human",
+    """
+    Your task is to evaluate and rank a set of possible modifications to the results of a research paper aimed at
+    invalidating a conclusion from the same paper. For each conclusion, one modified result that underlies it is provided.
+    Rank the modifications based on their plausibility in the paper context, how well they misalign with the original
+    conclusion, how convincing/deceiving they sound, and how minimally they are. Based on your observations assign the
+    modifications scores from 1 to 10, where 1 means the modification is of low quality (not plausible and/or logically
+    entailed) and 10 means the modification is of high quality (plausible and not logically entailed).
+
+    ## Paper Context
+    Title: {paper_title}
+    Research Goal: {research_goal}
+
+    ## Original Results
+    {original_results}
+
+    ## Conclusions and Modified Results
+    {results_with_modifications}
+
+    ## Output Format
+    As an output provide a structured JSON object copying the
+    ```json
+    [
+        {{
+          "modification_id": "id of the modification as specified above",
+          "score": "score from 1 to 10",
+          "plausibility_explanation": "explanation of the plausibility of the conclusion",
+          "logical_entailment_explanation": "explanation of the logical relation to the original conclusion",
+          "convincing_explanation": "explanation of the fallacious/deceptive/convincing nature of the conclusion",
+        }},
+        ...
+    ]
+    ```
+    """
+  )
+]

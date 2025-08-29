@@ -8,10 +8,10 @@ from typing import Optional, List, Any
 from langchain_core.callbacks import CallbackManagerForLLMRun
 from pydantic import PrivateAttr
 
-from ....data import Paper, Review
-from ....llm import OpenAiChatLLM
-from ....framework import AutomaticReviewGenerator
-from ....llm import ChatLLM, parse_llm_output_as_single_json, approximately_truncate
+from ...data import Paper, Review
+from ...llm import OpenAiChatLLM
+from ...framework import AutomaticReviewGenerator
+from ...llm import parse_llm_output_as_single_json, approximately_truncate
 
 from .treereview.agents.answer_synthesizer import AnswerSynthesizer
 from .treereview.agents.question_generator import QuestionGenerator

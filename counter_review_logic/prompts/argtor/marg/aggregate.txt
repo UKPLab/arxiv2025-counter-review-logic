@@ -1,0 +1,2 @@
+Instructions:
+You will be given an output from a review-generating AI.  Your job is to determine whether the output contains a finalized list of review comments.  If so, output the review comments verbatim in a JSON list of strings.  If not, write "No comments."  Note that if the list appears incomplete--e.g., it starts with a number other than 1, etc--you should write "No comments." anyway.

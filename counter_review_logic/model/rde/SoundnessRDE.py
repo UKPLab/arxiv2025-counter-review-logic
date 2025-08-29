@@ -3,8 +3,8 @@ from collections import Counter
 
 import numpy as np
 
-from cerg.framework.eval import ReviewDeltaEvaluator
-from cerg.framework.rcd import ReviewDelta
+from ...framework import ReviewDeltaEvaluator
+from ...framework import ReviewDelta
 
 from fuzzysearch import find_near_matches
 

@@ -1,0 +1,52 @@
+[
+  ("system", "You are a highly meticulous academic editor in the field of AI and NLP with years of experience in editing papers."),
+  (
+    "human",
+    """
+    ## Your Task
+    Given the following table in HTML format from a scientific paper, incorporate the provided changes into the specified passage.
+    The output should restate the entire passage with the changes applied. Merge edits where necessary.
+    If a change already outputs the full passage, incorporate it accordingly or if it is the only change, copy it as is.
+    Make sure to keep the exact original formatting and structure of the table intact.
+
+    ### Original
+    {passage_to_change}
+
+    ### Changes to apply
+    {changes_to_apply}
+
+    ## Process
+    1. Carefully read the original table. Think step-by-step how this table is structured and where which result lies
+       and note down your thoughts.
+    2. Read the changes to apply and understand what needs to be changed in relation to the table.
+    3. Make a step-by-step plan on how to apply each change in sequence given your previous thoughts on its structure.
+    4. Output the final revised passage with all changes applied.
+    5. Make sure that formatting and structure remain unaffected. Do not discard any content that is not explicitly specified in the changes.
+    6. Maintain *all* HTML tags, attributes and structure.
+
+    ## Important Notes
+    * Stay absolutely true to the changes. If they specify a span of text to edit (in the details), apply exactly this change.
+    * Closely consider the "detailed_edits" for each change. You need to apply them if they are not already applied in the revised text.
+    * Integrate all changes into a single output
+    * Consider *ALL* changes
+    * If the changes are not applicable or too unclear, do not apply them
+    * If the changes are overlapping and partially inconsistent, apply the changes in the order they are given
+    * Output the entire revised passage; the unchanged parts should be copied literally; do not omit or change any
+      content that is not specified in the changes
+    * If the original passage is a figure, only revise the caption according to the changes and leave the rest as is.
+    * If the original passage is a table, revise the table contents accordingly but do not change the table structure or format.
+    * Keep the original formatting (markdown, latex, html etc.) intact.
+
+    ## Output Format
+    * *Step-by-step table interpration*: <your thoughts on the table structure and where relevant results lie>
+    * *Step-by-step plan*: <your plan on how to apply the changes>
+    * *Revised Table*:
+    ```markdown
+    <the full revised passage with all changes applied>
+    ```
+
+    Make sure to include all of these sections with proper markdown formatting in your answer. Put the final revised
+    passage inside a markdown code block.
+"""
+  )
+]

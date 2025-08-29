@@ -8,9 +8,9 @@ import torch
 import transformers
 
 
-from ....data import Paper, Review
-from ....framework import AutomaticReviewGenerator
-from ....llm import ChatLLM, parse_llm_output_as_single_json, approximately_truncate
+from ...data import Paper, Review
+from ...framework import AutomaticReviewGenerator
+from ...llm import ChatLLM, parse_llm_output_as_single_json, approximately_truncate
 
 class Reviewer2ARGtor(AutomaticReviewGenerator):
     """

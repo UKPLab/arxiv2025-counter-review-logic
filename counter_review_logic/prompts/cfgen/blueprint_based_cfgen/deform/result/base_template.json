@@ -1,0 +1,8 @@
+{
+  "selected_result_id": "[identifier for the result you chose to modify]",
+  "negated_key_fact": "[description of the key fact you changed and how]",
+  "edited_result": "[your modified version of the original result]",
+  "conclusion_verification": "[explanation of why the conclusion is no longer supported]",
+  "detailed_changes": "[explanation of the changes made to the result]",
+  "masked_version": "[version that attempts to hide the contradiction]"
+}

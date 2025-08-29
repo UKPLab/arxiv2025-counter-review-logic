@@ -1,0 +1,39 @@
+[
+  (
+    "human",
+    """
+    Please revise the following json response from an LLM to adhere excatly to the following json format. Do not change contents or meaning of the report. Copy text verbatim and only fix the json structure.
+    If you cannot reformat the output, simply respond with "ERROR".
+
+    ## Faulty LLM Response
+    ```
+    {faulty_response}
+    ```
+
+    ## Expected Format
+    ```json
+    {{
+        "points_review1": [
+            {{"id": int, "span": "exact quote", "summary": "concise point"}}
+        ],
+        "points_review2": [
+            {{"id": int, "span": "exact quote", "summary": "concise point"}}
+        ],
+        "shared_points": [
+            {{"id1": int, "id2": int, "explanation": "reasoning for match"}}
+        ],
+        "contradictory_points": [
+            {{"id1": int, "id2": int, "explanation": "reasoning for contradiction"}}
+        ]
+    }}
+    ```
+
+    ## Constraints
+    * Carefully make sure that the output is valid json! Watch out for characters to escape, commas, brackets etc.
+    * Make sure that all requested fields "points_review1", "points_review2", "shared_points", "contradictory_points" are present
+    * If the faulty response is missing a field, provide it as empty
+    * If the faulty response cannot be reasonably revised, e.g. it has none of the fields, it's not even a json, etc. return a single word "ERROR"
+    * Return only the json inside ```json ...``` and nothing else.
+    """
+  )
+]

@@ -2,9 +2,9 @@ import os
 import re
 from pathlib import Path
 
-from ....data import Paper, Review
-from ....framework.argtor import AutomaticReviewGenerator
-from ....llm import ChatLLM, parse_llm_output_as_single_json, approximately_truncate
+from ...data import Paper, Review
+from ...framework.argtor import AutomaticReviewGenerator
+from ...llm import ChatLLM, parse_llm_output_as_single_json, approximately_truncate
 
 from ai_researcher import DeepReviewer
 

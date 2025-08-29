@@ -1,0 +1,56 @@
+[
+  ("system", "You are an expert NLP/AI research paper analyst."),
+  (
+    "human",
+    """
+    Your task is to identify specific evidence ("results") that supports a given conclusion in an academic paper.
+    Your analytical skills will help extract the precise results that form the foundation of the conclusion.
+
+    ## Input Paper
+    Paper: {paper}
+
+    ## Conclusion
+    Conclusion: {conclusion}
+
+    ## Task Definition
+    Identify and extract all specific results (empirical evidence, measurements, data points, statistics) from the paper that directly support or lead to the stated conclusion.
+    The authors should clearly derive the conclusion from those results (i.e., they argumentatively verbalize this connection). You should answer the question: "If this result
+    was removed from the paper, would the conclusion still be valid?".
+
+    ## Key Definitions
+    - **Conclusion**: A general knowledge claim derived from evidence that extends beyond the specific study
+    - **Result**: Raw scientific data including experimental measurements, statistical analyses, observations, or model outputs.
+
+    Unlike a conclusion, a result is a specific obervation within the context of the specific study/experiment.
+
+    ## Step-by-Step Process
+    1. Carefully read the entire paper, paying special attention to the methods, results, and discussion sections
+    2. Identify all potential results that relate to the provided conclusion
+    3. For each result:
+       - Summarize the specific data/finding concisely; be specific and precise.
+       - Note exactly where it appears (section, paragraph, figure, table). Carefully check that you identify *ALL* locations where this result is discussed or presented in the paper.
+       - Explain how this specific result supports or contributes to the conclusion
+    4. Group related results together when appropriate
+    5. Focus only on results with a clear connection to the conclusion
+    6. For each result, find all relevant locations where they are provided in the paper (e.g., paragraphs, figures, tables); only use the paragraph numbers provided in the paper.
+
+    ## Response Format
+    Provide your analysis as a structured JSON array with the following format for each result:
+
+    ```json
+    [
+      {{
+        "result_summary": "Detailed yet concise description of the specific data/finding",
+        "evidence_location": ["Paragraph no. Y", "Figure Z", "Table N", ...],
+        "relevance_to_conclusion": "Clear explanation of how this result directly supports or leads to the conclusion"
+      }},
+      {{
+        "result_summary": "...",
+        "evidence_location": ["paragraph x", "Figure y", ...],
+        "relevance_to_conclusion": "..."
+      }}
+    ]
+    ```
+    """
+  )
+]

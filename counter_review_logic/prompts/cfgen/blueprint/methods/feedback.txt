@@ -1,0 +1,103 @@
+[
+  (
+    "user",
+    """
+    # Scientific Method Analysis Feedback Evaluator
+
+    You are an expert evaluator tasked with providing structured feedback on an LLM's analysis of methodological pipelines in scientific papers. Your job is to assess the quality, accuracy, and completeness of the output and provide actionable feedback.
+
+    ## Input
+    ### Paper
+    `
+    {paper}
+    `
+
+    ### Target Results
+     {results}
+
+    ### Extracted Methods
+     {output}
+
+    ## Evaluation Task
+    Analyze the extracted methodological pipeline and provide detailed, constructive feedback on its strengths and weaknesses.
+    Focus on how accurately it captured the methodological steps leading to the specified result.
+
+    ## Evaluation Criteria
+
+    ### Content Accuracy
+    - Does the analysis correctly identify the steps that lead to the target results?
+    - Are the steps accurately described and in the correct sequence?
+    - Does the analysis miss any critical methodological steps?
+    - Does it include irrelevant steps that don't contribute to the results?
+
+    ### Evidence Quality
+    - Are the citations of evidence (paragraphs, figures, tables) accurate and specific?
+    - Does each step have proper evidence from the paper?
+    - Are the connections between evidence and methodological steps clearly explained?
+
+    ### Structural Integrity
+    - Does the pipeline form a logical, coherent sequence without gaps?
+    - Is the pipeline properly focused on only the steps relevant to the target results?
+    - Is the abstraction level appropriate (neither too detailed nor too abstract)?
+
+    ### Output Format
+    - Does the output adhere to the requested JSON structure?
+    - Are all fields properly populated with appropriate content?
+    - Is the information organized in a way that's easy to understand?
+    - Are the output results of each step correctly listed (using the IDs of the respective results)?
+    - Do *ALL* results have associated steps in the pipeline?
+
+    ## Feedback Format
+
+    ```markdown
+    # Scientific Method Analysis Feedback
+
+    ## Input Review
+    - **Paper**: [Brief description of the paper]
+    - **Target Result**: [Description of the specific result being analyzed]
+
+    ## Overall Assessment
+    [2-3 sentences summarizing the quality of the analysis and major strengths/weaknesses]
+
+    ## Strengths
+    - [Strength 1: Specific aspect the LLM handled well]
+    - [Strength 2: Another positive aspect]
+    - [Additional strengths as relevant]
+
+    ## Areas for Improvement
+    - [Weakness 1: Specific issue that needs addressing]
+    - [Weakness 2: Another area that could be improved]
+    - [Additional weaknesses as relevant]
+
+    ## Step-by-Step Review
+    ### Pipeline Structure
+    [Assessment of whether the overall pipeline is logical and complete]
+
+    ### Individual Step Analysis
+    1. **Step 1**:
+       - Accuracy: [Assessment]
+       - Evidence: [Assessment]
+       - Relevance: [Assessment]
+       - Suggested improvements: [Specific actionable feedback]
+
+    2. **Step 2**:
+       - Accuracy: [Assessment]
+       - Evidence: [Assessment]
+       - Relevance: [Assessment]
+       - Suggested improvements: [Specific actionable feedback]
+
+    [Continue for each step in the pipeline]
+
+    ## Missing Elements
+    [Identify any critical methodological components that were overlooked]
+
+    ## Action Items
+    1. [Specific action item to improve the analysis]
+    2. [Another specific action item]
+    3. [Additional action items as needed]
+
+    ## Example Improvement
+    [Provide a specific example of how one problematic aspect could be improved, possibly with a revised version of a particular step]
+    """
+  )
+]

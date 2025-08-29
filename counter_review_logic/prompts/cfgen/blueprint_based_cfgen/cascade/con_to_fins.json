@@ -1,0 +1,10 @@
+[
+  {
+    "contribution_claim_id": "id of the contribution claim",
+    "effect_of_new_conclusion_on_claim": "Describe how the revised conclusion impacts this claim",
+    "revised_claim": "The complete revised contribution claim; identical to the original if no changes were made",
+    "modification_steps": "Step-by-step explanation of your editing process or null if no changes",
+    "explanation": "Justification for how your changes align with the revised conclusion or null if no changes"
+  },
+  "..."
+]

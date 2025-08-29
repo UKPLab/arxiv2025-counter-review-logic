@@ -1,0 +1,129 @@
+[
+  (
+    "human",
+    """
+    You are an expert peer reviewer with extensive experience in academic publishing.
+    Your goal is to provide a rigorous, objective, and constructive review strictly adhering to the provided template.
+    You are reviewing for {venue}. {venue} has the following focus: {venue_description}
+
+    To approach the task you should:
+    1. read the paper thoroughly
+    2. assess and contemplate about the paper's quality following the assessment steps specified below
+    3. write a thoughtful and constructive review based on your thoughts
+
+    ## Input Paper
+    {paper_content}
+
+    ## Step-by-step Assessment Instructions
+    Before writing your review you should assess the paper step-by-step. Answer each of the following steps one after another
+    and consider the paper text and the previous answers to answer each subsequent step. Make sure to separate your answers from the review report by "-----".
+
+    1. Skim. I.e. Skim the whole paper briefly (10-15min).
+
+    2. Determine the High-level Idea based on Skim. I.e. Summarize the high-level idea of the article in 4-5 sentences.
+
+    3. Determine the Paper Type based on Skim. I.e. Which paper type would you consider matches the paper best?
+
+    4. Determine the Overall Clarity of the Paper based on Skim. I.e. Is this paper written clearly and concisely?
+
+    5. Introduction and related work. I.e. Read the introduction and related work sections in detail. Please highlight the section titles (if existent).
+
+    6. Determine the SotA based on Introduction and related work. I.e. What state-of-the-art (SotA) do the authors report for their specific field of study?
+
+    7. Determine the SotA Adequacy based on SotA. I.e. Based on your knowledge of the field, is the authors' SotA description adequate?
+
+    8. Determine the Research Goal based on Introduction and related work. I.e. What research goal do the authors approach?
+
+    9. Determine the Contributions based on Introduction and related work. I.e. What contributions does the paper make?
+
+    10. Determine the Contributions Alignment based on Research Goal and Contributions. I.e. Do the contributions align with the research goal?
+
+    11. Determine the Approach based on Introduction and related work. I.e. How does the paper approach the research goal (i.e. used methods)?
+
+    12. Determine the Approach Alignment based on Contributions and Approach. I.e. Does the overall approach align with the claimed contributions?
+
+    13. Determine the Research Goal Addressed based on Contributions Alignment and Approach Alignment. I.e. Is the overall research goal adequately addressed?
+
+    14. Determine the Contributions Novel + Relevant based on Contributions Alignment and Approach Alignment. I.e. Are the contributions novel and relevant to the field?
+
+    15. Method Section. I.e. Read the method section(s) including description of dataset collection, model development etc. Highlight the captions of the sections to indicate where it starts.
+
+    16. Determine the New Methods based on Method Section. I.e. Summarize the description of new methods in the paper.
+
+    17. Determine the New Method Plausibility based on New Methods. I.e. Are the new methods plausible?
+
+    18. Determine the New Method Reproducibility based on New Methods. I.e. Are the new methods described such that they can be reproduced?
+
+    19. Determine the Method Description Comprehensiveness based on Approach and New Methods. I.e. Are all methods used in the paper introduced?
+
+    20. Determine the New Method Soundness based on New Method Reproducibility and New Method Plausibility and Method Description Comprehensiveness. I.e. Are the new methods scientifically sound?
+
+    21. Determine the Method Description Appropriate based on Method Description Comprehensiveness and New Method Reproducibility and Paper Type. I.e. Is the method description overall appropriate?
+
+    22. Results Section. I.e. Read the Results / Data Analysis sections in detail. Highlight the captions of the sections to indicate where it starts.
+
+    23. Determine the Figures/Tables based on Results Section. I.e. What figures/tables are relevant to the result reporting and what do they show?
+
+    24. Determine the Plausible Figures/Tables based on Figures/Tables and Approach. I.e. Are the figures/tables plausible?
+
+    25. Determine the Results in the Text based on Results Section. I.e. What results/observations do the authors report in the TEXT based on the experimental data? Please highlight and list.
+
+    26. Determine the Text and Figures Matching based on Results in the Text and Figures/Tables. I.e. Are the figures/tables matching the result reporting in the text?
+
+    27. Determine the Result Reporting Completeness based on Results in the Text and Figures/Tables and Approach. I.e. Is the result reporting complete (i.e. no important results are ommitted)?
+
+    28. Determine the Result Reporting Adequacy based on Result Reporting Completeness and Approach. I.e. Is the result reporting adequate for the given methods?
+
+    29. Determine the Related Work Results based on Results Section. I.e. What RESULTS does the paper report from related work (in figures/tables or in text)?
+
+    30. Determine the Plausibility within Related Work based on Related Work Results. I.e. Are the reported results plausible given related work results?
+
+    31. Determine the Truthful and Consistent Results based on Plausible Figures/Tables and Plausibility within Related Work and Text and Figures Matching. I.e. Is the result reporting truthful and consistent (i.e. scientifically sound)?
+
+    32. Determine the Result Validity based on Truthful and Consistent Results and Result Reporting Adequacy and Paper Type. I.e. Based on the result reporting, do the underlying results seem valid (i.e. scientifically sound)?
+
+    33. Discussion Section. I.e. Read the Discussion / Analysis sections in detail. Highlight the captions of the sections to indicate where it starts.
+
+    34. Determine the Interpretations based on Discussion Section. I.e. Which interpretations of the results does the paper provide?
+
+    35. Determine the Valid Interpretations based on Interpretations and Results in the Text and Figures/Tables and New Method Soundness. I.e. Based on the interpretations you found, which are fully justified by the results?
+
+    36. Determine the Conclusions based on Discussion Section. I.e. Which conclusions/findings does the paper provide?
+
+    37. Determine the Valid Conclusions based on Conclusions and Valid Interpretations. I.e. Based on the conclusions you found, which directly derive from the valid interpretations?
+
+    38. Determine the Finding Contextualization based on Discussion Section. I.e. How do the authors explain differences and commonalities to related work findings?
+
+    39. Determine the Sufficient Contextualization based on Finding Contextualization and Valid Conclusions and Paper Type. I.e. Are the conclusions appropriately contextualized?
+
+    40. Determine the Contributions Validity based on Contributions and Valid Conclusions and Result Validity and Sufficient Contextualization and Paper Type. I.e. Do the correct conclusions match the claimed contributions of the paper?
+
+    41. Determine the Overall impression based on Contributions Validity and Contributions Novel + Relevant. I.e. Overall, do you consider the paper a valuable contribution to the scientific community?
+
+    ## Output Format
+    [Your answers to each detailed step]
+
+    -----
+    **Review Report**
+
+    {template}
+
+    ## Evaluation Approach
+    * Analyze the paper comprehensively across multiple dimensions
+    * Provide specific, actionable feedback
+    * Support all assessments with direct references to the paper
+    * Be precise in addressing each required template section
+    * Critically assess the paper's scientific merit and contribution
+
+    ## Final Reminder:
+    * Before writing the actual review, answer each step provided under "Detailed Assesssment Steps". Base the review report and scores on your answers to the steps.
+    * Strictly follow the output structure
+    * Provide substantive content for each template section
+    * Remember to go through the detailed instructions and answer the mentioned questions before starting the review report
+    * Closely follow the review guidelines
+    * Ensure your scores align with your qualitative assessment
+    * For each score, pick only numbers from the respective range and by its meaning explained above
+    * Make sure to separate your review report via "-----" from your previous thoughts on the paper
+    """
+  )
+]

@@ -1,0 +1,111 @@
+[
+  ("system", "You are a senior scientific peer reviewer specializing in research methodology and evidence evaluation."),
+  (
+    "human",
+    """
+    Your task is to analyze the quality of extracted conclusions that supposedly support a list of contribution claims from a scientific paper,
+     and provide detailed, constructive feedback. Your task is *not* to evaluate the contribution claims or conclusions
+     presented in the paper itself, but rather to assess the coverage and precision of the extraction.
+
+    ## EVALUATION MATERIALS
+
+    ### Original Paper
+    {paper}
+
+    ### Contribution Claims
+    {contribution_claims}
+
+    ### Extracted Conclusions/Findings Analysis
+    {output}
+
+    ## DEFINITION REFINEMENT
+
+    A valid scientific conclusion/interpretation:
+    - Is derived from empirical evidence (data, experiments, observations)
+    - Represents an interpretation of results, not merely restating raw data
+    - Makes a standalone knowledge claim that can be evaluated on its own
+    - Uses appropriate scope and certainty language relative to the evidence
+    - Is NOT simply restating the contribution claim itself
+
+    ## KEY DISTINCTION: Findings vs. Contribution Claims
+    - Findings/conclusions are specific interpretations of individual results
+    - Contribution claims are broader statements about the paper's overall value
+    - Findings support contribution claims but should be distinct from them
+    - Watch for circular reasoning where the "evidence" merely restates the claim
+
+    ## EVALUATION PROTOCOL
+
+    1. DISTINCT IDENTITY CHECK
+    - For each identified conclusion, verify it is a genuine finding derived from results and not merely restating a contribution claim
+    - Flag any conclusions that appear to be restatements of a contribution claim itself
+    - Confirm each conclusion has its own evidence basis independent of the claim it's supporting
+
+    2. COMPREHENSIVENESS ASSESSMENT
+    - Identify sections of the paper containing experimental results, analysis, or data interpretation
+    - Check if important conclusions from these sections were missed in the analysis
+    - Note specific paragraphs, figures, or tables that contain overlooked evidence-based interpretations
+
+    3. VALIDITY VERIFICATION
+    - For each extracted conclusion, examine the cited evidence in the original paper
+    - Determine if the conclusion reflects the true contents of the paper
+    - Verify the logical connection between the conclusion and the contribution claim
+
+    4. EDGE CASE IDENTIFICATION
+    - Identify conclusions that fall into challenging categories:
+      * Implied but not explicitly stated interpretations
+      * Mixed empirical/theoretical statements
+      * Context-dependent findings
+      * Comparative conclusions that depend on baseline assumptions
+      * Statistical interpretations subject to methodological choices
+
+    ## IMPORTANT NOTES
+    * You should validate the selection of conclusions and their relevance to the contribution claim.
+    * Only if *absolutely necessary* and if there is a *clear relation* to the contribution claim should you suggest adding new conclusions.
+
+    ## FEEDBACK FORMAT
+
+    Your evaluation should be provided in markdown format with these sections:
+
+    # Evaluation of Conclusion Analysis
+
+    ## Overall Assessment
+    [Provide a 2-3 paragraph summary of the analysis quality, highlighting major strengths and weaknesses]
+
+    ## Potential Contribution Claim Confusion
+    [Identify any "conclusions" that appear to be restatements of the contribution claim rather than distinct findings]
+    - **Example:** [Quote the problematic conclusion]
+      - **Why it's problematic:** [Explain why this is restating the claim rather than supporting it]
+      - **Where to look instead:** [Specific section/paragraph/figure in the paper with actual supporting evidence]
+
+    ## Missing Conclusions
+    [List important conclusions from the paper that were omitted but support the claim]
+    - **Missing finding:** [Describe the omitted conclusion]
+      - **Evidence location:** [Specific reference to where in the paper this conclusion appears or is supported]
+      - **Paper section:** [Page number, paragraph number, figure/table reference]
+      - **Importance:** [Why this conclusion is essential for supporting the contribution claim]
+
+    ## Problematic Conclusions
+    [Identify conclusions that were included but have issues]
+    - **Problematic conclusion:** [Quote or reference the specific conclusion]
+      - **Issue type:** [Evidence mismatch, overgeneralization, misinterpretation, etc.]
+      - **Paper reference:** [Exact location to check in the paper]
+      - **Suggested correction:** [How to revise this conclusion to be more accurate]
+
+    ## Edge Case Analysis
+    [Analyze conclusions that require special consideration]
+    - **Edge case conclusion:** [Quote or reference the specific conclusion]
+      - **Type of edge case:** [Implied, context-dependent, comparative, etc.]
+      - **Paper context:** [Relevant contextual information from the paper]
+      - **Handling recommendation:** [Specific advice on how to properly interpret this finding]
+
+    ## Improvement Actions
+    1. [Specific, actionable instruction for improving the analysis]
+    2. [Reference exact parts of the paper to check]
+    3. [etc.]
+
+    ## Question Prompts for Further Analysis
+    - [Targeted question to help resolve an ambiguity in the analysis]
+    - [Question about a specific interpretation that needs verification]
+    """
+  )
+]

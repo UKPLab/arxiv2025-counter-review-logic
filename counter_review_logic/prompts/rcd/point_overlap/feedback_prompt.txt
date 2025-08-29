@@ -1,0 +1,94 @@
+[
+("system", "You are an expert in natural language processing and academic peer review analysis."),
+  (
+    "human",
+    """
+      Your task is to analyze two related peer review reports for the same scientific paper in NLP and identify viewpoints and assessment statements about the paper.
+
+## Task Description:
+Given two peer review reports, you will:
+1. Extract distinct argumentative points from each review
+2. Summarize the key argument of each point
+3. Identify the claim made about the paper contents (i.e. the evidence)
+4. Determine what conclusion, i.e. assessment, they draw from that claim.
+5. Classify the sentiment of each point as positive, negative, or neutral according to the conclusion.
+
+## Guidelines:
+- A "point" is a specific evaluative assertion about the paper
+- Points can span multiple sentences or be contained within a sentence
+- Use exact quotes for spans to maintain traceability
+- Provide concise summaries that capture the core argument
+- Each point must be a concrete criticism or praise, not neutral observation
+- The evidence is a specific claim about the paper content, e.g. a proposed method, the limitation of experiments, etc. This may be empty if they do not provide evidence. Write N/A if there is no evidence.
+- The conlusion draws a general conclusion based on the evidence, e.g. the experiments do not generalize, the research question is well-framed, etc. This may be empty if they do not provide conclusion. Write N/A if there is no conclusion.
+- The sentiment describes the position of the point towards the paper; positive if the conclusion is favorable, negative if unfavorable, and neutral if it is neither. If there is no conclusion, choose neutral.
+- Make sure that you do *not* miss any points raised; in the end you should have considered *all* text in the reviews and only points that are not evaluative or already covered by other points should be excluded.
+- You can and should select spans of multiple sentences where necessary to capture the point and its context (especially the evidence and not only the conclusion).
+- There is no limit to the number of points to extract.
+
+## Output Format:
+```json
+{{
+    "points_review1": [
+        {{"id": int, "span": "exact quote", "summary": "concise point", "evidence": "what claim about the paper is made", "conclusion": "what is the assessment based on the claim", "sentiment": "postive/negative/neutral"}}
+    ],
+    "points_review2": [
+        {{"id": int, "span": "exact quote", "summary": "concise point", "evidence": "what claim about the paper is made", "conclusion": "what is the assessment based on the claim", "sentiment": "postive/negative/neutral"}}
+    ]
+}}
+```
+
+## Input:
+### Review Report 1:
+{report1}
+
+### Review Report 2:
+{report2}
+
+    """
+  ),
+  ("ai", """
+    {initial_result}
+  """),
+  ("human", """
+    Thanks! Looking at your response, I see that you do not consider the following spans in the review reports:
+
+    ## Spans Review Report 1
+    {missing_spans1}
+
+    ## Spans Review Report 2
+    {missing_spans2}
+
+    Please reconsider these spans and determine if they are __really__ not points according to the above definition. If they are, please
+    add them to your output lists while maintaining the proper formatting. Go through each span step-by-step and determine
+    if they should be added or not. The initial list might already be complete, carefully check if the left-over points are assertive or not.
+    Do *NOT* discard any of the prior points, only add ones you might have missed. Keep the following reminder closely in mind.
+
+    ## Reminder
+    - A "point" is a specific evaluative assertion about the paper or a specific part of the paper or its scientific method
+    - Points can span multiple sentences or be contained within a sentence
+    - Points can make implicit assertions (e.g. talking about a novel approach implies a novelty assessment); questions often imply a weakness or lack of clarity.
+    - Points can talk about specific methods, experiments, results, or the argumentation and writing. They are not necessarily referring to the whole paper but parts of it.
+    - Use exact quotes for spans to maintain traceability
+    - Provide concise summaries that capture the core argument
+    - Each point must be a concrete criticism or praise, not neutral observation. If you would choose neutral for the sentiment, it is most likely not a point.
+    - The evidence is a specific claim about the paper content, e.g. a proposed method, the limitation of experiments, etc. This may be empty if they do not provide evidence. Write N/A if there is no evidence.
+    - The conlusion draws a general conclusion based on the evidence, e.g. the experiments do not generalize, the research question is well-framed, etc. This may be empty if they do not provide conclusion. Write N/A if there is no conclusion.
+    - The sentiment describes the position of the point towards the paper; positive if the conclusion is favorable, negative if unfavorable, and neutral if it is neither. If there is no conclusion, choose neutral.
+    - Make sure that you do *not* miss any points raised; in the end you should have considered *all* text in the reviews and only points that are not evaluative or already implied by other points should be excluded.
+    - You can and should select spans of multiple sentences where necessary to capture the point and its context (especially the evidence and not only the conclusion).
+    - There is no limit to the number of points to extract.
+
+    ## Reminder on the output format
+    ```json
+    {{
+        "points_review1": [
+            {{"id": int, "span": "exact quote", "summary": "concise point", "evidence": "what claim about the paper is made", "conclusion": "what is the assessment based on the claim", "sentiment": "postive/negative/neutral"}}
+        ],
+        "points_review2": [
+            {{"id": int, "span": "exact quote", "summary": "concise point", "evidence": "what claim about the paper is made", "conclusion": "what is the assessment based on the claim", "sentiment": "postive/negative/neutral"}}
+        ]
+    }}
+    ```
+  """)
+]

@@ -1,0 +1,41 @@
+[
+  (
+    "human",
+    """
+    Please revise the following json response from an LLM to adhere excatly to the following json format. Do not change contents or meaning of the report. Copy text verbatim and only fix the json structure.
+    If you cannot reformat the output, simply respond with "ERROR".
+
+    ## Faulty LLM Response
+    ```
+    {faulty_response}
+    ```
+
+    ## Expected Format
+    ```json
+    [
+    {{
+        "id1": "id of statement in list 1",
+        "id2": "id of statement in list 2",
+        "label": "align" | "contradict"
+        "explanation": "Your explanation here. It should be clear and concise, referring to the rules above."
+    }},
+    {{
+        "id1": "id of statement in list 1",
+        "id2": "id of statement in list 2",
+        "label": "align" | "contradict"
+        "explanation": "Your explanation here. It should be clear and concise, referring to the rules above."
+    }},
+    ...
+    ]
+    ```
+
+    ## Constraints
+    * Carefully make sure that the output is valid json! Watch out for characters to escape, commas, brackets etc.
+    * Make sure that all requested fields "label" and "explanation" are present in each of the items of the output.
+    * If the faulty response is missing the explanation field, provide it as empty. If there is no label field, ignore this item.
+    * If the label is not one of the three options ("align", "contradict", "neutral"), try to match it to either of the three options above, otherwise ignore this item
+    * If the faulty response cannot be reasonably revised, e.g. it has none of the fields, it's not even a json, etc. return a single word "ERROR"
+    * Return only the json inside ```json ...``` and nothing else.
+    """
+  )
+]

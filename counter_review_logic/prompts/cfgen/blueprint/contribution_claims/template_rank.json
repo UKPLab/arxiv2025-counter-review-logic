@@ -1,0 +1,12 @@
+[
+  {
+    "claim_summary": "A short summary of the claim",
+    "type": "method/dataset/finding/theory/evaluation/...",
+    "evidence": "Verbatim copy of the paragraph containing the contribution claim",
+    "location": "section/paragraph/line number",
+    "score": "1-10 (1 = not significant for the paper, the paper works without this contribution; 10 = extremely significant, the paper wouldn't work without this contribution)",
+    "score_explanation": "explanation of the score",
+    "speculative": "Yes/No"
+  },
+  ...
+]

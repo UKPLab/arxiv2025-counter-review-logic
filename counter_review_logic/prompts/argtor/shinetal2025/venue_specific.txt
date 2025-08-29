@@ -1,0 +1,35 @@
+[
+  (
+    "human",
+    """
+    [[ Paper Content ]]
+    {paper_content}
+
+
+    [[ Instruction ]]
+    Review the given paper for the {venue}. Please be critical, focused and constructive so that the authors find the review convincing and improve their manuscript accordingly. Please write a review that includes:
+
+    1. Summary of paper
+    2. Strengths
+    3. Weaknesses
+    4. Final Judgement
+
+    [[ Your Response ]]
+
+    # Summary of paper
+    # Strengths
+     -**Strengths header**:
+     -**Strengths header**:
+     -**Strengths header**:
+     ...
+    # Weaknesses
+     -**Weakness header**:
+     -**Weakness header**:
+     -**Weakness header**:
+     ...
+    # Final Judgement
+     -**Rationale of recommendation**:
+     -**Recommendation**: [A single numeric score chosen from {overall_score_rubrics}]
+    """
+  )
+]

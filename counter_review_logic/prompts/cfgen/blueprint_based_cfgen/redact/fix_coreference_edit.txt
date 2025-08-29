@@ -1,0 +1,95 @@
+[
+  ("system", "You are a highly meticulous academic editor and researcher in the field of AI and NLP with years of experience in analyzing, writing and editing papers."),
+  (
+    "human",
+    """
+    ## Your Task
+    You are a specialized scientific paper editing assistant. Your task is to make precise, surgical edits referring to a specific {bb_type}
+    in paragraphs of a scientific research paper. The {bb_type} has been changed as described below and all coreferences to it should be
+    updated accordingly to ensure the alignment to the changed {bb_type}.
+
+    ## Input
+    ### Paper Context
+    Title: {title}
+
+    {abstract}
+
+    Research Goal: {research_goal}
+
+    ### Original {bb_type}
+
+    {bb_original}
+
+    ### Revised {bb_type}
+
+    {bb_revised}
+
+    ### Revised Passages of the {bb_type}
+
+    {changed_passages}
+
+    ### Coreference Passage to Edit
+
+    {coreference_to_change}
+
+    ## Key Definitions
+    - finding conclusion claim (aka finding): A central claim of the paper about a finding it contributes to science. Usually, it is high-level, makes a statement of importance to science, and is found in the abstract and introduction. Contribution claims are derived from conclusions.
+    - conclusion (aka interpretation): A specific knowledge claim derived directly from experimental data or analysis, found in results/discussion/analysis/evaluation sections. These are standalone (atomic) statements that interpret empirical evidence and not only restate facts/experimental data. Conclusions are derived from results.
+    - result (aka experimental data): Raw scientific data including experimental measurements, statistical analyses, observations, or model outputs.
+    - method: The complete sequence of actions, procedures, and decisions that produce the result starting at input artifacts and assumptions.
+
+    ## Detailed Instructions
+    1. Analysis Phase
+        * Read paper context thoroughly
+        * Understand how the {bb_type} is related to the coreference passages
+        * Verify that the {bb_type} is actually referenced in the passages.
+        * A true coreference restates or explicitly refers to the {bb_type}.
+        * Underlying {constant_bb_types} elements should not be changed although they might sound similar.
+
+    2. Edit
+        * For the passage, determine if there is need for change.
+        * Make surgical edits to make it consistent to the revised {bb_type} and its revised passage.
+        * Apply the minimum necessary changes to implement the revision
+        * Maintain the paper's style, tone, and formatting conventions
+        * Keep the original text intact where possible
+        * Be especially precise about implementing the intended modifications; they should explicitly reflect the intended changes.
+        * CRITICAL: Always capture and return the ENTIRE passage containing your edit, not just the span you modify
+
+    3. Quality Control
+        * Verify no changes were made to {constant_bb_types} elements only {bb_type} elements.
+        * Confirm all edits are plausible within the paper context
+        * Check that formatting remains consistent and that the style is preserved
+
+    If a coreference passage does not need any changes, return null.
+
+    ## Output Format
+    ```json
+    {{
+      "revised_passage": "passage with all edits applied and copying all unchanged content ",
+      "detailed_edits": [
+        {{
+          "span": "Original text that was changed",
+          "revised_span": "New text after changes",
+          "rationale": "Clear explanation of why this precise edit was necessary"
+        }}
+      ]
+    }}
+    ```
+
+    ## Critical Notes
+    * ALWAYS include the COMPLETE passage for each edit, not just the modified spans
+    * Your edits should be MINIMAL while fully implementing the requested changes
+    * Your edits should be assertive, avoid uncertainty, ambiguity, or hedging
+    * For figures, modify captions only; for tables, maintain exact formatting
+"""
+  ),
+  ("ai", "{output}"),
+  ("human", """
+  Thanks for you answer. It seems like you do not apply any changes to the passage. Please reconsider the
+  passage, the edit intentions and the instructions above to provide surgical edits to the passage and make sure
+  that no changes are needed. Please fix the output json to reflect the changes and include the detailed changes.
+  Only if the passage is not relevant at all to the edit intentions, you should return it without edits.
+
+  NOTE: Remember to provide the revised answer in the exact same json format as the initial answer.
+  """)
+]

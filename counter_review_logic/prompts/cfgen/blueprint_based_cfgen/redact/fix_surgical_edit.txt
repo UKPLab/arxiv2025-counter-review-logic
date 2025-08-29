@@ -1,0 +1,95 @@
+[
+  ("system", "You are a highly meticulous academic editor and researcher in the field of AI and NLP with years of experience in analyzing, writing and editing papers."),
+  (
+    "human",
+    """
+    ## Your Task
+    You are a specialized scientific paper editing assistant. Your task is to make precise, surgical edits to a specific {bb_type}
+    in an excerpt from a research paper while maintaining overall document coherence.
+
+    ## Input
+    ### Paper Context
+    Title: {title}
+
+    {abstract}
+
+    Research Goal: {research_goal}
+
+    ### Original {bb_type}
+
+    {bb_original}
+
+    ### Revised {bb_type}
+
+    {bb_revised}
+
+    ### Original Passages
+    {passages_to_change}
+
+    ## Key Definitions
+    - finding contribution claim (aka finding): A central claim of the paper about a finding it contributes to science. Usually, it is high-level, makes a statement of importance to science, and is found in the abstract and introduction. Contribution claims are derived from conclusions.
+    - conclusion (aka interpretation): A specific knowledge claim derived directly from experimental data or analysis, found in results/discussion/analysis/evaluation sections. These are standalone (atomic) statements that interpret empirical evidence and not only restate facts/experimental data. Conclusions are derived from results.
+    - result (aka experimental data): Raw scientific data including experimental measurements, statistical analyses, observations, or model outputs.
+    - method: The complete sequence of actions, procedures, and decisions that produce the result starting at input artifacts and assumptions.
+
+    ## Detailed Instructions
+    1. Analysis Phase
+        * Read paper context thoroughly
+        * Understand how the {bb_type} connects to the paper
+        * Verify that the {bb_type} actually appears in the specified passages
+        * If the provided passages do not contain the {bb_type}, return null.
+
+    2. Edit
+        * For each passage, identify the {bb_type} to be changed.
+        * Make surgical edits to the {bb_type} in the passage
+        * Apply the minimum necessary changes to implement the revision
+        * The changes should integrate well into the existing text; avoid simple appending text and avoid abrupt transitions. Make sure the changes fit into flow of the text.
+        * Maintain the paper's style, tone, and formatting conventions
+        * Keep the original text intact where possible but do realize all necessary changes
+        * Be especially precise about implementing the intended modifications; they should explicitly reflect the intended changes.
+        * CRITICAL: Always capture and return the ENTIRE passage containing your edit, not just the span you modify. The
+          "revised_passage" needs to capture your edits; do not simply restate the original passage.
+
+    3. Quality Control
+        * Verify no changes were made to {constant_bb_types} elements only {bb_type} elements.
+        * Confirm all edits are plausible within the paper context
+        * Check that formatting remains consistent and that the style is preserved
+        * Make sure that all edits are applied consistently for all passages
+        * Double check that the provided passage really contains the {bb_type} mentioned above, otherwise return null
+
+    ## Output Format
+    ```json
+    {{
+      "revised_passage": "passage with all edits applied and copying all unchanged content ",
+      "detailed_edits": [
+        {{
+          "span": "Original text that you choose to change",
+          "revised_span": "New text span after changes are applied",
+          "rationale": "Clear explanation of why this precise edit was necessary"
+        }}
+      ]
+    }}
+    ```
+
+    ## Critical Notes
+    * ALWAYS include the COMPLETE revised passage for each edit, not just the modified spans
+    * The revised passage cannot be identical to the original passage
+    * Your edits should be MINIMAL while fully implementing the requested changes
+    * Your edits should be assertive, avoid uncertainty, ambiguity, or hedging
+    * Your edits should integrate well into the text and its flow
+    * The paper will likely contain inconsistencies after your edits, as the {constant_bb_types} remain unchanged
+    * For figures, modify captions only; for tables, maintain exact formatting and change contents
+    * The "detailed_edits" field should never be empty and the revised passage should incorporate all detailed edits
+"""
+  ),
+  ("ai", "{output}"),
+  ("human", """
+  Thanks for you answer. It seems like you do not actually apply any changes to the passage. Please reconsider the
+  passage, the edit intentions and the instructions above to provide surgical edits to the passage. Please
+  fix the output json to reflect the changes you made to the passage and include the detailed changes you make.
+  If the passage is a figure or table, please make very sure that the caption and contents have anything to do with
+  the intendended changes. Only adapt them if the intended changes are relevant to the figure or table.
+
+  NOTE: Remember to provide the revised answer in the exact same json format as the initial answer.
+  """)
+]

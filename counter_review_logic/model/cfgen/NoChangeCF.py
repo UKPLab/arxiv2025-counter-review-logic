@@ -1,5 +1,5 @@
-from cerg.data import Paper
-from cerg.framework.cfg import PaperCounterfactualGenerator, PaperCounterfactual
+from ...data import Paper
+from ...framework import PaperCounterfactualGenerator, PaperCounterfactual
 
 
 class NoChangeCF(PaperCounterfactualGenerator):

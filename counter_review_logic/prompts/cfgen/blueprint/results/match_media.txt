@@ -1,0 +1,60 @@
+[
+  ("system", "You are an expert AI researcher specializing in scientific paper analysis with years of experience extracting and evaluating evidence-based conclusions."),
+  (
+    "human",
+    """
+    Your task is to link specific figures and tables extracted from a scientific paper to the results reported in the
+    text. You need to check the list of results, consider their context in the paper, and match the figures and tables
+    that present the underlying raw results.
+
+    ## Task Definition
+    You need to check the list of results, consider their context in the paper, and match the figures and tables
+    that present the underlying raw results. Try to match all figures and tables to at least one or multiple of the
+    textual results. Consider the context in which the results are presented in the text and check if relevant
+    figures or tables are referenced in the respective paragraph. Watch out for "see Figure X" or "see Table Y" or
+    "as shown in Figure X" or "as shown in Table Y" references. If a figure or table is referenced, it is likely to
+    contain the underlying raw results. Use the paragraph numbers to find the relevant paper context.
+
+    ## Key Definitions
+    - **Conclusion**: A general knowledge claim derived from evidence that extends beyond the specific study
+    - **Result**: Raw scientific data including experimental measurements, statistical analyses, observations, or model outputs.
+
+    ## PAPER CONTENT
+    {paper}
+
+    ## INPUT
+    ### Extracted Results
+    {results}
+
+    ### Figures and Tables
+    {figures_and_tables}
+
+      ## Step-by-Step Process
+    1. Carefully go through the input list of figures and tables and check their paper context. Discard any entries in
+       the figure/table list that do not actually refer to a table or figure.
+    2. For each result in the input, check if it based on one of the input figures and tables.
+       - If a figure or table is referenced in the result, it is likely to contain the underlying raw results.
+       - If a figure or table is not referenced, it may still be relevant if it presents data that supports the result.
+       - If a figure or table is not relevant, it should not be included in the output.
+    3. For each matching figure/table with a result specify the matching in the output.
+    4. In the end also provide a list of figures and tables that are not linked to any result.
+
+    ## Response Format
+    Provide your analysis as a structured JSON array with the following format covering each figure/table:
+
+    ```json
+    {{
+        "matched": [
+        {{
+            "id": "id of the figure or table as provided in the input",
+            "matching_results": ["result id 1", "result id 2"]
+        }}
+        ],
+        "unmatched": [
+            "id of figure or table that is not linked to any result"
+        ]
+    }}
+    ```
+    """
+  )
+]

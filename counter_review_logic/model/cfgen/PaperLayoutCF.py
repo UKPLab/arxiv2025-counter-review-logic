@@ -1,8 +1,7 @@
 import random
-import re
 
-from cerg.data import Paper
-from cerg.framework.cfg import PaperCounterfactualGenerator, PaperCounterfactual
+from ...data import Paper
+from ...framework.cfg import PaperCounterfactualGenerator, PaperCounterfactual
 
 
 class PaperLayoutCF(PaperCounterfactualGenerator):

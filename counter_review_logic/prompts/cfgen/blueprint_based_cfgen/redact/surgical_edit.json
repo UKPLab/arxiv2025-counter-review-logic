@@ -1,0 +1,13 @@
+[
+  {
+    "passage_id": 1,
+    "revised_passage": "passage with all edits applied and copying all unchanged content ",
+    "detailed_edits": [
+      {
+        "span": "Original text that was changed",
+        "revised_span": "New text after changes",
+        "rationale": "Clear explanation of why this precise edit was necessary"
+      }
+    ]
+  }
+]
