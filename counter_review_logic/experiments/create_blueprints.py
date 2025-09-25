@@ -17,9 +17,8 @@ def experiment(
         dataset_path: str | Path,
         venues: list[str],
         llm: ChatLLM,
-        output_path: str | Path,
-        split: str):
-    papers = get_data_by_share(dataset_path, split, merge=False)
+        output_path: str | Path):
+    papers = get_data_by_share(dataset_path, "test", merge=False)
 
     # load all venues if not otherwise requested
     if venues is None:
@@ -33,7 +32,7 @@ def experiment(
     random.shuffle(papers)
 
     # run pipeline with only original papers
-    out_path = Path(output_path) / split / "blueprint" / llm.model
+    out_path = Path(output_path) / "blueprint"
     out_path.mkdir(parents=True, exist_ok=True)
 
     arch = PaperArchitect(llm, cache_dir=out_path)
@@ -55,8 +54,6 @@ def main():
 
     parser.add_argument('--data_path', type=str, required=True, help='Path to the dataset directory.')
     parser.add_argument('--results_dir', type=str, required=True, help='Directory to save the results.')
-    parser.add_argument('--split', type=str, choices=["train", "dev", "test"], required=True,
-                        help='The split of the data')
     parser.add_argument('--seed', type=int, required=False, default=10203, help='Seed for experiments.')
 
     parser.add_argument('--config', type=str, required=False, help='General config for the LLM')
@@ -97,8 +94,7 @@ def main():
     res = experiment(args.data_path,
                                args.venues,
                                llm,
-                               args.results_dir,
-                               args.split)
+                               args.results_dir)
     ended = time.time()
 
     logging.info("Generated {} reviews.".format(len(res)))

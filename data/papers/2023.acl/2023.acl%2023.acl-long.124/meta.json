@@ -1,0 +1,26 @@
+{
+  "authors": [
+    "Shaoxiang Wu",
+    "Damai Dai",
+    "Ziwei Qin",
+    "Tianyu Liu",
+    "Binghuai Lin",
+    "Yunbo Cao",
+    "Zhifang Sui"
+  ],
+  "categories": [
+    "cs.CL"
+  ],
+  "entry_id": "http://arxiv.org/abs/2305.14652v3",
+  "links": [
+    "http://arxiv.org/abs/2305.14652v3",
+    "http://arxiv.org/pdf/2305.14652v3"
+  ],
+  "pdf_url": "http://arxiv.org/pdf/2305.14652v3",
+  "published": "2023-05-24T02:39:43+00:00",
+  "updated": "2023-05-31T08:20:33+00:00",
+  "primary_category": "cs.CL",
+  "title": "Denoising Bottleneck with Mutual Information Maximization for Video Multimodal Fusion",
+  "summary": "Video multimodal fusion aims to integrate multimodal signals in videos, such\nas visual, audio and text, to make a complementary prediction with multiple\nmodalities contents. However, unlike other image-text multimodal tasks, video\nhas longer multimodal sequences with more redundancy and noise in both visual\nand audio modalities. Prior denoising methods like forget gate are coarse in\nthe granularity of noise filtering. They often suppress the redundant and noisy\ninformation at the risk of losing critical information. Therefore, we propose a\ndenoising bottleneck fusion (DBF) model for fine-grained video multimodal\nfusion. On the one hand, we employ a bottleneck mechanism to filter out noise\nand redundancy with a restrained receptive field. On the other hand, we use a\nmutual information maximization module to regulate the filter-out module to\npreserve key information within different modalities. Our DBF model achieves\nsignificant improvement over current state-of-the-art baselines on multiple\nbenchmarks covering multimodal sentiment analysis and multimodal summarization\ntasks. It proves that our model can effectively capture salient features from\nnoisy and redundant video, audio, and text inputs. The code for this paper is\npublicly available at https://github.com/WSXRHFG/DBF.",
+  "license": "CC-BY-4.0"
+}

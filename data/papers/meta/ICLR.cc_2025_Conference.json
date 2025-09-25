@@ -1,0 +1,75 @@
+{
+  "id": "ICLR.cc_2025_Conference",
+  "name": "International Conference on Learning Representations of 2025",
+  "type": "International Conference on Learning Representations",
+  "description": "The International Conference on Learning Representations (ICLR) is a premier academic conference focused on deep learning, artificial intelligence (AI), and representation learning. It covers cutting-edge research in machine learning theory, applications, and methodologies, including topics like neural networks, generative models, optimization techniques, and AI interpretability.",
+  "guidelines": "### Review Guidelines\nThe purpose of an ICLR review is to assess whether a submission provides sufficient value and contributes new knowledge to the research community. Reviewers should thoroughly read the paper, consider its objective, strengths, weaknesses, and remain open-minded. To make a recommendation, they must evaluate four key aspects: the problem tackled, the motivation and placement in the literature, the validity and rigor of claims, and the overall significance of the work. The review should include a summary of contributions, strong and weak points, a clear recommendation with justification, relevant questions for authors, and constructive feedback for improvement.",
+  "guidelines_detailed": "### Reviewing a submission: step-by-step\nSummarized in one sentence, a review aims to determine whether a submission will bring sufficient value to the community and contribute new knowledge. The process can be broken down into the following main reviewer tasks:\n1. Read the paper: It’s important to carefully read through the entire paper, and to look up any related work and citations that will help you comprehensively evaluate it. Be sure to give yourself sufficient time for this step.\n2. While reading, consider the following:\n    * Objective of the work: What is the goal of the paper? Is it to better address a known application or problem, draw attention to a new application or problem, or to introduce and/or explain a new theoretical finding? A combination of these? Different objectives will require different considerations as to potential value and impact.\n    * Strong points: is the submission clear, technically correct, experimentally rigorous, reproducible, does it present novel findings (e.g. theoretically, algorithmically, etc.)?\n    * Weak points: is it weak in any of the aspects listed in b.?\n    * Be mindful of potential biases and try to be open-minded about the value and interest a paper can hold for the entire ICLR community, even if it may not be very interesting for you.\n\n3. Answer four key questions for yourself to make a recommendation to Accept or Reject:\n    * What is the specific question and/or problem tackled by the paper?\n    * Is the approach well motivated, including being well-placed in the literature?\n    * Does the paper support the claims? This includes determining if results, whether theoretical or empirical, are correct and if they are scientifically rigorous.\n    * What is the significance of the work? Does it contribute new knowledge and sufficient value to the community? Note, this does not necessarily require state-of-the-art results. Submissions bring value to the ICLR community when they convincingly demonstrate new, relevant, impactful knowledge (incl., empirical, theoretical, for practitioners, etc).\n\n4. Write and submit your initial review, organizing it as follows: \n\n    * Summarize what the paper claims to contribute. Be positive and constructive.\n    * List strong and weak points of the paper. Be as comprehensive as possible.\n    * Clearly state your initial recommendation (accept or reject) with one or two key reasons for this choice.\n    * Provide supporting arguments for your recommendation.\n    * Ask questions you would like answered by the authors to help you clarify your understanding of the paper and provide the additional evidence you need to be confident in your assessment. \n    * Provide additional feedback with the aim to improve the paper. Make it clear that these points are here to help, and not necessarily part of your decision assessment.",
+  "template_field_semantics": {
+    "summary": "Summary",
+    "strengths": "Strengths",
+    "weaknesses": "Weaknesses",
+    "suggestions": "Questions"
+  },
+  "review_template": {
+    "Summary": "Summarize what the paper claims to contribute. Be positive and constructive.",
+    "Strengths": "Summarize the strengths of the paper.",
+    "Weaknesses": "Summarize the weaknesses of the paper.",
+    "Questions": "List questions to the authors."
+  },
+  "overall_score_name": "Rating",
+  "review_scores": {
+    "Soundness": {
+      "meaning": "Please assign the paper a numerical rating on the following scale to indicate the soundness of the technical claims, experimental and research methodology and on whether the central claims of the paper are adequately supported with evidence.",
+      "scores": {
+        "4": "excellent",
+        "3": "good",
+        "2": "fair",
+        "1": "poor"
+      }
+    },
+     "Presentation": {
+      "meaning": "Please assign the paper a numerical rating on the following scale to indicate the quality of the presentation. This should take into account the writing style and clarity, as well as contextualization relative to prior work.",
+      "scores": {
+        "4": "excellent",
+        "3": "good",
+        "2": "fair",
+        "1": "poor"
+      }
+    },
+    "Contribution": {
+      "meaning": "Please assign the paper a numerical rating on the following scale to indicate the quality of the overall contribution this paper makes to the research area being studied. Are the questions being asked important? Does the paper bring a significant originality of ideas and/or execution? Are the results valuable to share with the broader ICLR community.",
+      "scores": {
+        "4": "excellent",
+        "3": "good",
+        "2": "fair",
+        "1": "poor"
+      }
+    },
+    "Confidence": {
+      "meaning": "Please provide a 'confidence score' for your assessment of this submission to indicate how confident you are in your evaluation.",
+      "scores": {
+        "5": "You are absolutely certain about your assessment. You are very familiar with the related work and checked the math/other details carefully.",
+        "4": "You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+        "3": "You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+        "2": "You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.",
+        "1": "Your assessment is an educated guess. The submission is not in your area or the submission was difficult to understand. Math/other details were not carefully checked."
+      }
+    },
+    "Rating": {
+      "meaning": "",
+      "scores": {
+        "10": "strong accept, should be highlighted at the conference",
+        "9": "",
+        "8": "accept, good paper",
+        "7": "",
+        "6": "marginally above the acceptance threshold",
+        "5": "marginally below the acceptance threshold",
+        "4": "",
+        "3": "reject, not good enough",
+        "2": "",
+        "1": "strong reject"
+      }
+    }
+  }
+}

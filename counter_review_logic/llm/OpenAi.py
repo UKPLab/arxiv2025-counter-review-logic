@@ -62,8 +62,8 @@ class OpenAiChatLLM(ChatLLM):
     def _setup(self, prompt_fp, prompt):
         self.logger.info("Connecting to AZURE in chat mode with:")
         self.logger.info(f"DEPLOYMENT = {self.model}")
-        self.logger.info(f"ENDPOINT = {os.environ['OPENAI_ENDPOINT']}")
-        self.logger.info(f"API VERSION = {os.environ['OPENAI_API_VERSION']}")
+        self.logger.info(f"ENDPOINT = {os.environ['ENDPOINT']}")
+        self.logger.info(f"API VERSION = {os.environ['API_VERSION']}")
 
         # config client
         if self.config is None:
@@ -73,7 +73,7 @@ class OpenAiChatLLM(ChatLLM):
 
         self.llm = ChatOpenAI(
             model_name=self.model,
-            api_key=os.environ["OPENAI_API_KEY"],
+            api_key=os.environ["API_KEY"],
             **self.config
         )
         self.llm.configurable_fields(

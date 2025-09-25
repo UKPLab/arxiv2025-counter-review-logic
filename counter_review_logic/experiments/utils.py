@@ -9,6 +9,10 @@ import numpy as np
 import torch
 import yaml
 
+from . import generate_reviews_for_originals, generate_reviews_for_counterfactuals, determine_review_deltas
+from .pipeline import evaluate_review_deltas
+from ..analysis import load_delta_evals
+from ..analysis.ate import analysis as ate_analysis
 from ..data import load_paper_datasets
 from ..llm import get_num_ctx_of_llm
 from ..model.cfgen import BlueprintBasedCF
@@ -31,11 +35,6 @@ def get_data_by_share(dataset_dir: str | Path, share: str, merge: bool):
         return [p for v in papers for p in papers[v]]
     else:
         return papers
-
-
-def get_train_data(dataset_dir, merge=False):
-    """Get the training data from the dataset directory. If merge is True, the data from all venues will be merged."""
-    return get_data_by_share(dataset_dir, "train", merge)
 
 
 def get_dev_data(dataset_dir, merge=False):
@@ -143,9 +142,9 @@ def load_rcd(rcd_type, config=None):
     if config is None:
         config = {}
 
-    if rcd_type == "point":
-        from ..model.rcd.PointOverlapRCD import PointOverlapRCD
-        return PointOverlapRCD(**config)
+    if rcd_type == "polarity":
+        from ..model.rcd.PolarityRCD import PolarityRCD
+        return PolarityRCD(**config)
     elif rcd_type == "score":
         from ..model.rcd.ScoreRCD import ScoreRCD
         return ScoreRCD()
@@ -179,7 +178,7 @@ def load_rde(rde_type, config=None):
     elif rde_type == "aspect":
         from ..model.rde.AspectRDE import AspectRDE
         return AspectRDE()
-    elif rde_type == "point":
+    elif rde_type in ["polarity", "point"]:
         from ..model.rde.PointRDE import PointRDE
         return PointRDE()
     elif rde_type == "soundness":
@@ -307,3 +306,98 @@ def default_experiment_setup(args):
         result["llm"] = load_llm(name=args.llm, llm_type=args.llm, config=llm_config)
 
     return result
+
+
+def run_experiment_stage(stage_name, input_path:Path, output_path:Path, **kwargs):
+    # Load the original papers
+    paper_dataset_path = input_path / "papers"
+
+    papers = get_test_data(paper_dataset_path, merge=True)
+    papers = [p for k, v in papers.items() for p in v]
+    random.shuffle(papers)
+
+    if stage_name == "generate_reviews":
+        assert "argtor" in kwargs, "argtor is required for generating reviews"
+
+        # create output dir if necessary
+        reviews_path = output_path / "reviews"
+        reviews_path.mkdir(parents=True, exist_ok=True)
+
+        # Run your arg on the original papers
+        generate_reviews_for_originals(papers,
+                                       kwargs["argtor"],
+                                       reviews_path,
+                                       cached=False,
+                                       argtor_config=kwargs["argtor_config"])  # pass any config you need
+
+        # Load counterfactual dataset paths
+        cf_dataset_paths = [p for p in (input_path / "cf_dataset").iterdir() if p.is_dir()]
+
+        # Run your arg on the counterfactual papers
+        for dp in cf_dataset_paths:
+            generate_reviews_for_counterfactuals(papers,
+                                                 dp,
+                                                 kwargs["argtor"],
+                                                 reviews_path,
+                                                 cached=False,
+                                                 argtor_config=kwargs["argtor_config"] if "argtor_config" in kwargs else {})  # pass config
+    elif stage_name == "diff_reviews":
+        assert "argtor" in kwargs, "argtor name is required for evaluating reviews"
+        assert "rcd" in kwargs, "rcd is required for evaluating reviews"
+
+        original_reviews_path = output_path / "reviews" / "original"
+        cf_reviews_path = [p for p in (output_path / "reviews").iterdir() if p.is_dir() and p.name != "original"]
+        cf_dataset_paths = [(input_path / "cf_datasets" / p.name) for p in cf_reviews_path]
+
+        # create output path if necessary
+        delta_dir = output_path / "deltas"
+        delta_dir.mkdir(parents=False, exist_ok=True)
+
+        delta_paths = []
+        for rp, dp in zip(cf_reviews_path, cf_dataset_paths):
+            delta_paths += [
+                determine_review_deltas(papers,
+                                        rp,
+                                        original_reviews_path,
+                                        kwargs["argtor"],
+                                        dp,
+                                        kwargs["rcd"],
+                                        delta_dir,
+                                        cached=False,
+                                        config=kwargs["rcd_config"] if "rcd_config" in kwargs else {})]
+
+    elif stage_name == "compare_reviews":
+        assert "argtor" in kwargs, "ARGtor name expected as an argument 'argtor'"
+        assert "rcd" in kwargs, "RCD name is expected as an argument 'rcd'"
+        assert "rde" in kwargs, "RDE is expected as an argument 'rde'"
+
+        cf_reviews_path = [p for p in (output_path / "reviews").iterdir() if p.is_dir() and p.name != "original"]
+        cf_dataset_paths = [(input_path / "cf_datasets" / p.name) for p in cf_reviews_path]
+
+        # get deltas
+        delta_paths = []
+        for cfp in cf_dataset_paths:
+            cfn = cfp.name
+            delta_paths += [output_path / "deltas" / cfn / (kwargs["rcd"].name + ".json")]
+
+        for dp in delta_paths:
+            assert dp.exists() and dp.isfile(), f"{dp} does not exist as a delta type, failed to load it."
+
+        # create output path if necessary
+        eval_dir = output_path / "eval"
+        eval_dir.mkdir(parents=False, exist_ok=True)
+
+        eval_paths = []
+        for reviews_path, cf_path, delta_path in zip(cf_reviews_path, cf_dataset_paths, delta_paths):
+            eval_paths += [evaluate_review_deltas(papers,
+                                                  delta_path,
+                                                  cf_path,
+                                                  kwargs["argtor"],
+                                                  kwargs["rcd"],
+                                                  kwargs["rde"],
+                                                  eval_dir,
+                                                  cached=False,
+                                                  config=kwargs["rde_config"] if "rde_config" in kwargs else {})]
+    elif stage_name == "ate_zrank":
+        evals = load_delta_evals(output_path)
+        ate_analysis(evals, output_path / "ate")

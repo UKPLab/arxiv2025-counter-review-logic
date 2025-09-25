@@ -1,0 +1,585 @@
+{
+    "title": [
+        1,
+        1
+    ],
+    "abstract": [
+        4,
+        7
+    ],
+    "sections": {
+        "1 Introduction": [
+            8,
+            28
+        ],
+        "2 Related Work": [
+            29,
+            60
+        ],
+        "3 Methodology": [
+            61,
+            332
+        ],
+        "4 Experiments": [
+            333,
+            583
+        ],
+        "5 Conclusion": [
+            584,
+            589
+        ],
+        "Limitations": [
+            590,
+            593
+        ],
+        "Acknowledgement": [
+            594,
+            597
+        ],
+        "References": [
+            598,
+            638
+        ],
+        "Appendix": [
+            639,
+            640
+        ],
+        "Appendix A Hyper-parameters": [
+            641,
+            706
+        ],
+        "Appendix B Baselines": [
+            707,
+            757
+        ]
+    },
+    "subsections": {
+        "1 Introduction": {},
+        "2 Related Work": {
+            "2.1 Video Multimodal Fusion": [
+                33,
+                38
+            ],
+            "2.2 Video Multimodal Summarization": [
+                39,
+                48
+            ],
+            "2.3 Multimodal Sentiment Analysis": [
+                49,
+                60
+            ]
+        },
+        "3 Methodology": {
+            "3.1 Problem Definition": [
+                65,
+                85
+            ],
+            "3.2 Fusion Bottleneck": [
+                86,
+                101
+            ],
+            "3.3 Fusion Mutual Information Maximization": [
+                102,
+                332
+            ]
+        },
+        "4 Experiments": {
+            "4.1 Tasks, Datasets, and Metrics": [
+                335,
+                338
+            ],
+            "Video Multimodal Sentiment Analysis": [
+                339,
+                344
+            ],
+            "Video Multimodal Summarization": [
+                345,
+                350
+            ],
+            "4.2 Experimental Settings": [
+                351,
+                356
+            ],
+            "4.3 Overall Results": [
+                357,
+                557
+            ],
+            "4.4 Ablation Study": [
+                558,
+                559
+            ],
+            "Effect of Fusion Bottleneck and MI-Max": [
+                560,
+                563
+            ],
+            "Effect of Modalities": [
+                564,
+                567
+            ],
+            "Effect of Center Modality": [
+                568,
+                571
+            ],
+            "4.5 Case Study": [
+                572,
+                575
+            ],
+            "Statistics of Visualization Results": [
+                576,
+                579
+            ],
+            "Visualization Example": [
+                580,
+                583
+            ]
+        },
+        "5 Conclusion": {},
+        "Limitations": {},
+        "Acknowledgement": {},
+        "References": {},
+        "Appendix": {},
+        "Appendix A Hyper-parameters": {},
+        "Appendix B Baselines": {
+            "MulT (Tsai et\u00a0al., [2019](#bib.bib27)) :": [
+                711,
+                714
+            ],
+            "TFN (Zadeh et\u00a0al., [2017](#bib.bib34))": [
+                715,
+                718
+            ],
+            "LMF (Liu et\u00a0al., [2018b](#bib.bib15)) :": [
+                719,
+                722
+            ],
+            "MFM (Tsai et\u00a0al., [2018](#bib.bib28)) :": [
+                723,
+                726
+            ],
+            "ICCN (Sun et\u00a0al., [2020](#bib.bib26)) :": [
+                727,
+                730
+            ],
+            "MISA (Hazarika et\u00a0al., [2020](#bib.bib8))": [
+                731,
+                734
+            ],
+            "Self-MM (Yu et\u00a0al., [2021b](#bib.bib33))": [
+                735,
+                738
+            ],
+            "MMIM (Han et\u00a0al., [2021](#bib.bib6))": [
+                739,
+                744
+            ],
+            "HA (Palaskar et\u00a0al., [2019](#bib.bib19)) :": [
+                745,
+                748
+            ],
+            "MFFG (Liu et\u00a0al., [2020](#bib.bib13)) :": [
+                749,
+                752
+            ],
+            "VG-GPLMs (Yu et\u00a0al., [2021a](#bib.bib32)) :": [
+                753,
+                757
+            ]
+        }
+    },
+    "paragraphs": {
+        "1 Introduction": [
+            [
+                19,
+                19
+            ],
+            [
+                21,
+                21
+            ],
+            [
+                23,
+                23
+            ],
+            [
+                25,
+                25
+            ],
+            [
+                27,
+                27
+            ]
+        ],
+        "2 Related Work": [
+            [
+                31,
+                31
+            ],
+            [
+                35,
+                35
+            ],
+            [
+                37,
+                37
+            ],
+            [
+                41,
+                41
+            ],
+            [
+                43,
+                43
+            ],
+            [
+                45,
+                45
+            ],
+            [
+                47,
+                47
+            ],
+            [
+                51,
+                51
+            ],
+            [
+                53,
+                53
+            ]
+        ],
+        "3 Methodology": [
+            [
+                63,
+                63
+            ],
+            [
+                67,
+                67
+            ],
+            [
+                69,
+                69
+            ],
+            [
+                71,
+                72
+            ],
+            [
+                74,
+                74
+            ],
+            [
+                76,
+                77
+            ],
+            [
+                79,
+                79
+            ],
+            [
+                81,
+                81
+            ],
+            [
+                83,
+                84
+            ],
+            [
+                88,
+                88
+            ],
+            [
+                90,
+                90
+            ],
+            [
+                92,
+                92
+            ],
+            [
+                94,
+                95
+            ],
+            [
+                97,
+                98
+            ],
+            [
+                100,
+                100
+            ],
+            [
+                104,
+                104
+            ],
+            [
+                106,
+                106
+            ],
+            [
+                108,
+                108
+            ],
+            [
+                110,
+                111
+            ],
+            [
+                113,
+                113
+            ],
+            [
+                115,
+                116
+            ],
+            [
+                118,
+                118
+            ],
+            [
+                120,
+                121
+            ],
+            [
+                123,
+                123
+            ],
+            [
+                125,
+                125
+            ]
+        ],
+        "4 Experiments": [
+            [
+                337,
+                337
+            ],
+            [
+                341,
+                341
+            ],
+            [
+                343,
+                343
+            ],
+            [
+                347,
+                347
+            ],
+            [
+                349,
+                349
+            ],
+            [
+                353,
+                353
+            ],
+            [
+                355,
+                355
+            ],
+            [
+                552,
+                552
+            ],
+            [
+                554,
+                554
+            ],
+            [
+                556,
+                556
+            ],
+            [
+                562,
+                562
+            ],
+            [
+                566,
+                566
+            ],
+            [
+                570,
+                570
+            ],
+            [
+                574,
+                574
+            ],
+            [
+                578,
+                578
+            ],
+            [
+                582,
+                582
+            ]
+        ],
+        "5 Conclusion": [
+            [
+                586,
+                586
+            ],
+            [
+                588,
+                588
+            ]
+        ],
+        "Limitations": [
+            [
+                592,
+                592
+            ]
+        ],
+        "Acknowledgement": [
+            [
+                596,
+                596
+            ]
+        ],
+        "References": [
+            [
+                600,
+                637
+            ]
+        ],
+        "Appendix": [],
+        "Appendix A Hyper-parameters": [
+            [
+                643,
+                643
+            ]
+        ],
+        "Appendix B Baselines": [
+            [
+                709,
+                709
+            ],
+            [
+                713,
+                713
+            ],
+            [
+                717,
+                717
+            ],
+            [
+                721,
+                721
+            ],
+            [
+                725,
+                725
+            ],
+            [
+                729,
+                729
+            ],
+            [
+                733,
+                733
+            ],
+            [
+                737,
+                737
+            ],
+            [
+                741,
+                741
+            ],
+            [
+                743,
+                743
+            ],
+            [
+                747,
+                747
+            ],
+            [
+                751,
+                751
+            ],
+            [
+                755,
+                755
+            ]
+        ]
+    },
+    "figures": {
+        "1 Introduction": {
+            "[FIGURE S1.F1.g1]": [
+                10,
+                17
+            ]
+        },
+        "2 Related Work": {
+            "[FIGURE S2.F2.g1]": [
+                55,
+                59
+            ]
+        },
+        "3 Methodology": {},
+        "4 Experiments": {
+            "[FIGURE S4.F3.g1]": [
+                545,
+                550
+            ]
+        },
+        "5 Conclusion": {},
+        "Limitations": {},
+        "Acknowledgement": {},
+        "References": {},
+        "Appendix": {},
+        "Appendix A Hyper-parameters": {},
+        "Appendix B Baselines": {}
+    },
+    "tables": {
+        "1 Introduction": {},
+        "2 Related Work": {},
+        "3 Methodology": {
+            "[TABLE S3.T1]": [
+                127,
+                228
+            ],
+            "[TABLE S3.T2]": [
+                230,
+                331
+            ]
+        },
+        "4 Experiments": {
+            "[TABLE S4.T3]": [
+                359,
+                461
+            ],
+            "[TABLE S4.T4]": [
+                463,
+                543
+            ]
+        },
+        "5 Conclusion": {},
+        "Limitations": {},
+        "Acknowledgement": {},
+        "References": {},
+        "Appendix": {},
+        "Appendix A Hyper-parameters": {
+            "[TABLE A1.T5]": [
+                645,
+                705
+            ]
+        },
+        "Appendix B Baselines": {}
+    },
+    "algorithms": {
+        "1 Introduction": {},
+        "2 Related Work": {},
+        "3 Methodology": {},
+        "4 Experiments": {},
+        "5 Conclusion": {},
+        "Limitations": {},
+        "Acknowledgement": {},
+        "References": {},
+        "Appendix": {},
+        "Appendix A Hyper-parameters": {},
+        "Appendix B Baselines": {}
+    }
+}

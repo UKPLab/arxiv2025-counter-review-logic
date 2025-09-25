@@ -9,7 +9,7 @@ from typing import Callable
 import Levenshtein
 
 from ..data import Paper
-from ..llms import ChatLLM, parse_llm_output_as_single_json
+from ..llm import ChatLLM, parse_llm_output_as_single_json
 
 
 class PaperBlueprint:

@@ -50,7 +50,7 @@ class OllamaChatLLM(ChatLLM):
         if self.llm:
             self.llm = ChatOllama(
                 model=self.model,
-                base_url=os.environ["OLLAMA_CHAT_ENDPOINT"].replace('"', ''),
+                base_url=os.environ["ENDPOINT"].replace('"', ''),
                 **self.config
             )
 
@@ -62,7 +62,7 @@ class OllamaChatLLM(ChatLLM):
     def _setup(self, prompt_fp, prompt):
         self.logger.info("Connecting to Ollama Chat models:")
         self.logger.info(f"MODEL = {self.model}")
-        self.logger.info(f"ENDPOINT = {os.environ['OLLAMA_CHAT_ENDPOINT']}")
+        self.logger.info(f"ENDPOINT = {os.environ['ENDPOINT']}")
 
         # config client
         if self.config is None:
@@ -70,7 +70,7 @@ class OllamaChatLLM(ChatLLM):
 
         self.llm = ChatOllama(
             model=self.model,
-            base_url=os.environ["OLLAMA_CHAT_ENDPOINT"].replace('"', ''),
+            base_url=os.environ["ENDPOINT"].replace('"', ''),
             **self.config
         )
 
@@ -94,7 +94,7 @@ class OllamaChatLLM(ChatLLM):
             # create new client with new config
             llm = ChatOllama(
                 model=self.model,
-                base_url=os.environ["OLLAMA_CHAT_ENDPOINT"].replace('"', ''),
+                base_url=os.environ["ENDPOINT"].replace('"', ''),
                 **config
             )
         else:

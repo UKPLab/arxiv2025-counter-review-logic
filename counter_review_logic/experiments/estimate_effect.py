@@ -16,9 +16,8 @@ def experiment(
         rde: ReviewDeltaEvaluator,
         rcd_name: str | list[str],
         output_path: str | Path,
-        split: str,
         argtors: list[str] = None):
-    papers = get_data_by_share(dataset_path, split, merge=False)
+    papers = get_data_by_share(dataset_path, "test", merge=False)
 
     # load all venues if not otherwise requested
     if venues is None:
@@ -32,11 +31,11 @@ def experiment(
     random.shuffle(papers)
 
     # load cf_dataset_paths
-    cf_dataset_path = Path(output_path) / split / "cf_datasets"
+    cf_dataset_path = Path(output_path) / "cf_datasets"
     cf_dataset_paths = [p for p in cf_dataset_path.iterdir() if p.is_dir()]
 
     # load review paths
-    review_path = Path(output_path) / split / "reviews"
+    review_path = Path(output_path) / "reviews"
     review_paths = [p for p in review_path.iterdir() if p.is_dir() if p.name != "original"]
     original_review_path = review_path / "original"
 
@@ -52,7 +51,7 @@ def experiment(
     if len(argtors_found) == 0:
         raise ValueError("No argtors found in the review paths. Please check the review generation step.")
 
-    delta_dir = Path(output_path) / split / "deltas"
+    delta_dir = Path(output_path) /  "deltas"
     delta_paths = []
     for p in delta_dir.iterdir():
         if not p.is_dir():
@@ -82,7 +81,7 @@ def experiment(
 
     print("LOADING DELTAS", delta_paths)
 
-    eval_dir = Path(output_path) / split / "eval"
+    eval_dir = Path(output_path) / "eval"
     eval_dir.mkdir(parents=False, exist_ok=True)
 
     assert len(review_paths) == len(cf_dataset_paths) == len(
@@ -109,8 +108,6 @@ def main():
     parser.add_argument('--review_delta_type', type=str, required=True,
                         help='Type of review deltas')
     parser.add_argument('--results_dir', type=str, required=True, help='Directory to save the results.')
-    parser.add_argument('--split', type=str, choices=["train", "dev", "test"], required=True,
-                        help='The split of the data')
     parser.add_argument('--seed', type=int, required=False, default=10203, help='Seed for expreiments.')
 
     parser.add_argument('--config', type=str, required=False, help='General config for the LLM')

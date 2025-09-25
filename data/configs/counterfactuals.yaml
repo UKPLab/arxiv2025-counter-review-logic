@@ -1,0 +1,11 @@
+cf_type: blueprint_conclusion
+cf_config: None
+blueprint_path: data/blueprints
+
+llm_type: gpt-4o-mini
+llm_config:
+  temperature: 0.03
+seed: 1234
+llm_api_endpoint: some_endpoint
+llm_api_key: some_key
+llm_api_version: some_version

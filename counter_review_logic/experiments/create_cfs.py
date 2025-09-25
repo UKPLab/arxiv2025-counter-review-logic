@@ -17,9 +17,8 @@ def experiment(
         venues: list[str],
         cfgen: PaperCounterfactualGenerator,
         output_path: str | Path,
-        split: str,
         forced: bool):
-    papers = get_data_by_share(dataset_path, split, merge=False)
+    papers = get_data_by_share(dataset_path, "test", merge=False)
 
     # load all venues if not otherwise requested
     if venues is None:
@@ -33,10 +32,10 @@ def experiment(
     random.shuffle(papers)
 
     # run pipeline with only original papers
-    out_path = Path(output_path) / split / "cf_datasets"
+    out_path = Path(output_path) / "cf_datasets"
     out_path.mkdir(parents=True, exist_ok=True)
 
-    # generate reviews
+    # generate cfs
     result_path = create_cf_dataset(
         paper_dataset=papers,
         cf_generators=cfgen,
@@ -44,7 +43,7 @@ def experiment(
         cached=not forced
     )
 
-    # load and return reviews
+    # load and return
     cfs = PaperCounterfactualDataset.load(fp=result_path[0], originals=papers)
 
     return cfs, result_path
@@ -57,8 +56,6 @@ def main():
     parser.add_argument('--blueprint_path', type=str, required=True, help='Path to the blueprint directory.')
     parser.add_argument('--cftype', type=str, required=True, help='Type of CF to use.')
     parser.add_argument('--results_dir', type=str, required=True, help='Directory to save the results.')
-    parser.add_argument('--split', type=str, choices=["train", "dev", "test"], required=True,
-                        help='The split of the data')
     parser.add_argument('--seed', type=int, required=False, default=10203, help='Seed for expreiments.')
     parser.add_argument('--force', type=bool, required=False, default=False, help='Force overrride of data.')
 
@@ -118,7 +115,6 @@ def main():
                                args.venues,
                                cfgen,
                                args.results_dir,
-                               args.split,
                                args.force if args.force else False)
     ended = time.time()
 
