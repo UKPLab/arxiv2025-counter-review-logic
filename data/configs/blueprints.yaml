@@ -5,3 +5,4 @@ seed: 1234
 llm_api_endpoint: some_endpoint
 llm_api_key: some_key
 llm_api_version: some_version
+llm_cost_cache_dir: ./data

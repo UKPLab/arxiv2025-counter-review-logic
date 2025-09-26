@@ -39,6 +39,5 @@ setup(
     install_requires=read_requirements("requirements.txt"),
     entry_points={
         "console_scripts": ["counter_review_logic = counter_review_logic.__main__:main"]
-    },
-    extras_require={"test": read_requirements("requirements-dev.txt")},
+    }
 )

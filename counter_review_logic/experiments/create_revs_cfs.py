@@ -8,7 +8,7 @@ from pathlib import Path
 import yaml
 
 from .utils import load_llm, load_argtor, set_all_seeds, get_data_by_share
-from ..framework import AutomaticReviewGenerator, AutomaticReviewDataset
+from ..framework import AutomaticReviewGenerator
 from .pipeline import generate_reviews_for_counterfactuals
 
 

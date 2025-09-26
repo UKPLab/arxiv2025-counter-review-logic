@@ -9,8 +9,8 @@ import numpy as np
 import torch
 import yaml
 
-from . import generate_reviews_for_originals, generate_reviews_for_counterfactuals, determine_review_deltas
-from .pipeline import evaluate_review_deltas
+from .pipeline import generate_reviews_for_originals, generate_reviews_for_counterfactuals, determine_review_deltas, \
+    evaluate_review_deltas
 from ..analysis import load_delta_evals
 from ..analysis.ate import analysis as ate_analysis
 from ..data import load_paper_datasets
@@ -308,7 +308,7 @@ def default_experiment_setup(args):
     return result
 
 
-def run_experiment_stage(stage_name, input_path:Path, output_path:Path, **kwargs):
+def run_experiment_stage(stage_name, input_path: Path, output_path: Path, **kwargs):
     # Load the original papers
     paper_dataset_path = input_path / "papers"
 
@@ -340,7 +340,8 @@ def run_experiment_stage(stage_name, input_path:Path, output_path:Path, **kwargs
                                                  kwargs["argtor"],
                                                  reviews_path,
                                                  cached=False,
-                                                 argtor_config=kwargs["argtor_config"] if "argtor_config" in kwargs else {})  # pass config
+                                                 argtor_config=kwargs[
+                                                     "argtor_config"] if "argtor_config" in kwargs else {})  # pass config
     elif stage_name == "diff_reviews":
         assert "argtor" in kwargs, "argtor name is required for evaluating reviews"
         assert "rcd" in kwargs, "rcd is required for evaluating reviews"

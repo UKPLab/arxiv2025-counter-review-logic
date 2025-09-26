@@ -55,9 +55,13 @@ def main():  # pragma: no cover
         os.environ["API_KEY"] = config["llm_api_key"]
     if "llm_api_version" in config:
         os.environ["API_VERSION"] = config["llm_api_version"]
+    if "llm_cost_cache_dir" in config:
+        os.environ["COST_CACHE_DIR"] = config["llm_cost_cache_dir"]
+    os.environ["PROMPT_DIR"] = str((Path(__file__).resolve().parent / "prompts").absolute())
 
     # set seeds
-    set_all_seeds(config.get("seed", 10203))
+    seed = config.get("seed", 10203)
+    set_all_seeds(seed)
 
     # logging
     logging.basicConfig(
@@ -68,17 +72,17 @@ def main():  # pragma: no cover
         ]
     )
 
-    logging.info("SEED set to {}".format(args.seed))
+    logging.info("SEED set to {}".format(seed))
 
-    Path(args.ouput_path).mkdir(parents=True, exist_ok=True)
+    Path(args.output_path).mkdir(parents=True, exist_ok=True)
 
     def create_llm():
         # llm loading
         if "seed" in config and "llm_config" in config:
             config["llm_config"]["seed"] = config["seed"]
 
-        llm = load_llm(name=args.config.get("llm_type"),
-                       llm_type=args.model_type,
+        llm = load_llm(name=config.get("llm_type"),
+                       llm_type=config.get("llm_type"),
                        config=config.get("llm_config", None))
         return llm
 
@@ -94,7 +98,7 @@ def main():  # pragma: no cover
         llm = create_llm()
 
         experiment(
-            dataset_path=args.input_path,
+            dataset_path=args.input_path + "/papers",
             venues=config.get("venues", None),
             llm=llm,
             output_path=args.output_path,
@@ -113,7 +117,7 @@ def main():  # pragma: no cover
             os.environ["BLUEPRINT_DIR"] = config["blueprint_path"]
 
         experiment(
-            dataset_path=args.input_path,
+            dataset_path=args.input_path + "/papers",
             venues=config.get("venues", None),
             cfgen=cfgen,
             output_path=args.output_path,
@@ -130,7 +134,7 @@ def main():  # pragma: no cover
 
         # detect review changes
         deltas_path = detect_deltas(
-            dataset_path=args.input_path,
+            dataset_path=args.input_path + "/papers",
             venues=config.get("venues", None),
             rcd=rcd,
             output_path=args.results_dir)
@@ -142,7 +146,7 @@ def main():  # pragma: no cover
 
         # estimate effects
         effects_path = estimate_effects(
-            dataset_path=args.input_path,
+            dataset_path=args.input_path + "/papers",
             venues=config.get("venues", None),
             rde=rde,
             rcd_name=rcd.name,
