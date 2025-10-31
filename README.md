@@ -45,7 +45,13 @@ pip install git+https://github.com/UKPLab/counter-review-logic
    and their counterfactual versions into a folder "data" with a "cf_datasets" subfolder (the counterfactuals) and the
    papers in the "papers" subfolder. See minimal example data structure under [data](./data).
 
-3. Run your own ARG for evaluation or replicate our experiments (see below).
+3. Run your own ARG for evaluation or replicate our experiments (see below). If you run any stage that requires an LLM
+   you first need to set the necessary environment variables to support API access to the models. Set the fields:
+   - `ENDPOINT` (e.g. `https://api.openai.com/v1/chat/completions` for OpenAI)
+   - `API_VERSION` (ignore if not applicable)
+   - `COST_CACHE_DIR` (for billed APIs; ignore if not applicable; the costs are logged to this directory with a timestamp)
+   - `API_KEY` (your API key)
+   - `PROMPT_DIR` (by default points to the predefined package prompts, adapt if you want to change them)
 
 ### Evaluating your own ARG
 

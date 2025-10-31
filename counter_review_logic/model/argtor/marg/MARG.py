@@ -50,7 +50,7 @@ class MARG(AutomaticReviewGenerator):
 
         self.prompt_conf = None
         if prompt_dir is None:
-            self.prompt_dir = Path(os.environ.get("PROMPT_DIR", None)) / "argtor"
+            self.prompt_dir = Path(os.environ.get("PROMPT_DIR", Path(__file__).resolve().parent / "prompts")) / "argtor"
         elif isinstance(prompt_dir, str):
             self.prompt_dir = Path(prompt_dir)
 

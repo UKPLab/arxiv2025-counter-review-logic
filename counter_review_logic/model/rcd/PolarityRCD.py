@@ -23,7 +23,7 @@ class PolarityRCD(ReviewChangeDetector):
         if prompt_base_path is None and "PROMPT_DIR" in os.environ:
             self.prompt_base_path = Path(os.environ["PROMPT_DIR"].replace("\"", "")) / "rcd"
         elif prompt_base_path is None:
-            raise ValueError("Prompt base path is not provided.")
+            self.prompt_base_path = Path(__file__).resolve().parent / "prompts" # default path
 
         assert self.prompt_base_path.exists(), f"the prompt base path needs to exist. It does not: {self.prompt_base_path}."
         self.llm = llm
