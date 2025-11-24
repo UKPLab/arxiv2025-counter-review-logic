@@ -57,7 +57,7 @@ def main():  # pragma: no cover
         os.environ["API_VERSION"] = config["llm_api_version"]
     if "llm_cost_cache_dir" in config:
         os.environ["COST_CACHE_DIR"] = config["llm_cost_cache_dir"]
-    os.environ["PROMPT_DIR"] = str((Path(__file__).resolve().parent / "prompts").absolute())
+    os.environ["PROMPT_DIR"] = str((Path(__file__).resolve().parent.parent / "prompts").absolute())
 
     # set seeds
     seed = config.get("seed", 10203)

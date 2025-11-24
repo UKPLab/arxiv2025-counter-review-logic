@@ -26,7 +26,7 @@ class PointOverlapRCD(ReviewChangeDetector):
         if prompt_base_path is None and "PROMPT_DIR" in os.environ:
             self.prompt_base_path = Path(os.environ["PROMPT_DIR"].replace("\"", "")) / "rcd"
         elif prompt_base_path is None:
-            self.prompt_base_path = Path(__file__).resolve().parent / "prompts" # default path
+            self.prompt_base_path = Path(__file__).resolve().parent.parent / "prompts" / "rcd" # default path
 
         assert self.prompt_base_path.exists(), f"the prompt base path needs to exist. It does not: {self.prompt_base_path}."
 
