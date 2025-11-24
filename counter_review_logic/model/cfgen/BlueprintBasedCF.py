@@ -42,7 +42,7 @@ class BlueprintBasedPerturbator(Perturbator):
         if prompt_base_path is None and "PROMPT_DIR" in os.environ:
             self.prompt_base_path = Path(os.environ["PROMPT_DIR"].replace("\"", "")) / "cfgen" / "blueprint_based_cfgen"
         elif prompt_base_path is None:
-            self.prompt_base_path = Path(__file__).resolve().parent.parent / "prompts" / "cfgen" / "blueprint_based_cfgen" # default path
+            self.prompt_base_path = Path(__file__).resolve().parent.parent.parent / "prompts" / "cfgen" / "blueprint_based_cfgen" # default path
         elif type(prompt_base_path) == str:
             self.prompt_base_path = Path(self.prompt_base_path)
 

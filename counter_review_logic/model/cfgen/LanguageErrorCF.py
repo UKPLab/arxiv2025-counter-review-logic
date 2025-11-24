@@ -22,7 +22,7 @@ class LanguageErrorCF(PaperCounterfactualGenerator):
         if prompt_base_path is None and "PROMPT_DIR" in os.environ:
             prompt_base_path = Path(os.environ["PROMPT_DIR"].replace("\"", "")) / "cfgen"
         elif prompt_base_path is None:
-            prompt_base_path = Path(__file__).resolve().parent.parent / "prompts" / "cfgen" # default path
+            prompt_base_path = Path(__file__).resolve().parent.parent.parent / "prompts" / "cfgen" # default path
 
         if isinstance(prompt_base_path, str):
             prompt_base_path = Path(prompt_base_path)
