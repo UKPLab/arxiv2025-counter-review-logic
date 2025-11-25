@@ -7,7 +7,7 @@ from ...framework import PaperBlueprint, PaperSiteEngineer
 from ...framework import PaperCounterfactual
 from ...llm import ChatLLM
 from ..cfgen import BlueprintBasedPerturbator
-from . import FindingPerturbator
+from .FindingPerturbator import FindingPerturbator
 
 
 class ConclusionPerturbator(BlueprintBasedPerturbator):
